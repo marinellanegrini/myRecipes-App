@@ -15,9 +15,10 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private linguaService: LinguaService,
 
-    private translate: TranslateService,
+    private linguaService: LinguaService, // devo iniettare il service della lingua (definito da noi per recuperare la lingua dal db)
+    // e il service per la traduzione
+    private translate: TranslateService
   ) {
     this.initializeApp();
   }
@@ -29,16 +30,17 @@ export class AppComponent {
     });
   }
 
-  initTranslate() {
 
-    const linguaPreferita = this.linguaService.getLinguaPreferita();
-    this.translate.setDefaultLang(linguaPreferita);
-    this.linguaService.getLinguaAttuale().subscribe((lingua: string) => {
-      if (lingua != null) {
-        this.translate.use(lingua);
+  initTranslate() { // configuro la lingua dialogando con lo storage tramite il service della lingua
+    // Set the default language for translation strings, and the current language.
+    const linguaPreferita = this.linguaService.getLinguaPreferita(); // ritorna 'it'
+    this.translate.setDefaultLang(linguaPreferita); // imposta 'it' come lingua di default
+    this.linguaService.getLinguaAttuale().subscribe((lingua: string) => { // al posto di then uso subscribe (observable)
+      if (lingua != null) { // è null la prima volta che installiamo l'app
+        this.translate.use(lingua); // automaticamente cerca le traduzioni nel file json relativo (es. it.json)
       } else {
         this.translate.use(linguaPreferita);
-        this.linguaService.updateLingua(linguaPreferita);
+        this.linguaService.updateLingua(linguaPreferita); // la prima volta salvo nello storage la lingua preferita
       }
     });
   }
