@@ -13,6 +13,15 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'home',
+        children: [
+          {
+            path: '',
+            loadChildren: '../home/home.module#HomePageModule'
+          }
+        ]
+      },
+      {
         path: 'preferiti',
         children: [
           {
@@ -20,6 +29,11 @@ const routes: Routes = [
             loadChildren: '../preferiti/preferiti.module#PreferitiPageModule'
           }
         ]
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/home',
+        pathMatch: 'full'
       }
     ]
   }

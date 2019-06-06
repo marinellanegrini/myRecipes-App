@@ -1,20 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tabs</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <img class="title-image" src="assets/image/logobiancopieno.png" />
+    </ion-title>
+    <ion-icon *ngIf="router.url === '/tabs/home'" name="settings" size="large" slot="end" margin-end="20px" (click)="impostazioni()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-tabs>
     <!-- Tab bar -->
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="bottom" color="secondary">
       <ion-tab-button tab="home">
-        <ion-icon name="home"></ion-icon>
+        <ion-icon name="home" color="dark"></ion-icon>
       </ion-tab-button>
       <ion-tab-button tab="preferiti">
-        <ion-icon name="heart-empty"></ion-icon>
+        <ion-icon name="heart-empty" color="dark"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button tab="account">
+      <ion-tab-button tab="account" color="dark">
         <ion-icon name="person"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>

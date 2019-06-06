@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Ricetta} from "../../model/ricetta.model";
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +18,15 @@ export class HomePage implements OnInit {
     'ricetta 3'
   ]
 
-  constructor() { }
+  constructor(private navController: NavController) { }
 
   ngOnInit() {
+  }
+  ricercaPerIngredienti() {
+    this.navController.navigateForward('ricercaingredienti');
+  }
+  ricercaTramiteFiltri() {
+    this.navController.navigateForward('ricercafiltri');
   }
 
 }
