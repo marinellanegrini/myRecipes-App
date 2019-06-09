@@ -6,7 +6,7 @@ import {Ingrediente} from './ingrediente.model';
 export class Ricetta {
     id: number;
     nome: string;
-    difficoltà: number;
+    difficolta: number;
     procedimento: string;
     tprep: Date;
     numdosi: number;

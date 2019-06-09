@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Ricetta} from "../../model/ricetta.model";
+import {Ricetta} from '../../model/ricetta.model';
 import {NavController} from '@ionic/angular';
+import {Observable} from 'rxjs';
+import {RicettaService} from '../../services/ricetta.service';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +10,13 @@ import {NavController} from '@ionic/angular';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  slides: string[] = [
-      'ricetta 1',
-      'ricetta 2'
-  ];
-  recipes: string[] = [
-    'ricetta 1',
-    'ricetta 2',
-    'ricetta 3'
-  ]
+  private ricette$: Observable<Ricetta[]>
 
-  constructor(private navController: NavController) { }
+  constructor(private navController: NavController,
+              private ricettaService: RicettaService) { }
 
   ngOnInit() {
+    this.ricette$ = this.ricettaService.list();
   }
   ricercaPerIngredienti() {
     this.navController.navigateForward('ricercaingredienti');

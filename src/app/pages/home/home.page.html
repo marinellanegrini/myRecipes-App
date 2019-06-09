@@ -3,21 +3,43 @@
 
   <div>
     <ion-slides pager="true">
-      <ion-slide *ngFor="let slide of slides">
+      <ion-slide *ngFor="let slide of ricette$ | async">
 
         <img src="assets/image/download.jpeg" />
-        <ion-label class="img-description">{{slide}}</ion-label>
+        <ion-label class="img-description">{{slide.nome}}</ion-label>
       </ion-slide>
     </ion-slides>
   </div>
 
 
   <ion-list>
-    <ion-item *ngFor="let recipe of recipes">
+    <ion-item *ngFor="let recipe of ricette$ | async">
       <ion-thumbnail item-left>
         <img src="assets/image/download.jpeg" />
       </ion-thumbnail>
-      <ion-label padding>{{recipe}}</ion-label>
+      <ion-label padding>
+        <h2>{{recipe.nome}}</h2>
+      </ion-label>
+      <span>
+        <ion-label>
+          <p>
+            {{recipe.tprep | date: 'h:mm:ss'}}
+            <ion-icon name="time"></ion-icon>
+          </p>
+
+        </ion-label>
+        <ion-label>
+          <p>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<2)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<3)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<4)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<5)" name="star"></ion-icon>
+
+          </p>
+        </ion-label>
+
+      </span>
       <ion-icon name="heart-empty" slot="end" color="tertiary"></ion-icon>
 
     </ion-item>
