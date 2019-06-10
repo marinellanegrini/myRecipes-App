@@ -2,5 +2,15 @@
   "FAV-LIST": "I tuoi preferiti",
   "SETTINGS-TITOLO": "Impostazioni",
   "CERCAFILTRI-TITOLO": "Ricerca tramite filtri",
-  "CERCAINGREDIENTI-TITOLO": "Ricerca tramite ingredienti"
+  "CERCAINGREDIENTI-TITOLO": "Ricerca tramite ingredienti",
+  "DIFFICOLTA": "Difficoltà",
+  "TPREP": "Tempo di preparazione",
+  "CATEGORIA": "Categoria",
+  "SAVE_BUTTON": "Salva",
+  "CANCEL_BUTTON": "Annulla",
+  "APPLICA_BUTTON": "Applica",
+  "RISULTATI-TITOLO": "Risultati",
+  "NDOSI": "Numero di dosi",
+  "PROCEDIMENTO": "Procedimento",
+  "INGREDIENTI": "Ingredienti"
 }

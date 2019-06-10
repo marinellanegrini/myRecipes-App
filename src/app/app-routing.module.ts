@@ -6,7 +6,9 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
   { path: 'ricercafiltri', loadChildren: './pages/ricercafiltri/ricercafiltri.module#RicercafiltriPageModule' },
-  { path: 'ricercaingredienti', loadChildren: './pages/ricercaingredienti/ricercaingredienti.module#RicercaingredientiPageModule' }
+  { path: 'ricercaingredienti', loadChildren: './pages/ricercaingredienti/ricercaingredienti.module#RicercaingredientiPageModule' },
+  { path: 'risultatiricerca', loadChildren: './pages/risultatiricerca/risultatiricerca.module#RisultatiricercaPageModule' },
+  { path: 'ricette/:id', loadChildren: './pages/dettaglio-ricetta/dettaglio-ricetta.module#DettaglioRicettaPageModule' }
 
 ];
 

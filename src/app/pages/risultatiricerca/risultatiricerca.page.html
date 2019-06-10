@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'RISULTATI-TITOLO' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let recipe of risultati$ | async">
+      <ion-thumbnail item-left>
+        <img src="assets/image/download.jpeg" />
+      </ion-thumbnail>
+      <ion-label padding>
+        <h2>{{recipe.nome}}</h2>
+      </ion-label>
+      <span>
+        <ion-label>
+          <p>
+            {{recipe.tprep | date: 'h:mm:ss'}}
+            <ion-icon name="time"></ion-icon>
+          </p>
+
+        </ion-label>
+        <ion-label>
+          <p>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<2)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<3)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<4)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<5)" name="star"></ion-icon>
+
+          </p>
+        </ion-label>
+
+      </span>
+      <ion-icon name="heart-empty" slot="end" color="tertiary"></ion-icon>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>

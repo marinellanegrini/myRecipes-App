@@ -2,5 +2,15 @@
   "FAV-LIST": "Your favorites",
   "SETTINGS-TITOLO": "Settings",
   "CERCAFILTRI-TITOLO": "Advanced search",
-  "CERCAINGREDIENTI-TITOLO": "Search by ingredients"
+  "CERCAINGREDIENTI-TITOLO": "Search by ingredients",
+  "DIFFICOLTA": "Difficulty",
+  "TPREP": "Prepatation time",
+  "CATEGORIA": "Category",
+  "SAVE_BUTTON": "Save",
+  "CANCEL_BUTTON": "Cancel",
+  "APPLICA_BUTTON": "Apply",
+  "RISULTATI-TITOLO": "Results",
+  "NDOSI": "Serves",
+  "PROCEDIMENTO": "Method",
+  "INGREDIENTI": "Ingredients"
 }

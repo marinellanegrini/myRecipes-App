@@ -9,18 +9,28 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item *ngFor="let cibo of cibi$ | async">
-      <ion-thumbnail item-left>
-        <img src="assets/image/download.jpeg" />
-      </ion-thumbnail>
-      <ion-label padding>
-        <h2>{{cibo.nome}}</h2>
-      </ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
+  <form [formGroup]="ingrForm">
+    <ion-list>
+      <ion-item *ngFor="let cibo of cibi$ | async">
+        <ion-thumbnail item-left>
+          <img src="assets/image/download.jpeg" />
+        </ion-thumbnail>
+        <ion-label padding>
+          <h2>{{cibo.nome}}</h2>
+        </ion-label>
+        <ion-checkbox slot="end" checked="false" [value]="cibo.id" formControlName="ingrediente"></ion-checkbox>
+      </ion-item>
+    </ion-list>
 
-    </ion-item>
-  </ion-list>
+
+    <div margin-top="30px" align="center">
+      <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmit()" tappable>
+        {{ 'APPLICA_BUTTON' | translate }}
+      </ion-button>
+    </div>
+  </form>
+
+
 
 </ion-content>
 

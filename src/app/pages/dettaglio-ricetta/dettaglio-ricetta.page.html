@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(ricetta$ | async).nome}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="(ricetta$ | async) as ricetta">
+    <ion-text>
+      <h1><b>{{ricetta.nome}}</b></h1>
+    </ion-text>
+
+    <div>
+      <ion-slides pager="true">
+        <ion-slide>
+
+          <img src="assets/image/download.jpeg" />
+        </ion-slide>
+        <ion-slide>
+
+          <img src="assets/image/download.jpeg" />
+        </ion-slide>
+        <ion-slide>
+
+          <img src="assets/image/download.jpeg" />
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div>
+      <p>
+        {{ 'TPREP' | translate }}
+        <ion-icon name="time"></ion-icon>
+        {{ricetta.tprep | date: 'h:mm:ss'}}
+      </p>
+      <p>
+        {{ 'CATEGORIA' | translate }}:
+        {{ricetta.categoria.nome}}
+      </p>
+      <p>
+        {{ 'DIFFICOLTA' | translate }}
+        <ion-icon name="star"></ion-icon>
+        <ion-icon [hidden]="(ricetta.difficolta<2)" name="star"></ion-icon>
+        <ion-icon [hidden]="(ricetta.difficolta<3)" name="star"></ion-icon>
+        <ion-icon [hidden]="(ricetta.difficolta<4)" name="star"></ion-icon>
+        <ion-icon [hidden]="(ricetta.difficolta<5)" name="star"></ion-icon>
+      </p>
+      <p>
+        {{ 'NDOSI' | translate }}
+        <ion-icon name="restaurant"></ion-icon>
+        {{ricetta.numdosi}}
+      </p>
+
+    </div>
+
+    <div>
+      <h6>
+        <b>
+          {{ 'INGREDIENTI' | translate }}
+        </b>
+      </h6>
+    </div>
+
+    <div>
+      <ul>
+        <li *ngFor="let i of ricetta.ingredienti">
+          {{i.quantita}} {{i.cibo.um}} {{i.cibo.nome}}
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h6>
+        <b>
+          {{ 'PROCEDIMENTO' | translate }}
+        </b>
+      </h6>
+    </div>
+
+    <div>
+      <ion-text>
+        {{ricetta.procedimento}}
+      </ion-text>
+    </div>
+
+
+
+
+
+
+  </div>
+
+</ion-content>

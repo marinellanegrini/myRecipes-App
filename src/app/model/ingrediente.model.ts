@@ -2,7 +2,7 @@ import {Cibo} from './cibo.model';
 
 export class Ingrediente {
     id: number;
-    quantità: number;
+    quantita: number;
     cibo: Cibo;
 
 }

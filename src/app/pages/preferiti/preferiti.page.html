@@ -3,7 +3,11 @@
 
   <ion-list>
     <ion-list-header>
-      <ion-label>{{ 'FAV-LIST' | translate }}</ion-label>
+      <ion-label>
+        <h1>
+          {{ 'FAV-LIST' | translate }}
+        </h1>
+      </ion-label>
     </ion-list-header>
     <ion-item *ngFor =" let preferito of preferiti ">
       <ion-thumbnail item-left>
