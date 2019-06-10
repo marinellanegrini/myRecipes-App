@@ -1,0 +1,32 @@
+<ion-content padding>
+  <div align="center">
+    <ion-avatar class="imgprofilo">
+      <img src="https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg">
+    </ion-avatar>
+  </div>
+
+  <ion-text color="dark">
+    <div class="ion-text-center">
+      <h5>username</h5>
+      <h5>e-mail</h5>
+    </div>
+  </ion-text>
+
+  <div align="center">
+    <ion-button color="primary" size="small">modifica</ion-button>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let commento of commenti">
+      <ion-avatar slot="start">
+        <img src="http://1.citynews-today.stgy.ovh/~media/original-hi/40093515674280/pasta-tutti-i-giorni-2.jpg">
+      </ion-avatar>
+      <ion-label>{{commento}}</ion-label>
+      <div align="center">
+        <ion-text *ngFor="let descrizione of descrizioni" color="dark">
+          <ion-label>{{descrizione}}</ion-label>
+        </ion-text>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

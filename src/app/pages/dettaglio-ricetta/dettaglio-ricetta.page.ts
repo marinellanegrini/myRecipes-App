@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {RicettaService} from '../../services/ricetta.service';
 import {Ricetta} from '../../model/ricetta.model';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Utente} from '../../model/utente.model';
+import {UtenteService} from '../../services/utente.service';
 
 @Component({
   selector: 'app-dettaglio-ricetta',
@@ -11,6 +13,7 @@ import {Observable} from 'rxjs';
 })
 export class DettaglioRicettaPage implements OnInit {
   private ricetta$: Observable<Ricetta>;
+  private utente: Utente;
 
   constructor(private route: ActivatedRoute,
               private ricService: RicettaService) { }
@@ -20,6 +23,14 @@ export class DettaglioRicettaPage implements OnInit {
       // chiamata REST che recupera dal server la ricetta di cui ho l'id
       this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
     });
+
+    /*this.utenteService.getUtente().subscribe((utente) => {
+        this.utente = utente;
+    });*/
+    // NB usare il service qui
+    let u = new Utente();
+    u.username = 'mari';
+    this.utente = u;
   }
 
 }

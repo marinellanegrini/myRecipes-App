@@ -86,6 +86,49 @@
       </ion-text>
     </div>
 
+    <div margin-top="30px" align="center">
+      <ion-button size="medium" shape="round" color="tertiary" (click)="onSubmit()" tappable>
+        {{ 'COMMENTA-BUTTON' | translate }}
+      </ion-button>
+    </div>
+
+    <div>
+      <h6>
+        <b>
+          {{ 'COMMENTI' | translate }}
+        </b>
+      </h6>
+    </div>
+
+
+    <ion-list>
+      <ion-item *ngFor="let commento of ricetta.commenti">
+        <ion-avatar slot="start">
+          <img src="http://1.citynews-today.stgy.ovh/~media/original-hi/40093515674280/pasta-tutti-i-giorni-2.jpg">
+        </ion-avatar>
+        <ion-label>
+          <p>
+            <b>
+              {{utente.username}}
+            </b>
+          </p>
+          <p>
+            {{commento.testo}}
+          </p>
+        </ion-label>
+
+
+
+        <div margin-top="30px">
+          <ion-text slot="end" color="dark">
+              <p text-end="true">{{commento.data |date: 'dd/MM/yyyy'}} <br> {{commento.ora |date: 'h:mm:ss'}}</p>
+          </ion-text>
+        </div>
+      </ion-item>
+    </ion-list>
+
+
+
 
 
 

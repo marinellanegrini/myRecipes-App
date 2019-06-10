@@ -31,7 +31,7 @@ export class RicettaService {
         c.data = new Date(2019, 12, 2);
         c.ora = new Date(2);
         c.idricetta = 1;
-        c.testo = 'prova';
+        c.testo = 'bella ricetta';
         c.idutente = 1;
         r.commenti = [c];
         let cibo: Cibo = new Cibo();
@@ -68,7 +68,7 @@ export class RicettaService {
         c.data = new Date(2019, 12, 2);
         c.ora = new Date(2);
         c.idricetta = 1;
-        c.testo = 'prova';
+        c.testo = 'bella ricetta';
         c.idutente = 1;
         r.commenti = [c];
         let cibo: Cibo = new Cibo();
@@ -103,7 +103,7 @@ export class RicettaService {
         c.data = new Date(2019, 12, 2);
         c.ora = new Date(2);
         c.idricetta = 1;
-        c.testo = 'prova';
+        c.testo = 'vella ricetta';
         c.idutente = 1;
         r.commenti = [c];
         let cibo: Cibo = new Cibo();
