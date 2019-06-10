@@ -15,7 +15,6 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-
     private linguaService: LinguaService, // devo iniettare il service della lingua (definito da noi per recuperare la lingua dal db)
     // e il service per la traduzione
     private translate: TranslateService
@@ -25,6 +24,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.initTranslate();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

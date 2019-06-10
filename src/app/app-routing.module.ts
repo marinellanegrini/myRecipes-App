@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'profilo', pathMatch: 'full' },
-  { path: 'profilo', loadChildren: './pages/profilo/profilo.module#ProfiloPageModule' },
+
+  { path: '', redirectTo: 'tabs', pathMatch: 'full' },
+  { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
+  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
+  { path: 'ricercafiltri', loadChildren: './pages/ricercafiltri/ricercafiltri.module#RicercafiltriPageModule' },
+  { path: 'ricercaingredienti', loadChildren: './pages/ricercaingredienti/ricercaingredienti.module#RicercaingredientiPageModule' }
+
 ];
 
 @NgModule({
