@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DettaglioRicettaPage } from './dettaglio-ricetta.page';
+import { LoginPage } from './login.page';
 import {TranslateModule} from '@ngx-translate/core';
 
 const routes: Routes = [
   {
     path: '',
-    component: DettaglioRicettaPage
+    component: LoginPage
   }
 ];
 
@@ -20,9 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-      TranslateModule.forChild(),
-    RouterModule.forChild(routes)
+    TranslateModule.forChild(),
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
-  declarations: [DettaglioRicettaPage]
+  declarations: [LoginPage]
 })
-export class DettaglioRicettaPageModule {}
+export class LoginPageModule {}

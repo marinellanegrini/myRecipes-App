@@ -26,7 +26,6 @@
             {{recipe.tprep | date: 'h:mm:ss'}}
             <ion-icon name="time"></ion-icon>
           </p>
-
         </ion-label>
         <ion-label>
           <p>
@@ -49,14 +48,13 @@
     <ion-fab-button color="tertiary">
       <ion-icon name="search"></ion-icon>
     </ion-fab-button>
+
     <ion-fab-list side="top">
-      <ion-fab-button (click)="ricercaPerIngredienti()">
+      <ion-fab-button (click)="ricercaPerIngredienti()" data-desc="Prova">
         <ion-icon name="restaurant"></ion-icon>
-        <div class="label">LABEL TEXT HERE</div>
       </ion-fab-button>
-      <ion-fab-button (click)="ricercaTramiteFiltri()">
+      <ion-fab-button (click)="ricercaTramiteFiltri()" data-desc="{{'CERCAFILTRI-TITOLO' | translate}}">
         <ion-icon name="funnel"></ion-icon>
-        <div class="label">LABEL TEXT HERE</div>
       </ion-fab-button>
 
     </ion-fab-list>

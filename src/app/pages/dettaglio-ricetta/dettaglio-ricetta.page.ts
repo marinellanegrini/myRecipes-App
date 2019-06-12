@@ -27,7 +27,7 @@ export class DettaglioRicettaPage implements OnInit {
     /*this.utenteService.getUtente().subscribe((utente) => {
         this.utente = utente;
     });*/
-    // NB usare il service qui
+    // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
     let u = new Utente();
     u.username = 'mari';
     this.utente = u;

@@ -31,6 +31,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'profilo',
+        children: [
+          {
+            path: '',
+            loadChildren: '../profilo/profilo.module#ProfiloPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'

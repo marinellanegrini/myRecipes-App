@@ -9,11 +9,15 @@
 
 <ion-content padding>
   <div *ngIf="(ricetta$ | async) as ricetta">
-    <ion-text>
-      <h1><b>{{ricetta.nome}}</b></h1>
-    </ion-text>
+    <span>
+      <ion-text>
+        <h1><b>{{ricetta.nome}}</b></h1>
+      </ion-text>
+      <ion-icon size="large" name="heart-empty" class="heart" color="tertiary"></ion-icon>
+    </span>
 
     <div>
+
       <ion-slides pager="true">
         <ion-slide>
 
@@ -117,13 +121,11 @@
           </p>
         </ion-label>
 
-
-
-        <div margin-top="30px">
+        <span>
           <ion-text slot="end" color="dark">
-              <p text-end="true">{{commento.data |date: 'dd/MM/yyyy'}} <br> {{commento.ora |date: 'h:mm:ss'}}</p>
+              <p class="datacommento" text-end="true">{{commento.data |date: 'dd/MM/yyyy'}} <br> {{commento.ora |date: 'h:mm:ss'}}</p>
           </ion-text>
-        </div>
+        </span>
       </ion-item>
     </ion-list>
 

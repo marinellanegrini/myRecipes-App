@@ -16,6 +16,27 @@
   src: url("./assets/fonts/Montserrat/Montserrat-Regular.ttf");
 }
 
-body, span, button, h1, h2, h3, p, h4, h5, h6, ion-label, ion-text {
+body, span, button, h1, h2, h3, p, h4, h5, a, h6, ion-label, ion-select-option, ion-text {
   font-family: Montserrat !important;
+}
+
+
+.datacommento {
+  font-size: 10px;
+}
+
+.logo {
+  width: 300px;
+  height: 200px;
+  margin: 20px auto 8px;
+  border-radius: 10%;
+  background: url("/assets/image/logo.png") no-repeat;
+  background-size: 100%;
+}
+
+
+.title-image {
+  margin-top: 8px;
+  height: 40px;
+
 }

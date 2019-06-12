@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DettaglioRicettaPage } from './dettaglio-ricetta.page';
+import { RegistrazionePage } from './registrazione.page';
 import {TranslateModule} from '@ngx-translate/core';
 
 const routes: Routes = [
   {
     path: '',
-    component: DettaglioRicettaPage
+    component: RegistrazionePage
   }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     IonicModule,
       TranslateModule.forChild(),
     RouterModule.forChild(routes)
   ],
-  declarations: [DettaglioRicettaPage]
+  declarations: [RegistrazionePage]
 })
-export class DettaglioRicettaPageModule {}
+export class RegistrazionePageModule {}

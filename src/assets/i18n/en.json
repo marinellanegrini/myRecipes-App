@@ -1,8 +1,12 @@
 {
   "FAV-LIST": "Your favorites",
   "SETTINGS-TITOLO": "Settings",
+  "CAMBIALINGUA": "Change the language",
+  "CAMBIAPASSWORD": "Change the password",
   "CERCAFILTRI-TITOLO": "Advanced search",
   "CERCAINGREDIENTI-TITOLO": "Search by ingredients",
+  "REGISTRAZIONE-TITOLO": "Register",
+  "MODPROF-TITOLO": "Modify your account",
   "DIFFICOLTA": "Difficulty",
   "TPREP": "Prepatation time",
   "CATEGORIA": "Category",
@@ -14,5 +18,29 @@
   "PROCEDIMENTO": "Method",
   "INGREDIENTI": "Ingredients",
   "COMMENTI": "Comments",
-  "COMMENTA-BUTTON": "Comment"
+  "COMMENTA-BUTTON": "Comment",
+  "MODPROFILO-BUTTON": "Modify",
+  "LOGIN_TITLE": "Login",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "CONFPASSWORD": "Confirm Password",
+  "OLDPASSWORD": "Current Password",
+  "EMAIL": "e-mail",
+  "NOME": "Name",
+  "COGNOME": "Surname",
+  "LOGIN-BUTTON": "Enter",
+  "REGISTRATI": "Register",
+
+  "NOMEINVALID": "Enter a valid name",
+  "MAILINVALID": "Enter a valid e-mail",
+  "COGNOMEINVALID": "Enter a valid surname",
+  "PASSINVALID": "Password mismatch",
+  "USERNAMEREQUIRED": "Username is required",
+  "NOMEREQUIRED": "Name is required",
+
+
+  "LINGUA": "Language",
+
+  "PASS-ERR-TITLE": "ERROR!",
+  "PASS-ERR-SUBTITLE": "You have inserted a wrong password"
 }

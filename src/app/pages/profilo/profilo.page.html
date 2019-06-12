@@ -7,24 +7,38 @@
 
   <ion-text color="dark">
     <div class="ion-text-center">
-      <h5>username</h5>
-      <h5>e-mail</h5>
+      <ion-text>
+        <h5>{{utente.username}}</h5>
+      </ion-text>
+      <ion-text>
+        <h5>{{utente.nome}} {{utente.cognome}}</h5>
+      </ion-text>
+      <ion-text>
+        <h5>{{utente.email}}</h5>
+      </ion-text>
+
     </div>
   </ion-text>
 
-  <div align="center">
-    <ion-button color="primary" size="small">modifica</ion-button>
+  <div margin-top="30px" align="center">
+    <ion-button size="medium" shape="round" color="tertiary" (click)="modProfile()" tappable>
+      {{ 'MODPROFILO-BUTTON' | translate }}
+    </ion-button>
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let commento of commenti">
+    <ion-item *ngFor="let commento of utente.commenti">
       <ion-avatar slot="start">
         <img src="http://1.citynews-today.stgy.ovh/~media/original-hi/40093515674280/pasta-tutti-i-giorni-2.jpg">
       </ion-avatar>
-      <ion-label>{{commento}}</ion-label>
-      <div align="center">
-        <ion-text *ngFor="let descrizione of descrizioni" color="dark">
-          <ion-label>{{descrizione}}</ion-label>
+      <ion-label>
+        <p>
+          {{commento.testo}}
+        </p>
+      </ion-label>
+      <div margin-top="30px">
+        <ion-text slot="end" color="dark">
+          <p text-end="true" class="datacommento">{{commento.data |date: 'dd/MM/yyyy'}} <br> {{commento.ora |date: 'h:mm:ss'}}</p>
         </ion-text>
       </div>
     </ion-item>

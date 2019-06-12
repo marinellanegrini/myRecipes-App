@@ -50,7 +50,6 @@ export class UtenteService {
                 return resp.body;
             }));*/
         let u: Utente = new Utente();
-        u.id = 1;
         u.nome = 'Marinella';
         u.cognome = 'Negrini';
         u.email = 'mari@gmailcom';

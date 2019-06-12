@@ -1,8 +1,12 @@
 {
   "FAV-LIST": "I tuoi preferiti",
   "SETTINGS-TITOLO": "Impostazioni",
+  "CAMBIALINGUA": "Cambia la lingua dell'applicazione",
+  "CAMBIAPASSWORD": "Cambia la tua password",
   "CERCAFILTRI-TITOLO": "Ricerca tramite filtri",
   "CERCAINGREDIENTI-TITOLO": "Ricerca tramite ingredienti",
+  "REGISTRAZIONE-TITOLO": "Registrazione",
+  "MODPROF-TITOLO": "Modifica il tuo profilo",
   "DIFFICOLTA": "Difficoltà",
   "TPREP": "Tempo di preparazione",
   "CATEGORIA": "Categoria",
@@ -14,5 +18,28 @@
   "PROCEDIMENTO": "Procedimento",
   "INGREDIENTI": "Ingredienti",
   "COMMENTI": "Commenti",
-  "COMMENTA-BUTTON": "Commenta"
+  "COMMENTA-BUTTON": "Commenta",
+  "MODPROFILO-BUTTON": "Modifica",
+  "LOGIN_TITLE": "Login",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "CONFPASSWORD": "Conferma Password",
+  "OLDPASSWORD": "Password attuale",
+  "EMAIL": "e-mail",
+  "NOME": "Nome",
+  "COGNOME": "Cognome",
+  "LOGIN-BUTTON": "Entra",
+  "REGISTRATI": "Registrati",
+
+  "NOMEINVALID": "Il nome inserito non è valido",
+  "MAILINVALID": "La mail inserita non è valida",
+  "COGNOMEINVALID": "Il cognome inserito non è valido",
+  "PASSINVALID": "Le password inserite non coincidono",
+  "USERNAMEREQUIRED": "L'username è obbligatorio",
+  "NOMEREQUIRED": "Il nome è obbligatorio",
+
+  "LINGUA": "Lingua",
+
+  "PASS-ERR-TITLE": "ERRORE!",
+  "PASS-ERR-SUBTITLE": "La password inserita non è la tua"
 }

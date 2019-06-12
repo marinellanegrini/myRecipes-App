@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-buttons (click)="Cancel()" slot="start">
+      <ion-icon size="large" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-buttons (click)="Submit()" slot="end">
+      <ion-icon size="large" name="checkmark"></ion-icon>
+    </ion-buttons>
+    <ion-title>{{'MODPROF-TITOLO' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="modForm">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">{{ 'USERNAME' | translate }}</ion-label>
+              <ion-input type="text" formControlName="username"></ion-input>
+            </ion-item>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">{{ 'NOME' | translate }}</ion-label>
+              <ion-input type="text" formControlName="nome"></ion-input>
+            </ion-item>
+            <p ion-text class="datacommento" *ngIf="modForm.get('nome').invalid">
+              <ion-text color="danger">{{ 'NOMEINVALID' | translate }}</ion-text>
+            </p>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">{{ 'COGNOME' | translate }}</ion-label>
+              <ion-input type="text" formControlName="cognome"></ion-input>
+            </ion-item>
+            <p ion-text class="datacommento" *ngIf="modForm.get('cognome').invalid">
+              <ion-text color="danger">{{ 'COGNOMEINVALID' | translate }}</ion-text>
+            </p>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">{{ 'EMAIL' | translate }}</ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <p ion-text class="datacommento" *ngIf="modForm.get('email').invalid">
+              <ion-text color="danger">{{ 'MAILINVALID' | translate }}</ion-text>
+            </p>
+            </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
+
+</ion-content>
