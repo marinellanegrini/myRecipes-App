@@ -22,8 +22,8 @@ export class ModificaprofiloPage implements OnInit {
     this.modForm = this.fb.group({
       username: [this.utente.username],
       nome: [this.utente.nome, Validators.pattern('[A-Za-z]+')],
-      cognome: [this.utente.cognome,  Validators.pattern('/[A-Za-z]+/')],
-      email: [this.utente.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]
+      cognome: [this.utente.cognome,  Validators.pattern('[A-Za-z]+')],
+      email: [this.utente.email, Validators.email]
     });
 
   }

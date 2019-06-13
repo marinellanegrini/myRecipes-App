@@ -12,7 +12,7 @@ import {UtenteService} from '../../services/utente.service';
   styleUrls: ['./dettaglio-ricetta.page.scss'],
 })
 export class DettaglioRicettaPage implements OnInit {
-  private ricetta$: Observable<Ricetta>;
+  private ricetta: Ricetta;
   private utente: Utente;
 
   constructor(private route: ActivatedRoute,
@@ -21,7 +21,9 @@ export class DettaglioRicettaPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       // chiamata REST che recupera dal server la ricetta di cui ho l'id
-      this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
+      this.ricService.findById(parseInt(params.get('id'), 0)).subscribe((ricetta) => {
+        this.ricetta = ricetta;
+      });
     });
 
     /*this.utenteService.getUtente().subscribe((utente) => {

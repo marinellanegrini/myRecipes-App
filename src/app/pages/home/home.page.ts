@@ -18,11 +18,8 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.ricette$ = this.ricettaService.list();
   }
-  ricercaPerIngredienti() {
-    this.navController.navigateForward('ricercaingredienti');
-  }
-  ricercaTramiteFiltri() {
-    this.navController.navigateForward('ricercafiltri');
+  ricerca() {
+    this.navController.navigateForward('ricerca');
   }
 
 }

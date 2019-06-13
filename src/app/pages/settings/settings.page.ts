@@ -52,7 +52,6 @@ export class SettingsPage implements OnInit {
       linguaPreferita: ['', Validators.compose([
         Validators.required
       ])],
-      oldpassword: [''],
       password: [''],
       confpassword: ['']
     }, {
@@ -71,15 +70,10 @@ export class SettingsPage implements OnInit {
     // devo recuperare tutti i dati dalla form e aggiorno
     this.translateService.use(this.settingForm.value.linguaPreferita);
     this.linguaService.updateLingua(this.settingForm.value.linguaPreferita);
-    if (this.settingForm.value.oldpassword !== this.utente.password
-        && this.settingForm.value.oldpassword !== '' && this.settingForm.value.oldpassword !== null) {
-      this.showLoginError();
-    } else {
-      this.utente.password = this.settingForm.value.password;
-      console.log(this.utente.password);
-      // aggiornare il server
-      this.navController.back();
-    }
+    this.utente.password = this.settingForm.value.password;
+    console.log(this.utente.password);
+    // aggiornare il server
+    this.navController.back();
   }
 
   Cancel() {

@@ -3,8 +3,9 @@
   "SETTINGS-TITOLO": "Impostazioni",
   "CAMBIALINGUA": "Cambia la lingua dell'applicazione",
   "CAMBIAPASSWORD": "Cambia la tua password",
-  "CERCAFILTRI-TITOLO": "Ricerca tramite filtri",
-  "CERCAINGREDIENTI-TITOLO": "Ricerca tramite ingredienti",
+  "RICERCA-TITOLO": "Ricerca",
+  "CERCAFILTRI": "Filtri",
+  "CERCAINGREDIENTI": "Per ingredienti",
   "REGISTRAZIONE-TITOLO": "Registrazione",
   "MODPROF-TITOLO": "Modifica il tuo profilo",
   "DIFFICOLTA": "Difficoltà",
@@ -37,6 +38,8 @@
   "PASSINVALID": "Le password inserite non coincidono",
   "USERNAMEREQUIRED": "L'username è obbligatorio",
   "NOMEREQUIRED": "Il nome è obbligatorio",
+  "COGNOMEREQUIRED": "Il cognome è obbligatorio",
+  "MAILREQUIRED": "La mail è obbligatoria",
 
   "LINGUA": "Lingua",
 

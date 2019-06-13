@@ -3,8 +3,9 @@
   "SETTINGS-TITOLO": "Settings",
   "CAMBIALINGUA": "Change the language",
   "CAMBIAPASSWORD": "Change the password",
-  "CERCAFILTRI-TITOLO": "Advanced search",
-  "CERCAINGREDIENTI-TITOLO": "Search by ingredients",
+  "RICERCA-TITOLO": "Search",
+  "CERCAFILTRI": "Advanced",
+  "CERCAINGREDIENTI": "By ingredients",
   "REGISTRAZIONE-TITOLO": "Register",
   "MODPROF-TITOLO": "Modify your account",
   "DIFFICOLTA": "Difficulty",
@@ -37,6 +38,8 @@
   "PASSINVALID": "Password mismatch",
   "USERNAMEREQUIRED": "Username is required",
   "NOMEREQUIRED": "Name is required",
+  "COGNOMEREQUIRED": "Surname is required",
+  "MAILREQUIRED": "Mail is required",
 
 
   "LINGUA": "Language",

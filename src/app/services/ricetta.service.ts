@@ -6,6 +6,7 @@ import {Commento} from '../model/commento.model';
 import {Cibo} from '../model/cibo.model';
 import {Ingrediente} from '../model/ingrediente.model';
 import {Categoria} from '../model/categoria.model';
+import {URL} from '../constants';
 
 @Injectable({
     providedIn: 'root'
@@ -52,9 +53,9 @@ export class RicettaService {
     }
 
     findById(ricettaId: number): Observable<Ricetta> {
-        /*const apiURL = `${URL.NOTIZIE}/${notiziaId}`;
-        return this.http.get<Notizia>(apiURL);*/
-        let r: Ricetta = new Ricetta();
+        const apiURL = `${URL.RICETTE}/${ricettaId}`;
+        return this.http.get<Ricetta>(apiURL);
+       /* let r: Ricetta = new Ricetta();
         r.id = 1;
         r.difficolta = 2;
         r.nome = 'Uova Sode';
@@ -84,7 +85,7 @@ export class RicettaService {
         cat.id = 1;
         cat.nome = 'Secondi piatti';
         r.categoria = cat;
-        return of(r);
+        return of(r);*/
     }
 
     ricercaAvanzata(filtri): Observable<Ricetta[]> {

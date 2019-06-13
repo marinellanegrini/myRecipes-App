@@ -45,19 +45,10 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary">
+    <ion-fab-button (click)="ricerca()" color="tertiary">
       <ion-icon name="search"></ion-icon>
     </ion-fab-button>
-
-    <ion-fab-list side="top">
-      <ion-fab-button (click)="ricercaPerIngredienti()" data-desc="Prova">
-        <ion-icon name="restaurant"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button (click)="ricercaTramiteFiltri()" data-desc="{{'CERCAFILTRI-TITOLO' | translate}}">
-        <ion-icon name="funnel"></ion-icon>
-      </ion-fab-button>
-
-    </ion-fab-list>
+    
   </ion-fab>
 
 </ion-content>

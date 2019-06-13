@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"RICERCA-TITOLO" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button checked value="avanzata">
+      <ion-label>{{"CERCAFILTRI" | translate }}</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ingredienti">
+      <ion-label>{{"CERCAINGREDIENTI" | translate }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div padding [ngSwitch]="modalita">
+
+    <form [formGroup]="filtriForm" *ngSwitchCase="'avanzata'">
+      <ion-list no-lines>
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">{{ 'DIFFICOLTA' | translate }}</ion-label>
+          <ion-select formControlName="difficolta" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
+            <ion-select-option *ngFor="let diff of difficolta" [value]="diff">{{diff}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">{{ 'TPREP' | translate }}</ion-label>
+          <ion-select formControlName="tprep" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
+            <ion-select-option *ngFor="let t of tprep" [value]="t">{{t}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">{{ 'CATEGORIA' | translate }}</ion-label>
+          <ion-select formControlName="categoria" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
+            <ion-select-option *ngFor="let c of categorie$ | async" [value]="c.id">{{c.nome}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <div margin-top="30px" align="center">
+        <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmitAv()" tappable>
+          {{ 'APPLICA_BUTTON' | translate }}
+        </ion-button>
+      </div>
+
+    </form>
+
+    <form [formGroup]="ingrForm" *ngSwitchCase="'ingredienti'">
+      <ion-searchbar animated="true"></ion-searchbar>
+      <ion-list>
+        <ion-item [formArrayName]="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
+            <ion-thumbnail item-left>
+              <img src="assets/image/download.jpeg" />
+            </ion-thumbnail>
+            <ion-label padding>
+              <h2>{{ingr.nome}}</h2>
+            </ion-label>
+            <ion-checkbox [formControl]="ingredienti[i]" slot="end" checked="false" [value]="ingr.id"></ion-checkbox>
+
+        </ion-item>
+      </ion-list>
+
+
+      <div margin-top="30px" align="center">
+        <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmitIngr()" tappable>
+          {{ 'APPLICA_BUTTON' | translate }}
+        </ion-button>
+      </div>
+    </form>
+
+  </div>
+
+</ion-content>

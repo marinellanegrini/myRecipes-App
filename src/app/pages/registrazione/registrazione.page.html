@@ -24,24 +24,30 @@
               <ion-label position="floating">{{ 'NOME' | translate }}</ion-label>
               <ion-input type="text" formControlName="nome"></ion-input>
             </ion-item>
-            <p ion-text class="datacommento" *ngIf=" regForm.get('nome').touched && regForm.get('nome').errors.required">
+            <p ion-text class="datacommento" *ngIf=" regForm.get('nome').touched && regForm.get('nome').errors?.required">
               <ion-text color="danger">{{ 'NOMEREQUIRED' | translate }}</ion-text>
             </p>
-            <p ion-text class="datacommento" *ngIf=" regForm.get('nome').dirty && regForm.get('nome').errors.pattern">
+            <p ion-text class="datacommento" *ngIf="regForm.get('nome').dirty && regForm.get('nome').errors?.pattern">
               <ion-text color="danger">{{ 'NOMEINVALID' | translate }}</ion-text>
             </p>
             <ion-item no-padding class="animated fadeInUp">
               <ion-label position="floating">{{ 'COGNOME' | translate }}</ion-label>
               <ion-input type="text" formControlName="cognome"></ion-input>
             </ion-item>
-            <p ion-text class="datacommento" *ngIf="regForm.get('cognome').dirty && regForm.get('cognome').touched && regForm.get('cognome').invalid">
+            <p ion-text class="datacommento" *ngIf=" regForm.get('cognome').touched && regForm.get('cognome').errors?.required">
+              <ion-text color="danger">{{ 'COGNOMEREQUIRED' | translate }}</ion-text>
+            </p>
+            <p ion-text class="datacommento" *ngIf="regForm.get('cognome').dirty && regForm.get('cognome').errors?.pattern">
               <ion-text color="danger">{{ 'COGNOMEINVALID' | translate }}</ion-text>
             </p>
             <ion-item no-padding class="animated fadeInUp">
               <ion-label position="floating">{{ 'EMAIL' | translate }}</ion-label>
               <ion-input type="email" formControlName="email"></ion-input>
             </ion-item>
-            <p ion-text class="datacommento" *ngIf="regForm.get('email').dirty && regForm.get('email').touched && regForm.get('email').invalid">
+            <p ion-text class="datacommento" *ngIf=" regForm.get('email').touched && regForm.get('email').errors?.required">
+              <ion-text color="danger">{{ 'MAILREQUIRED' | translate }}</ion-text>
+            </p>
+            <p ion-text class="datacommento" *ngIf="regForm.get('email').dirty && regForm.get('email').errors?.email">
               <ion-text color="danger">{{ 'MAILINVALID' | translate }}</ion-text>
             </p>
 
@@ -53,7 +59,7 @@
               <ion-label position="floating">{{ 'CONFPASSWORD' | translate }}</ion-label>
               <ion-input type="password" formControlName="confpassword"></ion-input>
             </ion-item>
-            <p ion-text class="datacommento" *ngIf="regForm.get('confpassword').errors && regForm.get('confpassword').errors.ConfirmPassword">
+            <p ion-text class="datacommento" *ngIf="regForm.get('confpassword').dirty && regForm.get('confpassword').errors && regForm.get('confpassword').errors.ConfirmPassword">
               <ion-text color="danger">{{ 'PASSINVALID' | translate }}</ion-text>
             </p>
           </div>

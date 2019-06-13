@@ -20,15 +20,15 @@ export class RegistrazionePage implements OnInit {
       ])],
       nome: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('/[A-Za-z]$/')
+        Validators.pattern('[A-Za-z]+')
       ])],
       cognome: ['',  Validators.compose([
         Validators.required,
-        Validators.pattern('/[A-Za-z]$/')
+        Validators.pattern('[A-Za-z]$')
       ])],
       email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.email
       ])],
       password: [''],
       confpassword: ['']
