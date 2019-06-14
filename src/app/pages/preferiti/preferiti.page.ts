@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Categoria} from '../../model/categoria.model';
+import {RicettaService} from '../../services/ricetta.service';
 
 @Component({
   selector: 'app-preferiti',
@@ -7,11 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreferitiPage implements OnInit {
 
-  preferiti: string[] = [
-      'Carbonara',
-      'Amatriciana'
-  ];
-  constructor() { }
+  private preferiti$: Observable<[]>;
+
+  constructor(private ricService: RicettaService) { }
 
   ngOnInit() {
   }
