@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {Cibo} from "../../model/cibo.model";
+import {Ricetta} from "../../model/ricetta.model";
+import {RicettaService} from "../../services/ricetta.service";
 
 @Component({
   selector: 'app-preferiti',
@@ -6,14 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./preferiti.page.scss'],
 })
 export class PreferitiPage implements OnInit {
-
-  preferiti: string[] = [
-      'Carbonara',
-      'Amatriciana'
-  ];
-  constructor() { }
+    private preferiti$: Observable<Ricetta[]>
+  constructor(private ricService: RicettaService) { }
 
   ngOnInit() {
+      this.preferiti$ = this.ricService.preferiti();
   }
 
 }

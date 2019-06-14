@@ -18,7 +18,7 @@
   "NDOSI": "Numero di dosi",
   "PROCEDIMENTO": "Procedimento",
   "INGREDIENTI": "Ingredienti",
-  "COMMENTI": "Commenti",
+  "COMMENTIRICETTA": "Commenti",
   "COMMENTA-BUTTON": "Commenta",
   "MODPROFILO-BUTTON": "Modifica",
   "LOGIN_TITLE": "Login",
@@ -31,6 +31,7 @@
   "COGNOME": "Cognome",
   "LOGIN-BUTTON": "Entra",
   "REGISTRATI": "Registrati",
+  "COMMENTI": "I tuoi commenti",
 
   "NOMEINVALID": "Il nome inserito non è valido",
   "MAILINVALID": "La mail inserita non è valida",

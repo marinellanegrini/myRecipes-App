@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Ricetta} from '../../model/ricetta.model';
+import {Data} from '../../utility/Data';
 import {Observable} from 'rxjs';
 import {RicettaService} from '../../services/ricetta.service';
 
@@ -10,16 +11,17 @@ import {RicettaService} from '../../services/ricetta.service';
   styleUrls: ['./risultatiricerca.page.scss'],
 })
 export class RisultatiricercaPage implements OnInit {
-  private risultati$: Observable<Ricetta[]>
+  private risultati: Ricetta[]
 
-  constructor(public activatedRoute: ActivatedRoute,
-              private ricService: RicettaService) {
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private ricService: RicettaService,
+              private data: Data) {
   }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((res) => {
-      this.risultati$ = this.ricService.ricercaAvanzata(res);
-    });
+    this.risultati = this.data.storage;
   }
 
 }

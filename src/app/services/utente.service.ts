@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of} from 'rxjs';
+import {Storage} from '@ionic/storage';
 import {map} from 'rxjs/operators';
-import {AUTH_TOKEN, UTENTE_STORAGE} from '../constants';
+import {AUTH_TOKEN, UTENTE_STORAGE, X_AUTH} from '../constants';
 import {Utente} from '../model/utente.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Commento} from '../model/commento.model';
+import {URL} from '../constants';
 
 export interface Account {
     username: string;
@@ -36,8 +38,8 @@ export class UtenteService {
     }
 
     login(account: Account): Observable<Utente> { // prende un account e restituisce Observable<Utente>
-        /* return this.http.post<Utente>(URL.LOGIN, account, {observe: 'response'}).pipe(
-           return map((resp: HttpResponse<Utente>) => {
+         return this.http.post<Utente>(URL.LOGIN, account, {observe: 'response'}).pipe(
+            map((resp: HttpResponse<Utente>) => {
                 const token = resp.headers.get(X_AUTH);
                 this.storage.set(AUTH_TOKEN, token);
                 this.authToken = token;
@@ -48,32 +50,7 @@ export class UtenteService {
                 this.utente$.next(resp.body);
                 this.loggedIn$.next(true);
                 return resp.body;
-            }));*/
-        let u: Utente = new Utente();
-        u.nome = 'Marinella';
-        u.cognome = 'Negrini';
-        u.email = 'mari@gmailcom';
-        u.username = 'mari';
-        u.stato = true;
-        let c: Commento = new Commento();
-        c.id = 1;
-        c.bannato = false;
-        c.data = new Date(2019,12,2);
-        c.ora = new Date(2);
-        c.idricetta = 1;
-        c.testo = 'prova';
-        c.idutente = 1;
-        u.commenti = [
-            c
-        ];
-        const token = 'abc';
-        this.storage.set(AUTH_TOKEN, token);
-        this.authToken = token;
-        this.storage.set(UTENTE_STORAGE, u);
-        this.utente$.next(u);
-        this.loggedIn$.next(true);
-        const utente = of(u);
-        return utente;
+            }));
     }
 
     logout() {
