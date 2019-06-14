@@ -18,7 +18,6 @@ export class RicettaService {
     }
 
     list(): Observable<Ricetta[]> {
-        // return this.http.get<Ricetta[]>(URL.NOTIZIE);
         const apiURL = URL.HOMEPAGE;
         return this.http.get<Ricetta[]>(apiURL);
 
@@ -33,7 +32,6 @@ export class RicettaService {
         const apiURL = URL.PREFERITI;
         return this.http.get<Ricetta[]>(apiURL);
     }
-    
 
     ricercaAvanzata(filtri): Observable<Ricetta[]> {
         // chiamata al server per la ricerca

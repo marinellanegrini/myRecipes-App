@@ -8,7 +8,6 @@ export const USE_PROXY = true;
 
 export const URL_BASE = USE_PROXY ? 'api' : 'http://localhost:80/myRecipes/api';
 
-export const X_AUTH = 'X-Auth';
 
 export const URL = {
     LOGIN: URL_BASE + '/Utente/login',
