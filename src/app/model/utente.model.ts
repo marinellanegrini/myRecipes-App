@@ -1,5 +1,6 @@
 import {Commento} from './commento.model';
 import {Ricetta} from './ricetta.model';
+import {Immagine} from "./immagine.model";
 export class Utente {
     username: string;
     password: string;
@@ -7,6 +8,7 @@ export class Utente {
     stato: boolean;
     nome: string;
     cognome: string;
-    commenti: Commento[];
+    commento: Commento[];
     preferiti: Ricetta[];
+    immagine: Immagine;
 }

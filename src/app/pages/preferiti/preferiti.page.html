@@ -1,7 +1,7 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <ion-list *ngIf="(preferiti$ | async)">
     <ion-list-header>
       <ion-label>
         <h1>
@@ -9,11 +9,11 @@
         </h1>
       </ion-label>
     </ion-list-header>
-    <ion-item *ngFor =" let preferito of preferiti ">
+    <ion-item *ngFor =" let preferito of (preferiti$ | async)" [routerLink]="['/ricette', preferito.id]" >
       <ion-thumbnail item-left>
-          <img src="assets/image/carbonara.jpg"/>
+          <img src="data:{{preferito.immagine.type}};base64,{{preferito.immagine.data}}"/>
       </ion-thumbnail>
-      <ion-label padding> {{preferito}} </ion-label>
+      <ion-label padding> {{preferito.nome}} </ion-label>
       <ion-icon name="heart" slot="end" color="tertiary"></ion-icon>
 
 

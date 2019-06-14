@@ -10,7 +10,7 @@
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let recipe of risultati$ | async" [routerLink]="['/ricette', recipe.id]" routerDirection="forward">
+    <ion-item *ngFor="let recipe of risultati" [routerLink]="['/ricette', recipe.id]" routerDirection="forward">
       <ion-thumbnail item-left>
         <img src="assets/image/download.jpeg" />
       </ion-thumbnail>
@@ -20,7 +20,7 @@
       <span>
         <ion-label>
           <p>
-            {{recipe.tprep | date: 'h:mm:ss'}}
+            {{recipe.tprep}}
             <ion-icon name="time"></ion-icon>
           </p>
 

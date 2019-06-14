@@ -18,7 +18,7 @@
   "NDOSI": "Serves",
   "PROCEDIMENTO": "Method",
   "INGREDIENTI": "Ingredients",
-  "COMMENTI": "Comments",
+  "COMMENTIRICETTA": "Comments",
   "COMMENTA-BUTTON": "Comment",
   "MODPROFILO-BUTTON": "Modify",
   "LOGIN_TITLE": "Login",
@@ -31,6 +31,7 @@
   "COGNOME": "Surname",
   "LOGIN-BUTTON": "Enter",
   "REGISTRATI": "Register",
+  "COMMENTI": "Your comments",
 
   "NOMEINVALID": "Enter a valid name",
   "MAILINVALID": "Enter a valid e-mail",

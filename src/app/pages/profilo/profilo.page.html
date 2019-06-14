@@ -1,10 +1,11 @@
+
 <ion-content padding>
+<div *ngIf="utente">
   <div align="center">
     <ion-avatar class="imgprofilo">
-      <img src="https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg">
+      <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
     </ion-avatar>
   </div>
-
   <ion-text color="dark">
     <div class="ion-text-center">
       <ion-text>
@@ -21,15 +22,21 @@
   </ion-text>
 
   <div margin-top="30px" align="center">
-    <ion-button size="medium" shape="round" color="tertiary" (click)="modProfile()" tappable>
+    <ion-button (click)="modProfile()" size="medium" shape="round" color="tertiary" tappable>
       {{ 'MODPROFILO-BUTTON' | translate }}
     </ion-button>
   </div>
 
+
   <ion-list>
-    <ion-item *ngFor="let commento of utente.commenti">
+    <ion-header>
+      <p>
+        {{'COMMENTI' | translate}}:
+      </p>
+    </ion-header>
+    <ion-item *ngFor="let commento of utente.commento">
       <ion-avatar slot="start">
-        <img src="http://1.citynews-today.stgy.ovh/~media/original-hi/40093515674280/pasta-tutti-i-giorni-2.jpg">
+        <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
       </ion-avatar>
       <ion-label>
         <p>
@@ -38,9 +45,16 @@
       </ion-label>
       <div margin-top="30px">
         <ion-text slot="end" color="dark">
-          <p text-end="true" class="datacommento">{{commento.data |date: 'dd/MM/yyyy'}} <br> {{commento.ora |date: 'h:mm:ss'}}</p>
+          <p text-end="true" class="datacommento">{{commento.data}} <br> {{commento.ora}}</p>
         </ion-text>
       </div>
     </ion-item>
   </ion-list>
+
+
+</div>
+
 </ion-content>
+
+
+

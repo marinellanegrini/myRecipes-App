@@ -4,9 +4,12 @@ import {Observable} from "rxjs";
 import {filter} from 'rxjs/operators'
 import {Categoria} from "../../model/categoria.model";
 import {CategoriaService} from "../../services/categoria.service";
-import {Router} from "@angular/router";
+import {NavigationExtras, Router} from "@angular/router";
+import {Data} from '../../utility/Data'
 import {Cibo} from "../../model/cibo.model";
 import {CiboService} from "../../services/cibo.service";
+import {RicettaService} from "../../services/ricetta.service";
+import {Ricetta} from "../../model/ricetta.model";
 
 @Component({
   selector: 'app-ricerca',
@@ -24,26 +27,24 @@ export class RicercaPage implements OnInit {
 
   private ingrForm: FormGroup;
   private ingredienti: FormArray;
-  private cibi$: Observable<Cibo[]>
+  private cibi$: Observable<Cibo[]>;
 
   constructor(private fb: FormBuilder,
               private catService: CategoriaService,
+              private ricService: RicettaService,
               public router: Router,
-              private ciboService: CiboService) { }
+              private ciboService: CiboService,
+              private data: Data) { }
 
   ngOnInit() {
     this.categorie$ = this.catService.list();
     this.difficolta = [1, 2, 3, 4, 5];
     this.tprep = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60+'];
-    this.filtri = {
-      difficolta: '',
-      tprep: '',
-      categoria: ''
-    }
+
     this.filtriForm = this.fb.group({
-      difficolta: [''],
+      diff: [''],
       tprep: [''],
-      categoria: ['']
+      cat: ['']
     });
 
     this.cibi$ = this.ciboService.list();
@@ -85,12 +86,10 @@ export class RicercaPage implements OnInit {
 
   onSubmitAv(): void {
     // devo recuperare tutti i dati dalla form
-    this.filtri.difficolta = this.filtriForm.value.difficolta;
-    this.filtri.tprep = this.filtriForm.value.tprep;
-    this.filtri.categoria = this.filtriForm.value.categoria;
-    // updateProfilo torna un Observable con l'array di Ricetta
-    this.router.navigate(['/risultatiricerca'], {
-      queryParams: this.filtri,
+    const filtri: any = this.filtriForm.value;
+    this.ricService.ricercaAvanzata(filtri).subscribe((Ricette) => {
+      this.data.storage = Ricette;
+      this.router.navigate(['/risultatiricerca']);
     });
   }
 
