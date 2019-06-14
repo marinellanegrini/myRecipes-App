@@ -55,7 +55,7 @@
       <ion-list>
         <ion-item [formArrayName]="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
             <ion-thumbnail item-left>
-              <img src="assets/image/download.jpeg" />
+              <img src="data:{{ingr.immagine.type}};base64,{{ingr.immagine.data}}" />
             </ion-thumbnail>
             <ion-label padding>
               <h2>{{ingr.nome}}</h2>

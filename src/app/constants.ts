@@ -13,6 +13,8 @@ export const URL = {
     LOGOUT: URL_BASE + '/logout',
     UPDATE_PROFILO: URL_BASE + '/utente/updateprofilo',
     RICETTE: URL_BASE + '/Ricette/Ricetta',
+    CIBI: URL_BASE + '/Ricette/RicercaPerIngredienti',
+    CATEGORIE: URL_BASE + '/Ricette/Categorie',
     INSEGNAMENTI: URL_BASE + '/insegnamenti',
     APPELLI: URL_BASE + '/appelli'
 };

@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ricetta.nome}}</ion-title>
+    <ion-title *ngIf="(ricetta$ | async) as ricetta">{{ricetta.nome}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <div>
+  <div *ngIf="(ricetta$ | async) as ricetta">
     <span>
       <ion-text>
         <h1><b>{{ricetta.nome}}</b></h1>
@@ -21,7 +21,7 @@
       <ion-slides pager="true">
         <ion-slide>
 
-          <img src="assets/image/download.jpeg" />
+          <img src="data:{{ricetta.immagine.type}};base64,{{ricetta.immagine.data}}"/>
         </ion-slide>
         <ion-slide>
 
@@ -38,7 +38,7 @@
       <p>
         {{ 'TPREP' | translate }}
         <ion-icon name="time"></ion-icon>
-        {{ricetta.tprep | date: 'h:mm:ss'}}
+        {{ricetta.tprep}}
       </p>
       <p>
         {{ 'CATEGORIA' | translate }}:
@@ -55,7 +55,7 @@
       <p>
         {{ 'NDOSI' | translate }}
         <ion-icon name="restaurant"></ion-icon>
-        {{ricetta.numdosi}}
+        {{ricetta.ndosi}}
       </p>
 
     </div>
@@ -71,7 +71,7 @@
     <div>
       <ul>
         <li *ngFor="let i of ricetta.ingredienti">
-          {{i.quantita}} {{i.cibo.um}} {{i.cibo.nome}}
+          {{i.qta}} {{i.cibo.um}} {{i.cibo.nome}}
         </li>
       </ul>
     </div>
@@ -123,7 +123,7 @@
 
         <span>
           <ion-text slot="end" color="dark">
-              <p class="datacommento" text-end="true">{{commento.data |date: 'dd/MM/yyyy'}} <br> {{commento.ora |date: 'h:mm:ss'}}</p>
+              <p class="datacommento" text-end="true">{{commento.data}} <br> {{commento.ora}}</p>
           </ion-text>
         </span>
       </ion-item>

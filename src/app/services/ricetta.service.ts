@@ -23,7 +23,7 @@ export class RicettaService {
         r.difficolta = 3;
         r.nome = 'Uova Sode';
         r.nsalvataggi = 3;
-        r.numdosi = 4;
+        r.ndosi = 4;
         r.procedimento = 'Prova';
         r.tprep = new Date(2);
         let c: Commento = new Commento();
@@ -42,7 +42,7 @@ export class RicettaService {
         let i: Ingrediente = new Ingrediente();
         i.id = 1;
         i.cibo = cibo;
-        i.quantita = 4;
+        i.qta = 4;
         r.ingredienti = [i];
         let cat: Categoria = new Categoria();
         cat.id = 1;
@@ -95,7 +95,7 @@ export class RicettaService {
         r.difficolta = 3;
         r.nome = 'Uova Sode';
         r.nsalvataggi = 3;
-        r.numdosi = 4;
+        r.ndosi = 4;
         r.procedimento = 'Prova';
         r.tprep = new Date(2);
         let c: Commento = new Commento();
@@ -114,7 +114,7 @@ export class RicettaService {
         let i: Ingrediente = new Ingrediente();
         i.id = 1;
         i.cibo = cibo;
-        i.quantita = 4;
+        i.qta = 4;
         r.ingredienti = [i];
         let cat: Categoria = new Categoria();
         cat.id = 1;
