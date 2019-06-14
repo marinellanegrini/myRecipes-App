@@ -6,8 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProfiloPage } from './profilo.page';
-import {TranslateModule} from "@ngx-translate/core";
-import {ModificaprofiloPageModule} from "../modificaprofilo/modificaprofilo.module";
+import {TranslateModule} from '@ngx-translate/core';
+import {ModificaprofiloPageModule} from '../modificaprofilo/modificaprofilo.module';
 
 const routes: Routes = [
   {
