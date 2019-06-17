@@ -10,12 +10,13 @@ import {Utente} from "../../model/utente.model";
 })
 export class ModificaprofiloPage implements OnInit {
 
-  private utente: Utente;
-  private modForm: FormGroup;
-
   constructor(private fb: FormBuilder,
               private modalController: ModalController,
               private navParams: NavParams) { }
+
+  private utente: Utente;
+  private modForm: FormGroup;
+  file: File;
 
   ngOnInit() {
     this.utente = this.navParams.data.appParam;
