@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NavController} from '@ionic/angular';
+import {AlertController, NavController} from '@ionic/angular';
 import {Account, UtenteService} from "../../services/utente.service";
 import {Utente} from "../../model/utente.model";
 import {HttpErrorResponse} from "@angular/common/http";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,12 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class LoginPage implements OnInit {
   private formLogin: FormGroup;
 
+  private loginTitle: string;
+  private loginSubTitle: string;
+
   constructor(private fb: FormBuilder,
+              private alertController: AlertController,
+              private translateService: TranslateService,
               private navController: NavController,
               private utenteService: UtenteService) { }
 
@@ -26,6 +32,7 @@ export class LoginPage implements OnInit {
         Validators.required
       ])]
     });
+    this.initTranslate();
   }
 
   onLogin() {
@@ -36,15 +43,29 @@ export class LoginPage implements OnInit {
         },
         (err: HttpErrorResponse) => {
           if (err.status === 401) {
-            console.error('login request error: ' + err.status);
+            this.showLoginError();
           }
         });
   }
 
-  /*onLogin() {
-    this.navController.navigateRoot('tabs');
-  }*/
+  async showLoginError() {
+    const alert = await this.alertController.create({
+      header: this.loginTitle, // sono attributi di login.page.ts popolati nella initTranslate() a seconda della lingua
+      message: this.loginSubTitle,
+      buttons: ['OK']
+    });
 
+    await alert.present();
+  }
+
+  private initTranslate() {
+    this.translateService.get('LOGIN_ERROR_SUB_TITLE').subscribe((data) => {
+      this.loginSubTitle = data;
+    });
+    this.translateService.get('LOGIN_ERROR_TITLE').subscribe((data) => {
+      this.loginTitle = data;
+    });
+  }
   register() {
     this.navController.navigateRoot('registrazione');
   }

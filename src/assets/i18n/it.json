@@ -47,5 +47,9 @@
   "LINGUA": "Lingua",
 
   "PASS-ERR-TITLE": "ERRORE!",
-  "PASS-ERR-SUBTITLE": "La password inserita non è la tua"
+  "PASS-ERR-SUBTITLE": "La password inserita non è la tua",
+  "LOGIN_ERROR_TITLE": "Errore Login",
+  "LOGIN_ERROR_SUB_TITLE": "Username e/o password errate!",
+  "REG_ERROR_TITLE": "Errore Registratione",
+  "REG_ERROR_SUB_TITLE": "La registrazione non è andata a buon fine"
 }

@@ -48,5 +48,10 @@
   "LINGUA": "Language",
 
   "PASS-ERR-TITLE": "ERROR!",
-  "PASS-ERR-SUBTITLE": "You have inserted a wrong password"
+  "PASS-ERR-SUBTITLE": "You have inserted a wrong password",
+
+  "LOGIN_ERROR_TITLE": "Login error",
+  "LOGIN_ERROR_SUB_TITLE": "Username and/or password Wrong!",
+  "REG_ERROR_TITLE": "Registration error",
+  "REG_ERROR_SUB_TITLE": "Something went wrong with registration"
 }

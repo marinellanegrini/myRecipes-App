@@ -37,7 +37,11 @@ export class UtenteService {
 
     }
 
-    registrazione(utente: Utente): void {
+    registrazione(utente: Utente) {
+        return this.http.post(URL.REGISTRAZIONE, utente, {observe: 'response'}).pipe(
+            map((resp: HttpResponse<Utente>) => {
+                return resp.body;
+            }));
     }
 
     verifyUsername(username: string): Observable<boolean> {
