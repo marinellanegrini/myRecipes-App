@@ -33,6 +33,8 @@
   "LOGIN-BUTTON": "Enter",
   "REGISTRATI": "Register",
   "COMMENTI": "Your comments",
+  "INVIA": "Send",
+  "CANCELLA": "Cancell",
 
   "NOMEINVALID": "Enter a valid name",
   "MAILINVALID": "Enter a valid e-mail",

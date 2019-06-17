@@ -5,6 +5,7 @@ import {Ricetta} from '../../model/ricetta.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
+import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 import {ModalController} from "@ionic/angular";
 import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
 import {CommentoPage} from "../commento/commento.page";
@@ -26,6 +27,7 @@ export class DettaglioRicettaPage implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       // chiamata REST che recupera dal server la ricetta di cui ho l'id
       this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
+
     });
 
     /*this.utenteService.getUtente().subscribe((utente) => {
@@ -38,19 +40,20 @@ export class DettaglioRicettaPage implements OnInit {
   }
 
   async commenta() {
-    const modal = await this.modController.create({
-      component: CommentoPage
-    });
+        const modal = await this.modController.create({
+            component: CommentoPage
+        });
 
-    modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-      if (detail !== null && detail.data !== undefined) {
-        // chiamata a utente service che deve fare update di utente verso il server
-        // e poi aggiorno l'attributo utente sempre col service
-        this.utente = detail.data;
+        modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+        if (detail !== null && detail.data !== undefined) {
+            // chiamata a utente service che deve fare update di utente verso il server
+            // e poi aggiorno l'attributo utente sempre col service
+            const commento = detail.data;
+            this.ricService.commento(commento);
 
       }
     });
-    await modal.present();
+        await modal.present();
   }
 
 }

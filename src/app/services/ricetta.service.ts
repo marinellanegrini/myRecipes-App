@@ -8,6 +8,7 @@ import {Ingrediente} from '../model/ingrediente.model';
 import {Categoria} from '../model/categoria.model';
 import {URL} from '../constants';
 import {map} from "rxjs/operators";
+import {Utente} from '../model/utente.model';
 
 @Injectable({
     providedIn: 'root'
@@ -41,6 +42,13 @@ export class RicettaService {
                 return resp.body;
             }));
 
+    }
+
+    commento(commento: Commento) {
+        return this.http.post(URL.COMMENTO, commento).pipe(
+            map((resp: HttpResponse<Utente>) => {
+                return resp.body;
+            }));
     }
 
 
