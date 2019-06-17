@@ -18,6 +18,8 @@ export const URL = {
     RICETTE: URL_BASE + '/Ricette/Ricetta',
     CIBI: URL_BASE + '/Ricette/RicercaPerIngredienti',
     PREFERITI: URL_BASE + '/Ricette/Preferiti',
+    AGGIUNGIPREFERITI: URL_BASE + '/Ricette/AggiungiaiPreferiti',
+    RIMUOVIPREFERITI: URL_BASE + '/Ricette/RimuoviDaPreferiti',
     CATEGORIE: URL_BASE + '/Ricette/Categorie',
     RICAVANZATA: URL_BASE + '/Ricette/Avanzata',
     INSEGNAMENTI: URL_BASE + '/insegnamenti',
