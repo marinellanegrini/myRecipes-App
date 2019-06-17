@@ -43,7 +43,7 @@ export class SettingsPage implements OnInit {
     c.idricetta = 1;
     c.testo = 'bella ricetta';
     c.idutente = 1;
-    u.commenti = [c];
+    u.commento = [c];
     this.utente = u;
 
 

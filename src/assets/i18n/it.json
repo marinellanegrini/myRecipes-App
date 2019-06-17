@@ -14,6 +14,7 @@
   "SAVE_BUTTON": "Salva",
   "CANCEL_BUTTON": "Annulla",
   "APPLICA_BUTTON": "Applica",
+  "LOGOUT-BUTTON": "Logout",
   "RISULTATI-TITOLO": "Risultati",
   "NDOSI": "Numero di dosi",
   "PROCEDIMENTO": "Procedimento",
@@ -41,6 +42,7 @@
   "NOMEREQUIRED": "Il nome è obbligatorio",
   "COGNOMEREQUIRED": "Il cognome è obbligatorio",
   "MAILREQUIRED": "La mail è obbligatoria",
+  "ESISTEUSERNAME": "Questo username esiste già",
 
   "LINGUA": "Lingua",
 

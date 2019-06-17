@@ -7,6 +7,7 @@ import {Utente} from '../model/utente.model';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Commento} from '../model/commento.model';
 import {URL} from '../constants';
+import {Ricetta} from "../model/ricetta.model";
 
 export interface Account {
     username: string;
@@ -36,6 +37,14 @@ export class UtenteService {
 
     }
 
+    registrazione(utente: Utente): void {
+    }
+
+    verifyUsername(username: string): Observable<boolean> {
+        const apiURL = `${URL.VERUSERNAME}/${username}`;
+        return this.http.get<boolean>(apiURL);
+    }
+
     login(account: Account): Observable<Utente> { // prende un account e restituisce Observable<Utente>
          return this.http.post<Utente>(URL.LOGIN, account, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
@@ -54,7 +63,7 @@ export class UtenteService {
 
     logout() {
         this.authToken = null;
-        this.loggedIn$.next(true);
+        this.loggedIn$.next(false);
         this.storage.remove(AUTH_TOKEN);
         this.storage.remove(UTENTE_STORAGE);
 
@@ -73,7 +82,6 @@ export class UtenteService {
     isLogged(): Observable<boolean> {
         return this.loggedIn$.asObservable(); // sarebbe un BehaviourSubject
     }
-
     updateProfilo(nuovoUtente: Utente): Observable<Utente> {
        /* return this.http.post<Utente>(URL.UPDATE_PROFILO, nuovoUtente, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {

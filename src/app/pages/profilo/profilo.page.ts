@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
 import {Commento} from '../../model/commento.model';
-import {ModalController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 import {BehaviorSubject} from 'rxjs';
@@ -16,6 +16,7 @@ export class ProfiloPage implements OnInit {
     private utente: Utente;
 
     constructor(private modController: ModalController,
+                private navController: NavController,
                 private utenteService: UtenteService) { }
 
   ngOnInit() {
@@ -24,6 +25,11 @@ export class ProfiloPage implements OnInit {
           this.utente = utente;
       });
 
+  }
+
+  Logout() {
+        this.utenteService.logout();
+        this.navController.navigateRoot('tabs/home');
   }
 
   async modProfile() {
