@@ -5,6 +5,9 @@ import {Ricetta} from '../../model/ricetta.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
+import {ModalController} from "@ionic/angular";
+import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
+import {CommentoPage} from "../commento/commento.page";
 
 @Component({
   selector: 'app-dettaglio-ricetta',
@@ -16,6 +19,7 @@ export class DettaglioRicettaPage implements OnInit {
   private utente: Utente;
 
   constructor(private route: ActivatedRoute,
+              private modController: ModalController,
               private ricService: RicettaService) { }
 
   ngOnInit() {
@@ -31,6 +35,22 @@ export class DettaglioRicettaPage implements OnInit {
     let u = new Utente();
     u.username = 'mari';
     this.utente = u;
+  }
+
+  async commenta() {
+    const modal = await this.modController.create({
+      component: CommentoPage
+    });
+
+    modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+      if (detail !== null && detail.data !== undefined) {
+        // chiamata a utente service che deve fare update di utente verso il server
+        // e poi aggiorno l'attributo utente sempre col service
+        this.utente = detail.data;
+
+      }
+    });
+    await modal.present();
   }
 
 }

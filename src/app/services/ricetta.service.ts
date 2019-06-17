@@ -17,8 +17,8 @@ export class RicettaService {
     constructor(private http: HttpClient) {
     }
 
-    list(): Observable<Ricetta[]> {
-        const apiURL = URL.HOMEPAGE;
+    list(n: number): Observable<Ricetta[]> {
+        const apiURL = `${URL.HOMEPAGE}/${n}`;
         return this.http.get<Ricetta[]>(apiURL);
 
     }
