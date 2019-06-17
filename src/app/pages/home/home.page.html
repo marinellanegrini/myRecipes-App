@@ -3,9 +3,8 @@
 
   <div>
     <ion-slides pager="true">
-      <ion-slide *ngFor="let slide of ricette$ | async ">
-
-        <img src="data:{{slide.immagine.type}};base64,{{slide.immagine.data}}" />
+      <ion-slide *ngFor="let slide of ricetteslide$ | async " [routerLink]="['/ricette', slide.id]" routerDirection="forward" >
+        <img src="data:{{slide.immagine.type}};base64,{{slide.immagine.data}}"/>
         <ion-label class="img-description">{{slide.nome}}</ion-label>
       </ion-slide>
     </ion-slides>
@@ -13,32 +12,14 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let recipe of ricette$ | async" [routerLink]="['/ricette', recipe.id]" routerDirection="forward">
+    <ion-item *ngFor="let recipe of ricettelista$ | async" [routerLink]="['/ricette', recipe.id]" routerDirection="forward">
       <ion-thumbnail item-left>
-        <img src="data:{{recipe.immagine.type}};base64,{{recipe.immagine.data}}"/>
+        <img src="data:{{recipe.immagine.type}};base64,{{recipe.immagine.data}}" />
       </ion-thumbnail>
-      <ion-label padding>
-        <h2>{{recipe.nome}}</h2>
+      <ion-label text-wrap padding>
+        <h2 class="ion-label">{{recipe.nome}}</h2>
       </ion-label>
-      <span>
-        <ion-label>
-          <p>
-            {{recipe.tprep}}
-            <ion-icon name="time"></ion-icon>
-          </p>
-        </ion-label>
-        <ion-label>
-          <p>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon [hidden]="(recipe.difficolta<2)" name="star"></ion-icon>
-            <ion-icon [hidden]="(recipe.difficolta<3)" name="star"></ion-icon>
-            <ion-icon [hidden]="(recipe.difficolta<4)" name="star"></ion-icon>
-            <ion-icon [hidden]="(recipe.difficolta<5)" name="star"></ion-icon>
 
-          </p>
-        </ion-label>
-
-      </span>
       <ion-icon name="heart-empty" slot="end" color="tertiary"></ion-icon>
 
     </ion-item>

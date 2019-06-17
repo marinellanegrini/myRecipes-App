@@ -10,13 +10,15 @@ import {RicettaService} from '../../services/ricetta.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  private ricette$: Observable<Ricetta[]>
+  private ricettelista$: Observable<Ricetta[]>;
+  private ricetteslide$: Observable<Ricetta[]>
 
   constructor(private navController: NavController,
               private ricettaService: RicettaService) { }
 
   ngOnInit() {
-    this.ricette$ = this.ricettaService.list();
+    this.ricettelista$ = this.ricettaService.list(9);
+    this.ricetteslide$ = this.ricettaService.list(3);
   }
   ricerca() {
     this.navController.navigateForward('ricerca');
