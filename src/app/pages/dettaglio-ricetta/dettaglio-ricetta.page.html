@@ -20,16 +20,10 @@
 
       <ion-slides pager="true">
         <ion-slide>
-
           <img src="data:{{ricetta.immagine.type}};base64,{{ricetta.immagine.data}}"/>
         </ion-slide>
-        <ion-slide>
-
-          <img src="assets/image/download.jpeg" />
-        </ion-slide>
-        <ion-slide>
-
-          <img src="assets/image/download.jpeg" />
+        <ion-slide *ngFor="let img of ricetta.imgpreparazione">
+          <img src="data:{{img.type}};base64,{{img.data}}" />
         </ion-slide>
       </ion-slides>
     </div>

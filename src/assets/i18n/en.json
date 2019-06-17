@@ -21,6 +21,7 @@
   "COMMENTIRICETTA": "Comments",
   "COMMENTA-BUTTON": "Comment",
   "MODPROFILO-BUTTON": "Modify",
+  "LOGOUT-BUTTON": "Logout",
   "LOGIN_TITLE": "Login",
   "USERNAME": "Username",
   "PASSWORD": "Password",
@@ -41,6 +42,7 @@
   "NOMEREQUIRED": "Name is required",
   "COGNOMEREQUIRED": "Surname is required",
   "MAILREQUIRED": "Mail is required",
+  "ESISTEUSERNAME": "This username already exists",
 
 
   "LINGUA": "Language",
