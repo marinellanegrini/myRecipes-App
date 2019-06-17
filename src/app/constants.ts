@@ -24,7 +24,8 @@ export const URL = {
     RICAVANZATA: URL_BASE + '/Ricette/Avanzata',
     INSEGNAMENTI: URL_BASE + '/insegnamenti',
     APPELLI: URL_BASE + '/appelli',
-    HOMEPAGE: URL_BASE + '/Ricette/Homepage'
+    HOMEPAGE: URL_BASE + '/Ricette/Homepage',
+    COMMENTO: URL_BASE + '/Ricette/Commento',
 };
 
 export const X_AUTH = 'X-Auth';

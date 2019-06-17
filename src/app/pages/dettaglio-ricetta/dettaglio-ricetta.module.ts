@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { DettaglioRicettaPage } from './dettaglio-ricetta.page';
 import {TranslateModule} from '@ngx-translate/core';
+import {CommentoPageModule} from '../commento/commento.module';
+import {AuthGuard} from '../../guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: DettaglioRicettaPage
+    component: DettaglioRicettaPage,
   }
 ];
 
@@ -21,6 +23,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
       TranslateModule.forChild(),
+    CommentoPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [DettaglioRicettaPage]

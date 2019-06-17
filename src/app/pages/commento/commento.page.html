@@ -1,9 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>commento</ion-title>
+  <ion-toolbar color="primary" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Commenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="comForm">
+     <div padding margin-top="40px">
+
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">Nuovo commento:</ion-label>
+        <ion-textarea placeholder="Scrivi qui il tuo commento.." formControlName="testo"></ion-textarea>
+      </ion-item>
+
+
+      <ion-grid margin-top="40px" align="center">
+        <ion-row>
+
+          <ion-col>
+            <ion-button size="medium" shape="round" color="tertiary"  tappable [disabled]="!comForm.valid">
+              {{ 'CANCELLA' | translate }}
+            </ion-button>
+          </ion-col>
+
+          <ion-col>
+            <ion-button size="medium" shape="round" color="tertiary"  (click)="Submit()" tappable [disabled]="!comForm.valid">
+              {{ 'INVIA' | translate }}
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+     </div>
+  </form>
+
 
 </ion-content>

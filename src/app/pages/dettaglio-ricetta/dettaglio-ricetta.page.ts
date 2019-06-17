@@ -5,7 +5,12 @@ import {Ricetta} from '../../model/ricetta.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
-import {ModalController, NavController} from '@ionic/angular';
+import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
+import {ModalController, NavController} from "@ionic/angular";
+import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
+import {CommentoPage} from "../commento/commento.page";
+import {async} from "@angular/core/testing";
+
 @Component({
   selector: 'app-dettaglio-ricetta',
   templateUrl: './dettaglio-ricetta.page.html',
@@ -52,6 +57,7 @@ export class DettaglioRicettaPage implements OnInit {
         }
         );
       });
+
     });
 
     /*this.utenteService.getUtente().subscribe((utente) => {
@@ -59,21 +65,6 @@ export class DettaglioRicettaPage implements OnInit {
     });*/
     // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
   }
-
- /* async commenta() {
-    const modal = await this.modController.create({
-      component: CommentoPage
-    });
-
-    modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-      if (detail !== null && detail.data !== undefined) {
-        // chiamata a ricetta service che deve fare una chiamata al server
-        this.utente = detail.data;
-
-      }
-    });
-    await modal.present();
-  }*/
 
  rimuoviPref() {
    this.ricetta$.subscribe( (ricetta) => {
@@ -84,11 +75,29 @@ export class DettaglioRicettaPage implements OnInit {
  }
 
   aggiungiPref() {
-    this.ricetta$.subscribe((ricetta) => {
-      // chiamata al server per aggiornare l'utente
-      this.ricService.aggiungiAPreferiti(ricetta.id);
-      this.preferita = true;
+      this.ricetta$.subscribe((ricetta) => {
+          // chiamata al server per aggiornare l'utente
+          this.ricService.aggiungiAPreferiti(ricetta.id);
+          this.preferita = true;
+      });
+  }
+
+      async commenta() {
+        const modal = await this.modController.create({
+            component: CommentoPage
+        });
+
+        modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+        if (detail !== null && detail.data !== undefined) {
+            // chiamata a utente service che deve fare update di utente verso il server
+            // e poi aggiorno l'attributo utente sempre col service
+            const commento = detail.data;
+            this.ricService.commento(commento);
+
+      }
     });
+        await modal.present();
+
   }
 
 }

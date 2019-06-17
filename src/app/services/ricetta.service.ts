@@ -11,6 +11,7 @@ import {map} from "rxjs/operators";
 import {Utente} from "../model/utente.model";
 import {Storage} from "@ionic/storage";
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -20,8 +21,8 @@ export class RicettaService {
                 private storage: Storage) {
     }
 
-    list(): Observable<Ricetta[]> {
-        const apiURL = URL.HOMEPAGE;
+    list(n: number): Observable<Ricetta[]> {
+        const apiURL = `${URL.HOMEPAGE}/${n}`;
         return this.http.get<Ricetta[]>(apiURL);
 
     }
@@ -51,12 +52,18 @@ export class RicettaService {
             this.storage.set(UTENTE_STORAGE, nuovoUtente);
         });
     }
-
     rimuoviDaPreferiti(ricettaId: number): void {
         const apiURL = `${URL.RIMUOVIPREFERITI}/${ricettaId}`;
         this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
             this.storage.set(UTENTE_STORAGE, nuovoUtente);
         });
+    }
+
+    commento(commento: Commento) {
+        return this.http.post(URL.COMMENTO, commento).pipe(
+            map((resp: HttpResponse<Utente>) => {
+                return resp.body;
+            }));
     }
 
 }
