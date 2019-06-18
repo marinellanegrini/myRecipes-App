@@ -55,5 +55,7 @@
   "LOGIN_ERROR_TITLE": "Login error",
   "LOGIN_ERROR_SUB_TITLE": "Username and/or password Wrong!",
   "REG_ERROR_TITLE": "Registration error",
-  "REG_ERROR_SUB_TITLE": "Something went wrong with registration"
+  "REG_ERROR_SUB_TITLE": "Something went wrong with registration",
+  "COM_ERROR_TITLE": "Comment error",
+  "COM_ERROR_SUB_TITLE": "Something went wrong with the comment"
 }

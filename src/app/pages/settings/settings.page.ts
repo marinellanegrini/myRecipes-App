@@ -56,6 +56,7 @@ export class SettingsPage implements OnInit {
     // devo recuperare tutti i dati dalla form e aggiorno
     this.translateService.use(this.settingForm.value.linguaPreferita);
     this.linguaService.updateLingua(this.settingForm.value.linguaPreferita);
+
     this.navController.back();
   }
 

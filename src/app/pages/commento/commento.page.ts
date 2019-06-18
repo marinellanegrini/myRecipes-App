@@ -17,7 +17,6 @@ export class CommentoPage implements OnInit {
 
   private comForm: FormGroup;
 
-
   constructor(private fb: FormBuilder,
               private modalController: ModalController,
               private datePipe: DatePipe) {
