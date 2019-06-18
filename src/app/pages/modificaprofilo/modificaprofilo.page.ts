@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ModalController, NavParams} from "@ionic/angular";
 import {Utente} from "../../model/utente.model";
+import {ConfirmPasswordValidator} from '../../utility/confirm-password.validator';
 
 @Component({
   selector: 'app-modificaprofilo',
@@ -23,7 +24,11 @@ export class ModificaprofiloPage implements OnInit {
       username: [this.utente.username],
       nome: [this.utente.nome, Validators.pattern('[A-Za-z]+')],
       cognome: [this.utente.cognome,  Validators.pattern('[A-Za-z]+')],
-      email: [this.utente.email, Validators.email]
+      email: [this.utente.email, Validators.email],
+      password: [''],
+      confpassword: ['']
+    }, {
+      validator: ConfirmPasswordValidator.MatchPassword
     });
 
   }

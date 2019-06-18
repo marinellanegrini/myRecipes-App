@@ -36,12 +36,7 @@ export class SettingsPage implements OnInit {
     this.lingue = this.linguaService.getLingue();
     this.settingForm = this.fb.group({
       linguaPreferita: ['', Validators.compose([
-        Validators.required
-      ])],
-      password: [''],
-      confpassword: ['']
-    }, {
-      validator: ConfirmPasswordValidator.MatchPassword
+        Validators.required])],
     });
 
     this.linguaService.getLinguaAttuale().subscribe((lingua) => {
@@ -56,7 +51,7 @@ export class SettingsPage implements OnInit {
     // devo recuperare tutti i dati dalla form e aggiorno
     this.translateService.use(this.settingForm.value.linguaPreferita);
     this.linguaService.updateLingua(this.settingForm.value.linguaPreferita);
-    // aggiornare il server
+
     this.navController.back();
   }
 

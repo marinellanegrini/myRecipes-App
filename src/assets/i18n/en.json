@@ -2,7 +2,7 @@
   "FAV-LIST": "Your favorites",
   "SETTINGS-TITOLO": "Settings",
   "CAMBIALINGUA": "Change the language",
-  "CAMBIAPASSWORD": "Change the password",
+
   "RICERCA-TITOLO": "Search",
   "CERCAFILTRI": "Advanced",
   "CERCAINGREDIENTI": "By ingredients",
@@ -11,8 +11,6 @@
   "DIFFICOLTA": "Difficulty",
   "TPREP": "Prepatation time",
   "CATEGORIA": "Category",
-  "SAVE_BUTTON": "Save",
-  "CANCEL_BUTTON": "Cancel",
   "APPLICA_BUTTON": "Apply",
   "RISULTATI-TITOLO": "Results",
   "NDOSI": "Serves",
