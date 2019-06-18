@@ -21,7 +21,7 @@
         <ion-row>
 
           <ion-col>
-            <ion-button size="medium" shape="round" color="tertiary"  tappable [disabled]="!comForm.valid">
+            <ion-button size="medium" shape="round" color="tertiary" (click)="Cancel()" tappable [disabled]="!comForm.valid">
               {{ 'CANCELLA' | translate }}
             </ion-button>
           </ion-col>

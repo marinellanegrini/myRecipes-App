@@ -6,10 +6,13 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
-import {ModalController, NavController} from "@ionic/angular";
+import {AlertController, ModalController, NavController} from "@ionic/angular";
 import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
 import {CommentoPage} from "../commento/commento.page";
 import {async} from "@angular/core/testing";
+import {Commento} from "../../model/commento.model";
+import {HttpErrorResponse} from "@angular/common/http";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-dettaglio-ricetta',
@@ -21,10 +24,15 @@ export class DettaglioRicettaPage implements OnInit {
   private utente: Utente;
   private preferita: boolean;
 
+    private comTitle: string;
+    private comSubTitle: string;
+
   constructor(private route: ActivatedRoute,
               private modController: ModalController,
               private ricService: RicettaService,
               private utenteService: UtenteService,
+              private translateService: TranslateService,
+              private alertController: AlertController,
               private navController: NavController) { }
 
   ngOnInit() {
@@ -64,6 +72,8 @@ export class DettaglioRicettaPage implements OnInit {
         this.utente = utente;
     });*/
     // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
+
+    this.initTranslate();
   }
 
  rimuoviPref() {
@@ -81,23 +91,44 @@ export class DettaglioRicettaPage implements OnInit {
           this.preferita = true;
       });
   }
-
-      async commenta() {
+    async commenta() {
         const modal = await this.modController.create({
             component: CommentoPage
         });
 
         modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-        if (detail !== null && detail.data !== undefined) {
-            // chiamata a utente service che deve fare update di utente verso il server
-            // e poi aggiorno l'attributo utente sempre col service
-            const commento = detail.data;
-            this.ricService.commento(commento);
-
-      }
-    });
+            if (detail !== null && detail.data !== undefined) {
+                const commento: Commento = detail.data;
+                this.ricetta$.subscribe((ricetta) => {
+                    commento.idricetta = ricetta.id;
+                    this.ricService.commenta(commento).subscribe( () => {
+                        this.ricetta$ = this.ricService.findById(ricetta.id);
+                    }, (err: HttpErrorResponse) => {
+                        if (err.status === 500) {
+                            this.showComError();
+                        }});
+                });
+            }
+        });
         await modal.present();
 
-  }
+    }
 
+    async showComError() {
+        const alert = await this.alertController.create({
+            header: this.comTitle,
+            message: this.comSubTitle,
+            buttons: ['OK']
+        });
+        await alert.present();
+    }
+
+    private initTranslate() {
+        this.translateService.get('COM_ERROR_SUB_TITLE').subscribe((data) => {
+            this.comSubTitle = data;
+        });
+        this.translateService.get('COM_ERROR_TITLE').subscribe((data) => {
+            this.comTitle = data;
+        });
+    }
 }

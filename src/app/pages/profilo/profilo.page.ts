@@ -20,12 +20,15 @@ export class ProfiloPage implements OnInit {
                 private utenteService: UtenteService) { }
 
   ngOnInit() {
-      // uso il service utente qui per recuperare l'utente che ha dentro tutti i suoi commenti
       this.utenteService.getUtente().subscribe((utente) => {
           this.utente = utente;
+          console.log(utente);
       });
-
   }
+
+    /*ionViewWillEnter() {
+        // uso il service utente qui per recuperare l'utente che ha dentro tutti i suoi commenti
+    }*/
 
   Logout() {
         this.utenteService.logout();

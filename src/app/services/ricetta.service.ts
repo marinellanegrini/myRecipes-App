@@ -59,10 +59,10 @@ export class RicettaService {
         });
     }
 
-    commento(commento: Commento) {
+    commenta(commento: Commento) {
         return this.http.post(URL.COMMENTO, commento).pipe(
             map((resp: HttpResponse<Utente>) => {
-                return resp.body;
+                this.storage.set(UTENTE_STORAGE, resp.body);
             }));
     }
 

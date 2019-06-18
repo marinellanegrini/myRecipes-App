@@ -53,7 +53,7 @@ export class RegistrazionePage implements OnInit {
     const dati = this.regForm.value;
     this.utenteService.registrazione(dati).subscribe(() => {
           this.regForm.reset();
-          this.navController.navigateRoot('login');
+          this.navController.navigateForward('login');
         },
         (err: HttpErrorResponse) => {
           if (err.status === 500) {

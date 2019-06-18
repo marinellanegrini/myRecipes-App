@@ -8,7 +8,6 @@ import { IonicModule } from '@ionic/angular';
 import { DettaglioRicettaPage } from './dettaglio-ricetta.page';
 import {TranslateModule} from '@ngx-translate/core';
 import {CommentoPageModule} from '../commento/commento.module';
-import {AuthGuard} from '../../guard/auth.guard';
 
 const routes: Routes = [
   {
