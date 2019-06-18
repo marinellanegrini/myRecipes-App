@@ -56,9 +56,6 @@ export class SettingsPage implements OnInit {
     // devo recuperare tutti i dati dalla form e aggiorno
     this.translateService.use(this.settingForm.value.linguaPreferita);
     this.linguaService.updateLingua(this.settingForm.value.linguaPreferita);
-    this.utente.password = this.settingForm.value.password;
-    console.log(this.utente.password);
-    // aggiornare il server
     this.navController.back();
   }
 

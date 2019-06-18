@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommentoPage } from './commento.page';
 import {TranslateModule} from '@ngx-translate/core';
 import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
+import {AuthGuard} from '../../guard/auth.guard';
 
 const routes: Routes = [
   {
