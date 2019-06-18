@@ -36,12 +36,7 @@ export class SettingsPage implements OnInit {
     this.lingue = this.linguaService.getLingue();
     this.settingForm = this.fb.group({
       linguaPreferita: ['', Validators.compose([
-        Validators.required
-      ])],
-      password: [''],
-      confpassword: ['']
-    }, {
-      validator: ConfirmPasswordValidator.MatchPassword
+        Validators.required])],
     });
 
     this.linguaService.getLinguaAttuale().subscribe((lingua) => {

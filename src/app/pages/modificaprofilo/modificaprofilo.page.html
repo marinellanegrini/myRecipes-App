@@ -50,6 +50,18 @@
             <p ion-text class="datacommento" *ngIf="modForm.get('email').invalid">
               <ion-text color="danger">{{ 'MAILINVALID' | translate }}</ion-text>
             </p>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">{{ 'PASSWORD' | translate }}</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">{{ 'CONFPASSWORD' | translate }}</ion-label>
+              <ion-input type="password" formControlName="confpassword"></ion-input>
+            </ion-item>
+
+            <p ion-text class="datacommento" *ngIf="modForm.get('confpassword').dirty && modForm.get('confpassword').errors && modForm.get('confpassword').errors.ConfirmPassword">
+              <ion-text color="danger">{{ 'PASSINVALID' | translate }}</ion-text>
+            </p>
             </div>
 
         </ion-col>

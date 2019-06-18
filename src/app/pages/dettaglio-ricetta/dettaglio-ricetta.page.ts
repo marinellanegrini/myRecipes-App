@@ -9,11 +9,11 @@ import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interfac
 
 import {AlertController, ModalController, NavController} from "@ionic/angular";
 import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
-import {CommentoPage} from "../commento/commento.page";
-import {async} from "@angular/core/testing";
-import {Commento} from "../../model/commento.model";
-import {HttpErrorResponse} from "@angular/common/http";
-import {TranslateService} from "@ngx-translate/core";
+import {CommentoPage} from '../commento/commento.page';
+
+import {Commento} from '../../model/commento.model';
+import {HttpErrorResponse} from '@angular/common/http';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
