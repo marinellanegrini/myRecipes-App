@@ -38,7 +38,9 @@ export class ModificaprofiloPage implements OnInit {
     this.utente.nome = this.modForm.value.nome;
     this.utente.cognome = this.modForm.value.cognome;
     this.utente.email = this.modForm.value.email;
-    await this.modalController.dismiss(this.utente);
+    let data = { utente: this.utente,
+    newpassword: };
+    await this.modalController.dismiss(data);
   }
 
 }

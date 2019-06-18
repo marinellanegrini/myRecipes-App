@@ -22,7 +22,6 @@ export class ProfiloPage implements OnInit {
   ngOnInit() {
       this.utenteService.getUtente().subscribe((utente) => {
           this.utente = utente;
-          console.log(utente);
       });
   }
 

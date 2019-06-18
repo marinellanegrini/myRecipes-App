@@ -86,9 +86,15 @@ export class DettaglioRicettaPage implements OnInit {
 
   aggiungiPref() {
       this.ricetta$.subscribe((ricetta) => {
-          // chiamata al server per aggiornare l'utente
-          this.ricService.aggiungiAPreferiti(ricetta.id);
-          this.preferita = true;
+          this.utenteService.isLogged().subscribe( (logged) => {
+              if (logged) {
+                  // chiamata al server per aggiornare l'utente
+                  this.ricService.aggiungiAPreferiti(ricetta.id);
+                  this.preferita = true;
+              } else {
+                  this.navController.navigateRoot('login');
+              }
+          });
       });
   }
     async commenta() {
