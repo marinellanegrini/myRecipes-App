@@ -36,7 +36,7 @@ export class DettaglioRicettaPage implements OnInit {
     u.username = 'mari';
     this.utente = u;
   }
-
+/*
   async commenta() {
     const modal = await this.modController.create({
       component: CommentoPage
@@ -52,5 +52,6 @@ export class DettaglioRicettaPage implements OnInit {
     });
     await modal.present();
   }
+  */
 
 }

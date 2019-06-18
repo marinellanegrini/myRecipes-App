@@ -18,11 +18,11 @@
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
 
-            <ion-item no-padding>
-              <ion-avatar>
-                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-              </ion-avatar>
-            </ion-item>
+            <ion-row>
+              <ion-col text-center>
+                <ion-button (click)="getImages()">Cambia immagine</ion-button>
+              </ion-col>
+            </ion-row>
 
             <ion-item no-padding class="animated fadeInUp">
               <ion-label position="floating">{{ 'USERNAME' | translate }}</ion-label>

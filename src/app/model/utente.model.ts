@@ -1,6 +1,6 @@
 import {Commento} from './commento.model';
 import {Ricetta} from './ricetta.model';
-import {Immagine} from "./immagine.model";
+import {Immagine} from './immagine.model';
 export class Utente {
     username: string;
     password: string;
