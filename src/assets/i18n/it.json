@@ -2,7 +2,6 @@
   "FAV-LIST": "I tuoi preferiti",
   "SETTINGS-TITOLO": "Impostazioni",
   "CAMBIALINGUA": "Cambia la lingua dell'applicazione",
-  "CAMBIAPASSWORD": "Cambia la tua password",
   "RICERCA-TITOLO": "Ricerca",
   "CERCAFILTRI": "Filtri",
   "CERCAINGREDIENTI": "Per ingredienti",
@@ -11,8 +10,6 @@
   "DIFFICOLTA": "Difficoltà",
   "TPREP": "Tempo di preparazione",
   "CATEGORIA": "Categoria",
-  "SAVE_BUTTON": "Salva",
-  "CANCEL_BUTTON": "Annulla",
   "APPLICA_BUTTON": "Applica",
   "LOGOUT-BUTTON": "Logout",
   "RISULTATI-TITOLO": "Risultati",
@@ -33,6 +30,8 @@
   "LOGIN-BUTTON": "Entra",
   "REGISTRATI": "Registrati",
   "COMMENTI": "I tuoi commenti",
+  "INVIA": "Invia",
+  "CANCELLA": "Cancella",
 
   "NOMEINVALID": "Il nome inserito non è valido",
   "MAILINVALID": "La mail inserita non è valida",
@@ -51,5 +50,7 @@
   "LOGIN_ERROR_TITLE": "Errore Login",
   "LOGIN_ERROR_SUB_TITLE": "Username e/o password errate!",
   "REG_ERROR_TITLE": "Errore Registratione",
-  "REG_ERROR_SUB_TITLE": "La registrazione non è andata a buon fine"
+  "REG_ERROR_SUB_TITLE": "La registrazione non è andata a buon fine",
+  "COM_ERROR_TITLE": "Errore commento",
+  "COM_ERROR_SUB_TITLE": "Il commento non è andata a buon fine"
 }

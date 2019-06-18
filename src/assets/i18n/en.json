@@ -2,7 +2,7 @@
   "FAV-LIST": "Your favorites",
   "SETTINGS-TITOLO": "Settings",
   "CAMBIALINGUA": "Change the language",
-  "CAMBIAPASSWORD": "Change the password",
+
   "RICERCA-TITOLO": "Search",
   "CERCAFILTRI": "Advanced",
   "CERCAINGREDIENTI": "By ingredients",
@@ -11,8 +11,6 @@
   "DIFFICOLTA": "Difficulty",
   "TPREP": "Prepatation time",
   "CATEGORIA": "Category",
-  "SAVE_BUTTON": "Save",
-  "CANCEL_BUTTON": "Cancel",
   "APPLICA_BUTTON": "Apply",
   "RISULTATI-TITOLO": "Results",
   "NDOSI": "Serves",
@@ -33,6 +31,8 @@
   "LOGIN-BUTTON": "Enter",
   "REGISTRATI": "Register",
   "COMMENTI": "Your comments",
+  "INVIA": "Send",
+  "CANCELLA": "Cancell",
 
   "NOMEINVALID": "Enter a valid name",
   "MAILINVALID": "Enter a valid e-mail",
@@ -53,5 +53,7 @@
   "LOGIN_ERROR_TITLE": "Login error",
   "LOGIN_ERROR_SUB_TITLE": "Username and/or password Wrong!",
   "REG_ERROR_TITLE": "Registration error",
-  "REG_ERROR_SUB_TITLE": "Something went wrong with registration"
+  "REG_ERROR_SUB_TITLE": "Something went wrong with registration",
+  "COM_ERROR_TITLE": "Comment error",
+  "COM_ERROR_SUB_TITLE": "Something went wrong with the comment"
 }

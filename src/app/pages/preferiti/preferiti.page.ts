@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
 
 import {Observable} from "rxjs";
 import {Cibo} from "../../model/cibo.model";
 import {Ricetta} from "../../model/ricetta.model";
 import {RicettaService} from "../../services/ricetta.service";
-
 
 @Component({
   selector: 'app-preferiti',
@@ -13,12 +12,16 @@ import {RicettaService} from "../../services/ricetta.service";
 })
 export class PreferitiPage implements OnInit {
 
-    private preferiti$: Observable<Ricetta[]>
+    private preferiti$: Observable<Ricetta[]>;
 
   constructor(private ricService: RicettaService) { }
-
   ngOnInit() {
-      this.preferiti$ = this.ricService.preferiti();
-  }
+    }
+    listpreferiti() {
+        this.preferiti$ = this.ricService.preferiti();
+    }
+    ionViewWillEnter() {
+      this.listpreferiti();
+    }
 
 }

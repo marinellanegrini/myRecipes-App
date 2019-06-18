@@ -87,7 +87,7 @@ export class UtenteService {
         return this.loggedIn$.asObservable(); // sarebbe un BehaviourSubject
     }
     updateProfilo(nuovoUtente: Utente): Observable<Utente> {
-       /* return this.http.post<Utente>(URL.UPDATE_PROFILO, nuovoUtente, {observe: 'response'}).pipe(
+        return this.http.post<Utente>(URL.UPDATE_PROFILO, nuovoUtente, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
                 // Aggiornamento dell'utente nello storage.
                 // Utente memorizzato nello storage per evitare chiamata REST quando si vuole modificare il profilo
@@ -96,10 +96,7 @@ export class UtenteService {
                 // update dell'observable dell'utente
                 this.utente$.next(resp.body);
                 return resp.body;
-            }));*/
-        this.storage.set(UTENTE_STORAGE, nuovoUtente);
-        this.utente$.next(nuovoUtente);
-        return of(nuovoUtente);
+            }));
     }
 
 }

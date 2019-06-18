@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ModalController, NavParams} from '@ionic/angular';
 import {Utente} from '../../model/utente.model';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-
+import {ConfirmPasswordValidator} from '../../utility/confirm-password.validator';
 @Component({
   selector: 'app-modificaprofilo',
   templateUrl: './modificaprofilo.page.html',
@@ -27,8 +27,12 @@ export class ModificaprofiloPage implements OnInit {
     this.modForm = this.fb.group({
       username: [this.utente.username],
       nome: [this.utente.nome, Validators.pattern('[A-Za-z]+')],
-      cognome: [this.utente.cognome, Validators.pattern('[A-Za-z]+')],
-      email: [this.utente.email, Validators.email]
+      cognome: [this.utente.cognome,  Validators.pattern('[A-Za-z]+')],
+      email: [this.utente.email, Validators.email],
+      password: [''],
+      confpassword: ['']
+    }, {
+      validator: ConfirmPasswordValidator.MatchPassword
     });
 
   }

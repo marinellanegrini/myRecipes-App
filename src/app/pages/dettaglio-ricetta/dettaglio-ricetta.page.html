@@ -13,7 +13,8 @@
       <ion-text>
         <h1><b>{{ricetta.nome}}</b></h1>
       </ion-text>
-      <ion-icon size="large" name="heart-empty" class="heart" color="tertiary"></ion-icon>
+      <ion-icon *ngIf="preferita" size="large" name="heart" class="heart" color="tertiary" (click)="rimuoviPref()"></ion-icon>
+      <ion-icon *ngIf="!preferita" size="large" name="heart-empty" class="heart" color="tertiary" (click)="aggiungiPref()"></ion-icon>
     </span>
 
     <div>
@@ -104,10 +105,10 @@
         <ion-avatar slot="start">
           <img src="http://1.citynews-today.stgy.ovh/~media/original-hi/40093515674280/pasta-tutti-i-giorni-2.jpg">
         </ion-avatar>
-        <ion-label>
+        <ion-label text-wrap>
           <p>
             <b>
-              {{utente.username}}
+              username utente
             </b>
           </p>
           <p>

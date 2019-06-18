@@ -2,8 +2,8 @@ export class Commento {
 
     id: number;
     testo: string;
-    data: Date;
-    ora: Date;
+    data: string;
+    ora: string;
     bannato: boolean;
     idutente: number;
     idricetta: number;

@@ -3,6 +3,7 @@ import {Ricetta} from '../../model/ricetta.model';
 import {NavController} from '@ionic/angular';
 import {Observable} from 'rxjs';
 import {RicettaService} from '../../services/ricetta.service';
+import {UtenteService} from "../../services/utente.service";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomePage implements OnInit {
   private ricetteslide$: Observable<Ricetta[]>
 
   constructor(private navController: NavController,
-              private ricettaService: RicettaService) { }
+              private ricettaService: RicettaService,
+              private utenteService: UtenteService) { }
 
   ngOnInit() {
     this.ricettelista$ = this.ricettaService.list(9);

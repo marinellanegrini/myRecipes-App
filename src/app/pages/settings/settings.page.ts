@@ -6,11 +6,13 @@ import {AlertController, NavController} from "@ionic/angular";
 import {ConfirmPasswordValidator} from "../../utility/confirm-password.validator";
 import {Utente} from "../../model/utente.model";
 import {Commento} from "../../model/commento.model";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
+  providers: [DatePipe],
 })
 export class SettingsPage implements OnInit {
   private utente: Utente;
@@ -20,42 +22,21 @@ export class SettingsPage implements OnInit {
   private errorTitle: string;
   private errorSubTitle: string;
 
+
   constructor(private fb: FormBuilder,
               private alertController: AlertController,
               private translateService: TranslateService,
               private linguaService: LinguaService,
-              private navController: NavController) { }
+              private navController: NavController,
+              ) { }
 
   ngOnInit() {
-    // uso il service utente qui per recuperare l'utente che ha dentro tutti i suoi commenti
-    let u = new Utente();
-    u.username = 'mari';
-    u.password = 'pippo';
-    u.nome = 'Marinella';
-    u.cognome = 'Negrini';
-    u.email = 'mari@gmailcom';
-    u.stato = true;
-    let c: Commento = new Commento();
-    c.id = 1;
-    c.bannato = false;
-    c.data = new Date(2019, 12, 2);
-    c.ora = new Date(2);
-    c.idricetta = 1;
-    c.testo = 'bella ricetta';
-    c.idutente = 1;
-    u.commento = [c];
-    this.utente = u;
 
 
     this.lingue = this.linguaService.getLingue();
     this.settingForm = this.fb.group({
       linguaPreferita: ['', Validators.compose([
-        Validators.required
-      ])],
-      password: [''],
-      confpassword: ['']
-    }, {
-      validator: ConfirmPasswordValidator.MatchPassword
+        Validators.required])],
     });
 
     this.linguaService.getLinguaAttuale().subscribe((lingua) => {
@@ -70,9 +51,7 @@ export class SettingsPage implements OnInit {
     // devo recuperare tutti i dati dalla form e aggiorno
     this.translateService.use(this.settingForm.value.linguaPreferita);
     this.linguaService.updateLingua(this.settingForm.value.linguaPreferita);
-    this.utente.password = this.settingForm.value.password;
-    console.log(this.utente.password);
-    // aggiornare il server
+
     this.navController.back();
   }
 

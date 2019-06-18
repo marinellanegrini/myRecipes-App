@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {PreferitiPage} from "../preferiti/preferiti.page";
 
 @Component({
   selector: 'app-tabs',
