@@ -19,15 +19,13 @@ export class ProfiloPage implements OnInit {
                 private navController: NavController,
                 private utenteService: UtenteService) { }
 
-  ngOnInit() {
-      this.utenteService.getUtente().subscribe((utente) => {
-          this.utente = utente;
-      });
+  ngOnInit() {this.utenteService.getUtente().subscribe((utente: Utente) => {
+      this.utente = utente;
+  });
   }
 
-    /*ionViewWillEnter() {
-        // uso il service utente qui per recuperare l'utente che ha dentro tutti i suoi commenti
-    }*/
+   ionViewWillEnter() {
+    }
 
   Logout() {
         this.utenteService.logout();
@@ -42,9 +40,10 @@ export class ProfiloPage implements OnInit {
 
         modal.onDidDismiss().then((detail: OverlayEventDetail) => {
           if (detail !== null && detail.data !== undefined) {
-              // chiamata a utente service che deve fare update di utente verso il server
-              // e poi aggiorno l'attributo utente sempre col service
               this.utente = detail.data;
+              this.utenteService.updateProfilo(this.utente).subscribe( (nuovoUtente) => {
+                  this.utente = nuovoUtente;
+              });
 
           }
       });

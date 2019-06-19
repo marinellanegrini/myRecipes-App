@@ -38,50 +38,52 @@ export class DettaglioRicettaPage implements OnInit {
               private navController: NavController) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      // chiamata REST che recupera dal server la ricetta di cui ho l'id
-      this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
-      this.ricetta$.subscribe( (ricetta) => {
-        this.utenteService.getUtente().subscribe((utente) => {
-          if (utente !== undefined && utente !== null) {
-            this.utente = utente;
-            this.utenteService.isLogged().subscribe( (logged: boolean) => {
-              if (logged) {
-                const pref: Ricetta[] = this.utente.preferito;
-                const i: number[] = [];
-                for (const ric of pref) {
-                  i.push(ric.id);
-                }
-                if (i.includes(ricetta.id)) {
-                  this.preferita = true;
-                } else {
-                  this.preferita = false;
-                }
-              } else {
-                this.preferita = false;
-              }
-            });
-          } else {
-            this.preferita = false;
-          }
-        }
-        );
+      this.initTranslate();
+  }
+  ionViewWillEnter() {
+      this.route.paramMap.subscribe((params: ParamMap) => {
+          // chiamata REST che recupera dal server la ricetta di cui ho l'id
+          this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
+          this.ricetta$.subscribe( (ricetta) => {
+              this.utenteService.getUtente().subscribe((utente) => {
+                      if (utente !== undefined && utente !== null) {
+                          this.utente = utente;
+                          this.utenteService.isLogged().subscribe( (logged: boolean) => {
+                              if (logged) {
+                                  const pref: Ricetta[] = this.utente.preferito;
+                                  const i: number[] = [];
+                                  for (const ric of pref) {
+                                      i.push(ric.id);
+                                  }
+                                  if (i.includes(ricetta.id)) {
+                                      this.preferita = true;
+                                  } else {
+                                      this.preferita = false;
+                                  }
+                              } else {
+                                  this.preferita = false;
+                              }
+                          });
+                      } else {
+                          this.preferita = false;
+                      }
+                  }
+              );
+          });
+
       });
 
-    });
+      /*this.utenteService.getUtente().subscribe((utente) => {
+          this.utente = utente;
+      });*/
+      // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
 
-    /*this.utenteService.getUtente().subscribe((utente) => {
-        this.utente = utente;
-    });*/
-    // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
-
-    this.initTranslate();
   }
 
  rimuoviPref() {
    this.ricetta$.subscribe( (ricetta) => {
      // chiamata al server per aggiornare l'utente
-     this.ricService.rimuoviDaPreferiti(ricetta.id);
+     this.utenteService.rimuoviDaPreferiti(ricetta.id);
      this.preferita = false;
    });
  }
@@ -91,7 +93,7 @@ export class DettaglioRicettaPage implements OnInit {
           this.utenteService.isLogged().subscribe( (logged) => {
               if (logged) {
                   // chiamata al server per aggiornare l'utente
-                  this.ricService.aggiungiAPreferiti(ricetta.id);
+                  this.utenteService.aggiungiAPreferiti(ricetta.id);
                   this.preferita = true;
               } else {
                   this.navController.navigateRoot('login');
@@ -101,28 +103,34 @@ export class DettaglioRicettaPage implements OnInit {
   }
 
     async commenta() {
-        const modal = await this.modController.create({
+      this.utenteService.isLogged().subscribe( async (logged) => {
+          if (logged) {
+              const modal = await this.modController.create({
 
-            component: CommentoPage
+                  component: CommentoPage
+              });
+
+              modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+                  if (detail !== null && detail.data !== undefined) {
+                      const commento: Commento = detail.data;
+                      this.ricetta$.subscribe((ricetta) => {
+                          commento.idricetta = ricetta.id;
+                          this.utenteService.commenta(commento).subscribe(() => {
+                              this.ricetta$ = this.ricService.findById(ricetta.id);
+                          }, (err: HttpErrorResponse) => {
+                              if (err.status === 500) {
+                                  this.showComError();
+                              }
+                          });
+                      });
+                  }
+              });
+              await modal.present();
+
+          } else {
+              this.navController.navigateRoot('login');
+          }
       });
-
-        modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-            if (detail !== null && detail.data !== undefined) {
-                const commento: Commento = detail.data;
-                this.ricetta$.subscribe((ricetta) => {
-                    commento.idricetta = ricetta.id;
-                    this.ricService.commenta(commento).subscribe( () => {
-                        this.ricetta$ = this.ricService.findById(ricetta.id);
-                    }, (err: HttpErrorResponse) => {
-                        if (err.status === 500) {
-                            this.showComError();
-                        }});
-                });
-            }
-        });
-        await modal.present();
-
-
     }
 
     async showComError() {

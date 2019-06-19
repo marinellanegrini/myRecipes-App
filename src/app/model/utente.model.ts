@@ -4,6 +4,7 @@ import {Immagine} from "./immagine.model";
 export class Utente {
     username: string;
     email: string;
+    password: string;
     stato: boolean;
     nome: string;
     cognome: string;

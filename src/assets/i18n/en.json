@@ -33,6 +33,8 @@
   "COMMENTI": "Your comments",
   "INVIA": "Send",
   "CANCELLA": "Cancell",
+  "SAVE_BUTTON": "Save",
+  "CANCEL_BUTTON": "Cancel",
 
   "NOMEINVALID": "Enter a valid name",
   "MAILINVALID": "Enter a valid e-mail",

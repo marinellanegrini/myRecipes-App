@@ -46,24 +46,7 @@ export class RicettaService {
             }));
 
     }
-    aggiungiAPreferiti(ricettaId: number): void {
-        const apiURL = `${URL.AGGIUNGIPREFERITI}/${ricettaId}`;
-        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
-            this.storage.set(UTENTE_STORAGE, nuovoUtente);
-        });
-    }
-    rimuoviDaPreferiti(ricettaId: number): void {
-        const apiURL = `${URL.RIMUOVIPREFERITI}/${ricettaId}`;
-        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
-            this.storage.set(UTENTE_STORAGE, nuovoUtente);
-        });
-    }
 
-    commenta(commento: Commento) {
-        return this.http.post(URL.COMMENTO, commento).pipe(
-            map((resp: HttpResponse<Utente>) => {
-                this.storage.set(UTENTE_STORAGE, resp.body);
-            }));
-    }
+
 
 }

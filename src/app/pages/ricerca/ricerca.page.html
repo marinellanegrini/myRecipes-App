@@ -26,18 +26,21 @@
           <ion-label position="floating">{{ 'DIFFICOLTA' | translate }}</ion-label>
           <ion-select formControlName="diff" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option *ngFor="let diff of difficolta">{{diff}}</ion-select-option>
+            <ion-select-option [value]="">Qualsiasi</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item class="animated fadeInUp">
           <ion-label position="floating">{{ 'TPREP' | translate }}</ion-label>
           <ion-select formControlName="tprep" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option *ngFor="let t of tprep">{{t}}</ion-select-option>
+            <ion-select-option [value]="">Qualsiasi</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item class="animated fadeInUp">
           <ion-label position="floating">{{ 'CATEGORIA' | translate }}</ion-label>
           <ion-select formControlName="cat" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option [value]="c.id" *ngFor="let c of categorie$ | async">{{c.nome}}</ion-select-option>
+            <ion-select-option [value]="">Qualsiasi</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>

@@ -37,8 +37,8 @@ export class UtenteService {
 
     }
 
-    registrazione(utente: Utente) {
-        return this.http.post(URL.REGISTRAZIONE, utente, {observe: 'response'}).pipe(
+    registrazione(utente: Utente): Observable<Utente> {
+        return this.http.post<Utente>(URL.REGISTRAZIONE, utente, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
                 return resp.body;
             }));
@@ -96,6 +96,30 @@ export class UtenteService {
                 // update dell'observable dell'utente
                 this.utente$.next(resp.body);
                 return resp.body;
+            }));
+    }
+
+    aggiungiAPreferiti(ricettaId: number): void {
+        const apiURL = `${URL.AGGIUNGIPREFERITI}/${ricettaId}`;
+        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
+            this.storage.set(UTENTE_STORAGE, nuovoUtente);
+            this.utente$.next(nuovoUtente);
+        });
+    }
+
+    rimuoviDaPreferiti(ricettaId: number): void {
+        const apiURL = `${URL.RIMUOVIPREFERITI}/${ricettaId}`;
+        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
+            this.storage.set(UTENTE_STORAGE, nuovoUtente);
+            this.utente$.next(nuovoUtente);
+        });
+    }
+
+    commenta(commento: Commento) {
+        return this.http.post(URL.COMMENTO, commento).pipe(
+            map((resp: HttpResponse<Utente>) => {
+                this.storage.set(UTENTE_STORAGE, resp.body);
+                this.utente$.next(resp.body);
             }));
     }
 

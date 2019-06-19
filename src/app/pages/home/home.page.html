@@ -1,7 +1,7 @@
 
 <ion-content padding>
 
-  <div>
+  <div *ngIf="(ricetteslide$ | async)">
     <ion-slides pager="true">
       <ion-slide *ngFor="let slide of ricetteslide$ | async " [routerLink]="['/ricette', slide.id]" routerDirection="forward" >
         <img src="data:{{slide.immagine.type}};base64,{{slide.immagine.data}}"/>
@@ -11,7 +11,7 @@
   </div>
 
 
-  <ion-list>
+  <ion-list *ngIf="(ricettelista$ | async)">
     <ion-item *ngFor="let recipe of ricettelista$ | async" [routerLink]="['/ricette', recipe.id]" routerDirection="forward">
       <ion-thumbnail item-left>
         <img src="data:{{recipe.immagine.type}};base64,{{recipe.immagine.data}}" />
