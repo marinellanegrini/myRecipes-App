@@ -7,7 +7,7 @@ import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 
-import {AlertController, ModalController, NavController} from "@ionic/angular";
+import {AlertController, ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
 import {CommentoPage} from '../commento/commento.page';
 
@@ -25,6 +25,7 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta$: Observable<Ricetta>;
   private utente: Utente;
   private preferita: boolean;
+  private utentiCommenti: Utente[] = [];
 
     private comTitle: string;
     private comSubTitle: string;
@@ -38,7 +39,6 @@ export class DettaglioRicettaPage implements OnInit {
               private navController: NavController) { }
 
   ngOnInit() {
-      this.initTranslate();
   }
   ionViewWillEnter() {
       this.route.paramMap.subscribe((params: ParamMap) => {
@@ -72,11 +72,25 @@ export class DettaglioRicettaPage implements OnInit {
           });
 
       });
-
+      // per ogni idutente di ogni commento recupero dal server l'utente e lo metto nell'array utenteCommenti
+      this.ricetta$.subscribe( (ricetta) => {
+          const i: number[] = [];
+          for (const comm of ricetta.commenti) {
+              i.push(comm.idutente);
+          }
+          for (const id of i) {
+              this.utenteService.findById(id).subscribe( (utente) => {
+                  this.utentiCommenti.push(utente);
+              });
+          }
+      });
       /*this.utenteService.getUtente().subscribe((utente) => {
           this.utente = utente;
       });*/
       // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
+
+
+      this.initTranslate();
 
   }
 
@@ -101,6 +115,8 @@ export class DettaglioRicettaPage implements OnInit {
           });
       });
   }
+
+
 
     async commenta() {
       this.utenteService.isLogged().subscribe( async (logged) => {

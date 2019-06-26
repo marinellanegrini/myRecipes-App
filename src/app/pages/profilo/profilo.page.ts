@@ -19,7 +19,8 @@ export class ProfiloPage implements OnInit {
                 private navController: NavController,
                 private utenteService: UtenteService) { }
 
-  ngOnInit() {this.utenteService.getUtente().subscribe((utente: Utente) => {
+  ngOnInit() {
+        this.utenteService.getUtente().subscribe((utente: Utente) => {
       this.utente = utente;
   });
   }

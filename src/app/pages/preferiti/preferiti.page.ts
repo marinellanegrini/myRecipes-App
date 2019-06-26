@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Cibo} from "../../model/cibo.model";
 import {Ricetta} from "../../model/ricetta.model";
 import {RicettaService} from "../../services/ricetta.service";
+import {UtenteService} from "../../services/utente.service";
 
 @Component({
   selector: 'app-preferiti',
@@ -12,16 +13,28 @@ import {RicettaService} from "../../services/ricetta.service";
 })
 export class PreferitiPage implements OnInit {
 
-    private preferiti$: Observable<Ricetta[]>;
+    private preferiti: Ricetta[];
 
-  constructor(private ricService: RicettaService) { }
+  constructor(private ricService: RicettaService,
+              private utenteService: UtenteService) { }
   ngOnInit() {
     }
     listpreferiti() {
-        this.preferiti$ = this.ricService.preferiti();
+    // recupero i preferiti dall'utente tramite il service che recupera l'utente dallo storage
+       this.utenteService.getUtente().subscribe((utente) => {
+          this.preferiti = utente.preferito; // oltre a riempire i campi l'utente è messo come attributo
+        });
     }
     ionViewWillEnter() {
       this.listpreferiti();
     }
 
+
+  rimuoviPref(idricetta) {
+    this.utenteService.rimuoviDaPreferiti(idricetta);
+    this.listpreferiti();
+  }
+
 }
+
+

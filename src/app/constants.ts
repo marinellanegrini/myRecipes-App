@@ -26,6 +26,7 @@ export const URL = {
     APPELLI: URL_BASE + '/appelli',
     HOMEPAGE: URL_BASE + '/Ricette/Homepage',
     COMMENTO: URL_BASE + '/Ricette/Commento',
+    UTENTE: URL_BASE + '/Utente/Utente'
 };
 
 export const X_AUTH = 'X-Auth';

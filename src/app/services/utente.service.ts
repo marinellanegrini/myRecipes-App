@@ -116,11 +116,16 @@ export class UtenteService {
     }
 
     commenta(commento: Commento) {
-        return this.http.post(URL.COMMENTO, commento).pipe(
+        return this.http.post(URL.COMMENTO, commento, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
                 this.storage.set(UTENTE_STORAGE, resp.body);
                 this.utente$.next(resp.body);
             }));
+    }
+
+    findById(utenteId: number): Observable<Utente> {
+        const apiURL = `${URL.UTENTE}/${utenteId}`;
+        return this.http.get<Utente>(apiURL);
     }
 
 }

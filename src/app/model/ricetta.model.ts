@@ -17,5 +17,13 @@ export class Ricetta {
     nsalvataggi: number;
     immagine: Immagine;
     imgpreparazione: Immagine[];
+    getIdUtenti(): number[] {
+        const i: number[] = [];
+        for (const comm of this.commenti) {
+            i.push(comm.idutente);
+        }
+        return i;
+
+    }
 
 }
