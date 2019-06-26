@@ -37,6 +37,8 @@
   "CANCELLA": "Cancell",
   "SAVE_BUTTON": "Save",
   "CANCEL_BUTTON": "Cancel",
+  "NOCOMMENTI": "There aren't comments for this recipes",
+  "NOCOMMENTIUT": "You haven't written any comments yet",
 
   "NOMEINVALID": "Enter a valid name",
   "MAILINVALID": "Enter a valid e-mail",

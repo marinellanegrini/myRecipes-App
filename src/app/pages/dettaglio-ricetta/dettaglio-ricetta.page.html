@@ -99,8 +99,13 @@
       </h6>
     </div>
 
-
     <ion-list>
+      <div class="ion-text-center">
+        <p *ngIf="ricetta.commenti.length == 0">
+          <ion-text color="medium">{{'NOCOMMENTI' | translate}}</ion-text>
+        </p>
+      </div>
+
       <ion-item *ngFor="let commento of ricetta.commenti">
         <ion-avatar slot="start">
           <img src="data:{{commento.immagineutente.type}};base64,{{commento.immagineutente.data}}">

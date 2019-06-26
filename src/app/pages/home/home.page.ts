@@ -3,9 +3,9 @@ import {Ricetta} from '../../model/ricetta.model';
 import {NavController} from '@ionic/angular';
 import {Observable} from 'rxjs';
 import {RicettaService} from '../../services/ricetta.service';
-import {UtenteService} from "../../services/utente.service";
-import {Data} from "../../utility/Data";
-import {Router} from "@angular/router";
+import {UtenteService} from '../../services/utente.service';
+import {Data} from '../../utility/Data';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -39,5 +39,8 @@ export class HomePage implements OnInit {
       });
     }
   }
+
+
+
 
 }
