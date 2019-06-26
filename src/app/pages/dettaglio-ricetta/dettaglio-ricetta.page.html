@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="(ricetta$ | async) as ricetta">{{ricetta.nome}}</ion-title>
+    <ion-title>{{ricetta.nome}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="(ricetta$ | async) as ricetta">
+  <div>
     <span>
       <ion-text>
         <h1><b>{{ricetta.nome}}</b></h1>
@@ -100,15 +100,15 @@
     </div>
 
 
-    <ion-list *ngIf="(ricetta$ | async)">
-      <ion-item *ngFor="let commento of ricetta.commenti; let i = index">
+    <ion-list>
+      <ion-item *ngFor="let commento of ricetta.commenti">
         <ion-avatar slot="start">
-          <img src="data:{{utentiCommenti[i].immagine.type}};base64,{{utentiCommenti[i].immagine.data}}">
+          <img src="data:{{commento.immagineutente.type}};base64,{{commento.immagineutente.data}}">
         </ion-avatar>
         <ion-label text-wrap>
           <p>
             <b>
-              {{utentiCommenti[i].username}}
+              {{commento.username}}
             </b>
           </p>
           <p>

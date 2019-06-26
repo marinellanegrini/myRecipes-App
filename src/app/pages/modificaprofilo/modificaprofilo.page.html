@@ -26,8 +26,11 @@
 
             <ion-item no-padding class="animated fadeInUp">
               <ion-label position="floating">{{ 'USERNAME' | translate }}</ion-label>
-              <ion-input type="text" formControlName="username"></ion-input>
+              <ion-input type="text" formControlName="username" (ionChange)="usernameChanged($event.target)"></ion-input>
             </ion-item>
+            <p ion-text class="datacommento" *ngIf="esisteUsername == true">
+              <ion-text color="danger">{{ 'ESISTEUSERNAME' | translate }}</ion-text>
+            </p>
             <ion-item no-padding class="animated fadeInUp">
               <ion-label position="floating">{{ 'NOME' | translate }}</ion-label>
               <ion-input type="text" formControlName="nome"></ion-input>

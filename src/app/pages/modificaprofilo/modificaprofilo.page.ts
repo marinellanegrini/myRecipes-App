@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ModalController, NavParams} from '@ionic/angular';
 import {Utente} from '../../model/utente.model';
 import {ConfirmPasswordValidator} from '../../utility/confirm-password.validator';
+import {UtenteService} from "../../services/utente.service";
 @Component({
   selector: 'app-modificaprofilo',
   templateUrl: './modificaprofilo.page.html',
@@ -11,12 +12,14 @@ import {ConfirmPasswordValidator} from '../../utility/confirm-password.validator
 export class ModificaprofiloPage implements OnInit {
 
   constructor(private fb: FormBuilder,
+              private utenteService: UtenteService,
               private modalController: ModalController,
               private navParams: NavParams) {
   }
 
   private utente: Utente;
   private modForm: FormGroup;
+  private esisteUsername: boolean;
   imageResponse: any;
   options: any;
 
@@ -49,6 +52,14 @@ export class ModificaprofiloPage implements OnInit {
       this.utente.password =  this.modForm.value.password;
     }
     await this.modalController.dismiss(this.utente);
+  }
+
+  usernameChanged(data): void {
+    if (data.value !== '') {
+      this.utenteService.verifyUsername(data.value).subscribe((esito) => {
+        this.esisteUsername = esito;
+      });
+    }
   }
 /*
   getImages() {
@@ -91,4 +102,6 @@ export class ModificaprofiloPage implements OnInit {
     }, (err) => {
     });
   }*/
+
+
 }

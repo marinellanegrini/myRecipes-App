@@ -1,5 +1,9 @@
 
-<ion-content padding>
+<ion-content>
+
+  <ion-toolbar>
+    <ion-searchbar (search)="onSubmitNome($event.target)"></ion-searchbar>
+  </ion-toolbar>
 
   <div *ngIf="(ricetteslide$ | async)">
     <ion-slides pager="true">

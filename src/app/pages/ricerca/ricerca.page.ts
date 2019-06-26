@@ -65,8 +65,9 @@ export class RicercaPage implements OnInit {
   }
   createItem(cibo): FormGroup {
     return this.fb.group({
-      nome: `${cibo.nome}`,
-      id: cibo.id
+      id: [cibo.id],
+      val: [false]
+
     });
   }
 
@@ -95,10 +96,16 @@ export class RicercaPage implements OnInit {
 
   onSubmitIngr(): void {
     // devo recuperare tutti i dati dalla form
-    const v = this.ingrForm.value;
-    console.log(v);
-    this.router.navigate(['/risultatiricerca'], {
-      queryParams: v,
+    const v = this.ingrForm.value.ingredienti;
+    const ids: number[] = [];
+    for (const item of v) {
+      if (item.val) {
+        ids.push(item.id);
+      }
+    }
+    this.ricService.ricercaIngredienti(ids).subscribe((Ricette) => {
+      this.data.storage = Ricette;
+      this.router.navigate(['/risultatiricerca']);
     });
   }
   segmentChanged(ev: any) {

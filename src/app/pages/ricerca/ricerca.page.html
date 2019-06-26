@@ -54,20 +54,34 @@
     </form>
 
     <form [formGroup]="ingrForm" *ngSwitchCase="'ingredienti'">
-      <ion-searchbar></ion-searchbar>
+      <ion-searchbar animated="true"></ion-searchbar>
       <ion-list>
-        <ion-item [formArrayName]="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
-            <ion-thumbnail item-left>
+        <ion-item formArrayName="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
+
+            <ion-grid [formGroupName]="i" align="center">
+        <ion-row justify-content-start>
+
+          <ion-col align-self-center size="100%">
+             <ion-thumbnail item-left>
               <img src="data:{{ingr.immagine.type}};base64,{{ingr.immagine.data}}" />
             </ion-thumbnail>
-            <ion-label padding>
+          </ion-col>
+
+          <ion-col size="8">
+            <ion-label text-wrap text-left padding>
               <h2>{{ingr.nome}}</h2>
             </ion-label>
-            <ion-checkbox [formControl]="ingredienti[i]" slot="end" checked="false" [value]="ingr.id"></ion-checkbox>
+          </ion-col>
+
+          <ion-col align-self-center>
+            <ion-checkbox formControlName="val" checked="false"></ion-checkbox>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
 
         </ion-item>
       </ion-list>
-
 
 
       <div margin-top="30px" align="center">

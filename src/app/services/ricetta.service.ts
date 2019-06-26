@@ -58,6 +58,13 @@ export class RicettaService {
 
     }
 
+    ricercaPerNome(nome): Observable<Ricetta[]> {
+        // chiamata al server per la ricerca
+        const apiURL = `${URL.RICNOME}/${nome}`;
+        return this.http.get<Ricetta[]>(apiURL);
+    }
+
+
     aggiungiAPreferiti(ricettaId: number): void {
         const apiURL = `${URL.AGGIUNGIPREFERITI}/${ricettaId}`;
         this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
