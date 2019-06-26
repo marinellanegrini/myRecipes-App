@@ -95,7 +95,8 @@ export class RicercaPage implements OnInit {
 
   onSubmitIngr(): void {
     // devo recuperare tutti i dati dalla form
-    let v = this.ingrForm.value.ingrediente;
+    const v = this.ingrForm.value;
+    console.log(v);
     this.router.navigate(['/risultatiricerca'], {
       queryParams: v,
     });

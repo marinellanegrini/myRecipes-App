@@ -22,6 +22,7 @@ export const URL = {
     RIMUOVIPREFERITI: URL_BASE + '/Ricette/RimuoviDaPreferiti',
     CATEGORIE: URL_BASE + '/Ricette/Categorie',
     RICAVANZATA: URL_BASE + '/Ricette/Avanzata',
+    RICINGREDIENTI: URL_BASE + 'Ricette/PerIngredienti',
     INSEGNAMENTI: URL_BASE + '/insegnamenti',
     APPELLI: URL_BASE + '/appelli',
     HOMEPAGE: URL_BASE + '/Ricette/Homepage',

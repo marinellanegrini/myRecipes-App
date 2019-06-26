@@ -28,6 +28,7 @@
     "@ionic/storage": "^2.2.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "cordova-android": "^8.0.0",
     "cordova-ios": "5.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-telerik-imagepicker": "2.3.2",
@@ -77,6 +78,10 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-telerik-imagepicker": {}
-    }
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ]
   }
 }
