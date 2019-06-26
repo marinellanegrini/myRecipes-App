@@ -47,6 +47,7 @@ export class RicettaService {
 
     }
 
+
     ricercaIngredienti(ingredienti): Observable<Ricetta[]> {
         // chiamata al server per la ricerca
 
@@ -70,11 +71,7 @@ export class RicettaService {
         });
     }
 
-    commenta(commento: Commento) {
-        return this.http.post(URL.COMMENTO, commento).pipe(
-            map((resp: HttpResponse<Utente>) => {
-                this.storage.set(UTENTE_STORAGE, resp.body);
-            }));
-    }
+
+
 
 }

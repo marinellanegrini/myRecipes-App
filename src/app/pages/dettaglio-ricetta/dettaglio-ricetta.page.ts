@@ -7,7 +7,7 @@ import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 
-import {AlertController, ModalController, NavController} from "@ionic/angular";
+import {AlertController, ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
 import {CommentoPage} from '../commento/commento.page';
 
@@ -25,6 +25,7 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta$: Observable<Ricetta>;
   private utente: Utente;
   private preferita: boolean;
+  private utentiCommenti: Utente[] = [];
 
     private comTitle: string;
     private comSubTitle: string;
@@ -38,85 +39,114 @@ export class DettaglioRicettaPage implements OnInit {
               private navController: NavController) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      // chiamata REST che recupera dal server la ricetta di cui ho l'id
-      this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
-      this.ricetta$.subscribe( (ricetta) => {
-        this.utenteService.getUtente().subscribe((utente) => {
-          if (utente !== undefined && utente !== null) {
-            this.utente = utente;
-            this.utenteService.isLogged().subscribe( (logged: boolean) => {
-              if (logged) {
-                const pref: Ricetta[] = this.utente.preferito;
-                const i: number[] = [];
-                for (const ric of pref) {
-                  i.push(ric.id);
-                }
-                if (i.includes(ricetta.id)) {
-                  this.preferita = true;
-                } else {
-                  this.preferita = false;
-                }
-              } else {
-                this.preferita = false;
-              }
-            });
-          } else {
-            this.preferita = false;
-          }
-        }
-        );
+  }
+  ionViewWillEnter() {
+      this.route.paramMap.subscribe((params: ParamMap) => {
+          // chiamata REST che recupera dal server la ricetta di cui ho l'id
+          this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
+          this.ricetta$.subscribe( (ricetta) => {
+              this.utenteService.getUtente().subscribe((utente) => {
+                      if (utente !== undefined && utente !== null) {
+                          this.utente = utente;
+                          this.utenteService.isLogged().subscribe( (logged: boolean) => {
+                              if (logged) {
+                                  const pref: Ricetta[] = this.utente.preferito;
+                                  const i: number[] = [];
+                                  for (const ric of pref) {
+                                      i.push(ric.id);
+                                  }
+                                  if (i.includes(ricetta.id)) {
+                                      this.preferita = true;
+                                  } else {
+                                      this.preferita = false;
+                                  }
+                              } else {
+                                  this.preferita = false;
+                              }
+                          });
+                      } else {
+                          this.preferita = false;
+                      }
+                  }
+              );
+          });
+
       });
+      // per ogni idutente di ogni commento recupero dal server l'utente e lo metto nell'array utenteCommenti
+      this.ricetta$.subscribe( (ricetta) => {
+          const i: number[] = [];
+          for (const comm of ricetta.commenti) {
+              i.push(comm.idutente);
+          }
+          for (const id of i) {
+              this.utenteService.findById(id).subscribe( (utente) => {
+                  this.utentiCommenti.push(utente);
+              });
+          }
+      });
+      /*this.utenteService.getUtente().subscribe((utente) => {
+          this.utente = utente;
+      });*/
+      // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
 
-    });
 
-    /*this.utenteService.getUtente().subscribe((utente) => {
-        this.utente = utente;
-    });*/
-    // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
+      this.initTranslate();
 
-    this.initTranslate();
   }
 
  rimuoviPref() {
    this.ricetta$.subscribe( (ricetta) => {
      // chiamata al server per aggiornare l'utente
-     this.ricService.rimuoviDaPreferiti(ricetta.id);
+     this.utenteService.rimuoviDaPreferiti(ricetta.id);
      this.preferita = false;
    });
  }
 
   aggiungiPref() {
       this.ricetta$.subscribe((ricetta) => {
-          // chiamata al server per aggiornare l'utente
-          this.ricService.aggiungiAPreferiti(ricetta.id);
-          this.preferita = true;
+          this.utenteService.isLogged().subscribe( (logged) => {
+              if (logged) {
+                  // chiamata al server per aggiornare l'utente
+                  this.utenteService.aggiungiAPreferiti(ricetta.id);
+                  this.preferita = true;
+              } else {
+                  this.navController.navigateRoot('login');
+              }
+          });
       });
   }
 
+
+
     async commenta() {
-        const modal = await this.modController.create({
+      this.utenteService.isLogged().subscribe( async (logged) => {
+          if (logged) {
+              const modal = await this.modController.create({
 
-            component: CommentoPage
+                  component: CommentoPage
+              });
+
+              modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+                  if (detail !== null && detail.data !== undefined) {
+                      const commento: Commento = detail.data;
+                      this.ricetta$.subscribe((ricetta) => {
+                          commento.idricetta = ricetta.id;
+                          this.utenteService.commenta(commento).subscribe(() => {
+                              this.ricetta$ = this.ricService.findById(ricetta.id);
+                          }, (err: HttpErrorResponse) => {
+                              if (err.status === 500) {
+                                  this.showComError();
+                              }
+                          });
+                      });
+                  }
+              });
+              await modal.present();
+
+          } else {
+              this.navController.navigateRoot('login');
+          }
       });
-
-        modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-            if (detail !== null && detail.data !== undefined) {
-                const commento: Commento = detail.data;
-                this.ricetta$.subscribe((ricetta) => {
-                    commento.idricetta = ricetta.id;
-                    this.ricService.commenta(commento).subscribe( () => {
-                        this.ricetta$ = this.ricService.findById(ricetta.id);
-                    }, (err: HttpErrorResponse) => {
-                        if (err.status === 500) {
-                            this.showComError();
-                        }});
-                });
-            }
-        });
-        await modal.present();
-
-
     }
 
     async showComError() {

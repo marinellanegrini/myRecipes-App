@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
     const account: Account = this.formLogin.value;
     this.utenteService.login(account).subscribe((utente: Utente) => { // this.utenteService.login(account) torna un Observable<Utente>
           this.formLogin.reset();
-          this.navController.navigateRoot('tabs');
+          this.navController.back();
         },
         (err: HttpErrorResponse) => {
           if (err.status === 401) {

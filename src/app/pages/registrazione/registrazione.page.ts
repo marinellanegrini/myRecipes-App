@@ -5,6 +5,7 @@ import {UtenteService} from "../../services/utente.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AlertController, NavController} from "@ionic/angular";
 import {TranslateService} from "@ngx-translate/core";
+import {Utente} from "../../model/utente.model";
 
 @Component({
   selector: 'app-registrazione',
@@ -50,10 +51,15 @@ export class RegistrazionePage implements OnInit {
     this.initTranslate();
   }
   registrati() {
-    const dati = this.regForm.value;
-    this.utenteService.registrazione(dati).subscribe(() => {
+    const u = new Utente();
+    u.email = this.regForm.value.email;
+    u.username = this.regForm.value.username;
+    u.nome = this.regForm.value.nome;
+    u.cognome = this.regForm.value.cognome;
+    u.password = this.regForm.value.password;
+    this.utenteService.registrazione(u).subscribe((nuovoUtente: Utente) => {
           this.regForm.reset();
-          this.navController.navigateForward('login');
+          this.navController.navigateRoot('login');
         },
         (err: HttpErrorResponse) => {
           if (err.status === 500) {

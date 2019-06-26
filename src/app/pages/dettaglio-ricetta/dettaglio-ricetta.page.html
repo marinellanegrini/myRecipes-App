@@ -100,15 +100,15 @@
     </div>
 
 
-    <ion-list>
-      <ion-item *ngFor="let commento of ricetta.commenti">
+    <ion-list *ngIf="(ricetta$ | async)">
+      <ion-item *ngFor="let commento of ricetta.commenti; let i = index">
         <ion-avatar slot="start">
-          <img src="http://1.citynews-today.stgy.ovh/~media/original-hi/40093515674280/pasta-tutti-i-giorni-2.jpg">
+          <img src="data:{{utentiCommenti[i].immagine.type}};base64,{{utentiCommenti[i].immagine.data}}">
         </ion-avatar>
         <ion-label text-wrap>
           <p>
             <b>
-              username utente
+              {{utentiCommenti[i].username}}
             </b>
           </p>
           <p>
