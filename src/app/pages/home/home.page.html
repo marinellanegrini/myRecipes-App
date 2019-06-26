@@ -19,8 +19,24 @@
       <ion-label text-wrap padding>
         <h2 class="ion-label">{{recipe.nome}}</h2>
       </ion-label>
+      <span>
+        <ion-label>
+          <p>
+            {{recipe.tprep}}<ion-icon name="time"></ion-icon>
+          </p>
+        </ion-label>
+        <ion-label>
+          <p>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<2)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<3)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<4)" name="star"></ion-icon>
+            <ion-icon [hidden]="(recipe.difficolta<5)" name="star"></ion-icon>
 
-      <ion-icon name="heart-empty" slot="end" color="tertiary"></ion-icon>
+          </p>
+        </ion-label>
+
+      </span>
 
     </ion-item>
   </ion-list>
