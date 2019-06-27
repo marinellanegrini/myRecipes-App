@@ -5,7 +5,7 @@ import {Account, UtenteService} from "../../services/utente.service";
 import {Utente} from "../../model/utente.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router } from '@angular/router';
 import {PreviousRouteService} from '../../utility/prevroute';
 
 @Component({

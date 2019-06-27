@@ -103,6 +103,7 @@ export class UtenteService {
             }));
     }
     updateFoto(nuovaFoto: Immagine): Observable<Utente> {
+        console.log(nuovaFoto);
         return this.http.post<Utente>(URL.UPDATE_IMGPROFILO, nuovaFoto, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
                 // Aggiornamento dell'utente nello storage.
