@@ -22,12 +22,20 @@
   </ion-text>
 
   <div margin-top="30px" align="center">
-    <ion-button (click)="modProfile()" size="medium" shape="round" color="tertiary" tappable>
+    <ion-button (click)="modProfile()" size="small" shape="round" color="tertiary" tappable>
       {{ 'MODPROFILO-BUTTON' | translate }}
     </ion-button>
   </div>
+
   <div align="center">
-    <ion-button (click)="Logout()" size="medium" shape="round" color="tertiary" tappable>
+    <ion-button (click)="getImage()" size="small" shape="round" color="tertiary" tappable>
+      {{ 'MODIMMAGINE-BUTTON' | translate }}
+    </ion-button>
+  </div>
+
+
+  <div align="center">
+    <ion-button (click)="Logout()" size="small" shape="round" color="tertiary" tappable>
       {{ 'LOGOUT-BUTTON' | translate }}
     </ion-button>
   </div>
