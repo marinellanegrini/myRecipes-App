@@ -31,8 +31,8 @@ export class PreferitiPage implements OnInit {
 
 
   rimuoviPref(idricetta) {
-    this.utenteService.rimuoviDaPreferiti(idricetta);
-    this.listpreferiti();
+      this.utenteService.rimuoviDaPreferiti(idricetta);
+      this.listpreferiti();
   }
 
 }

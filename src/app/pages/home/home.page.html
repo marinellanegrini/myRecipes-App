@@ -1,7 +1,12 @@
 
 <ion-content>
 
-  <ion-searchbar  (search)="onSubmitNome($event.target)"></ion-searchbar>
+  <ion-toolbar>
+    <form [formGroup]="nomeForm">
+      <ion-searchbar formControlName="nome" (search)="onSubmitNome($event.target)"></ion-searchbar>
+    </form>
+
+  </ion-toolbar>
 
   <div *ngIf="(ricetteslide$ | async)">
     <ion-slides pager="true">

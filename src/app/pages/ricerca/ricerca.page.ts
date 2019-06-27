@@ -42,9 +42,9 @@ export class RicercaPage implements OnInit {
     this.tprep = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60+'];
 
     this.filtriForm = this.fb.group({
-      diff: [''],
-      tprep: [''],
-      cat: ['']
+      diff: [null],
+      tprep: [null],
+      cat: [null]
     });
 
     this.cibi$ = this.ciboService.list();
@@ -71,7 +71,7 @@ export class RicercaPage implements OnInit {
     });
   }
 
-  /*getItems(ev: any) {
+/*  getItems(ev: any) {
 
     // set val to the value of the searchbar
     const val = ev.target.value;

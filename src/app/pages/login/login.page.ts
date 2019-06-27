@@ -5,6 +5,8 @@ import {Account, UtenteService} from "../../services/utente.service";
 import {Utente} from "../../model/utente.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
+import {ActivatedRoute} from "@angular/router";
+import {RouterExtService} from "../../utility/prevroute";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginPage implements OnInit {
               private alertController: AlertController,
               private translateService: TranslateService,
               private navController: NavController,
-              private utenteService: UtenteService) { }
+              private utenteService: UtenteService,
+              private routerService: RouterExtService) { }
 
   ngOnInit() {
     this.formLogin = this.fb.group({
@@ -39,7 +42,12 @@ export class LoginPage implements OnInit {
     const account: Account = this.formLogin.value;
     this.utenteService.login(account).subscribe((utente: Utente) => { // this.utenteService.login(account) torna un Observable<Utente>
           this.formLogin.reset();
-          this.navController.back();
+          const referrer = this.routerService.getPreviousUrl();
+          if (referrer === 'registrazione') {
+            this.navController.navigateRoot('tabs/home');
+          } else {
+            this.navController.back();
+          }
         },
         (err: HttpErrorResponse) => {
           if (err.status === 401) {
