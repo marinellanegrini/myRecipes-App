@@ -11,7 +11,7 @@
   <div *ngIf="(ricetteslide$ | async)">
     <ion-slides pager="true">
       <ion-slide  *ngFor="let slide of ricetteslide$ | async " [routerLink]="['/ricette', slide.id]" routerDirection="forward" >
-        <img src="data:{{slide.immagine.type}};base64,{{slide.immagine.data}}"/>
+        <img class="immagineslide" src="data:{{slide.immagine.type}};base64,{{slide.immagine.data}}"/>
         <ion-label class="img-description">{{slide.nome}}</ion-label>
       </ion-slide>
     </ion-slides>

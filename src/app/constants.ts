@@ -30,8 +30,9 @@ export const URL = {
     HOMEPAGE: URL_BASE + '/Ricette/Homepage',
     COMMENTO: URL_BASE + '/Ricette/Commento',
     UTENTE: URL_BASE + '/Utente/Utente',
-    PROFILO: URL_BASE + '/Utente/Profilo',
-    RICNOME: URL_BASE + '/Ricette/Nome'
+    RICNOME: URL_BASE + '/Ricette/Nome',
+    RIMUOVICOMMENTO: URL_BASE + '/Utente/RimuoviCommento',
+    PROFILO: URL_BASE + '/Utente/Profilo'
 };
 
 export const X_AUTH = 'X-Auth';

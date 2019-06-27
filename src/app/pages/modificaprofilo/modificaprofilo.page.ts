@@ -21,12 +21,14 @@ export class ModificaprofiloPage implements OnInit {
   private modForm: FormGroup;
 
   private esisteUsername: boolean;
+
+
   ngOnInit() {
     this.utente = this.navParams.data.appParam;
     this.modForm = this.fb.group({
       username: [this.utente.username],
       nome: [this.utente.nome, Validators.pattern('[A-Za-z]+')],
-      cognome: [this.utente.cognome,  Validators.pattern('[A-Za-z]+')],
+      cognome: [this.utente.cognome, Validators.pattern('[A-Za-z]+')],
       email: [this.utente.email, Validators.email],
       password: [''],
       confpassword: ['']
@@ -47,10 +49,12 @@ export class ModificaprofiloPage implements OnInit {
     this.utente.cognome = this.modForm.value.cognome;
     this.utente.email = this.modForm.value.email;
     if (this.modForm.value.password !== '') {
-      this.utente.password =  this.modForm.value.password;
+      this.utente.password = this.modForm.value.password;
     }
     await this.modalController.dismiss(this.utente);
   }
+
+
   usernameChanged(data): void {
     if (data.value !== '') {
       this.utenteService.verifyUsername(data.value).subscribe((esito) => {
