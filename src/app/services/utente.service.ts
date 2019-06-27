@@ -8,6 +8,7 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Commento} from '../model/commento.model';
 import {URL} from '../constants';
 import {Ricetta} from "../model/ricetta.model";
+import {Immagine} from "../model/immagine.model";
 
 export interface Account {
     username: string;
@@ -38,11 +39,14 @@ export class UtenteService {
     }
 
     registrazione(utente: Utente): Observable<Utente> {
-        return this.http.post<Utente>(URL.REGISTRAZIONE, utente, {observe: 'response'}).pipe(
+        return this.http.post<Utente>(URL.PROFILO, utente, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
                 return resp.body;
             }));
     }
+/*cancellazione(utente: Utente): void {
+        this.http.delete(URL.PROFILO, utente)
+    }*/
 
     verifyUsername(username: string): Observable<boolean> {
         const apiURL = `${URL.VERUSERNAME}/${username}`;
@@ -98,6 +102,18 @@ export class UtenteService {
                 return resp.body;
             }));
     }
+    updateFoto(nuovaFoto: Immagine): Observable<Utente> {
+        return this.http.post<Utente>(URL.UPDATE_IMGPROFILO, nuovaFoto, {observe: 'response'}).pipe(
+            map((resp: HttpResponse<Utente>) => {
+                // Aggiornamento dell'utente nello storage.
+                // Utente memorizzato nello storage per evitare chiamata REST quando si vuole modificare il profilo
+                // e se l'utente chiude la app e la riapre i dati sono gia' presenti
+                this.storage.set(UTENTE_STORAGE, resp.body);
+                // update dell'observable dell'utente
+                this.utente$.next(resp.body);
+                return resp.body;
+            }));
+    }
 
 
     aggiungiAPreferiti(ricettaId: number): void {
@@ -127,6 +143,15 @@ export class UtenteService {
     findById(utenteId: number): Observable<Utente> {
         const apiURL = `${URL.UTENTE}/${utenteId}`;
         return this.http.get<Utente>(apiURL);
+    }
+
+
+    rimuoviCommento(commentoId: number): void {
+        const apiURL = `${URL.RIMUOVICOMMENTO}/${commentoId}`;
+        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
+            this.storage.set(UTENTE_STORAGE, nuovoUtente);
+            this.utente$.next(nuovoUtente);
+        });
     }
 
 }

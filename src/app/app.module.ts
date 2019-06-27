@@ -13,10 +13,10 @@ import {IonicStorageModule} from '@ionic/storage';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {Data} from './utility/Data';
 import {httpInterceptorProviders} from './interceptor';
-import {RouterExtService} from "./utility/prevroute";
+import {PreviousRouteService} from "./utility/prevroute";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,9 +40,9 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     StatusBar,
     SplashScreen,
-    ImagePicker,
+    Camera,
       Data,
-    RouterExtService,
+    PreviousRouteService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     httpInterceptorProviders
   ],

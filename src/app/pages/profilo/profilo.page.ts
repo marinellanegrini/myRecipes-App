@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
 import {Commento} from '../../model/commento.model';
-import {ModalController, NavController} from '@ionic/angular';
+import {AlertController, ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 import {BehaviorSubject} from 'rxjs';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import {Ricetta} from '../../model/ricetta.model';
+import {TranslateService} from '@ngx-translate/core';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import {Immagine} from '../../model/immagine.model';
 
 
 @Component({
@@ -16,22 +20,32 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 })
 export class ProfiloPage implements OnInit {
     private utente: Utente;
+    private commenti: Commento[];
+    private title: string;
+    private subtitle: string;
+    private si: string;
+    private no: string;
+    private foto: string;
 
     constructor(private modController: ModalController,
                 private navController: NavController,
                 private utenteService: UtenteService,
-                private imagePicker: ImagePicker) { }
+                private alertController: AlertController,
+                private translateService: TranslateService,
+                private camera: Camera) { }
 
-    imageResponse: any;
-    options: any;
 
   ngOnInit() {
         this.utenteService.getUtente().subscribe((utente: Utente) => {
       this.utente = utente;
   });
+        this.initTranslate();
   }
 
    ionViewWillEnter() {
+       this.utenteService.getUtente().subscribe((utente: Utente) => {
+           this.utente = utente;
+       });
     }
 
   Logout() {
@@ -58,36 +72,74 @@ export class ProfiloPage implements OnInit {
   }
 
 
-    getImage() {
-        this.options = {
-            // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
-            // selection of a single image, the plugin will return it.
-            //maximumImagesCount: 3,
-
-            // max width and height to allow the images to be.  Will keep aspect
-            // ratio no matter what.  So if both are 800, the returned image
-            // will be at most 800 pixels wide and 800 pixels tall.  If the width is
-            // 800 and height 0 the image will be 800 pixels wide if the source
-            // is at least that wide.
-            width: 200,
-            //height: 200,
-
-            // quality of resized image, defaults to 100
-            quality: 25,
-
-            // output type, defaults to FILE_URIs.
-            // available options are
-            // window.imagePicker.OutputType.FILE_URI (0) or
-            // window.imagePicker.OutputType.BASE64_STRING (1)
-            outputType: 1
-        };
-        this.imageResponse = [];
-        this.imagePicker.getPictures(this.options).then((results) => {
-                this.imageResponse.push('data:image/jpeg;base64,' + results);
-        }, (err) => {
-            alert(err);
+    listcommenti() {
+        // recupero i preferiti dall'utente tramite il service che recupera l'utente dallo storage
+        this.utenteService.getUtente().subscribe((utente) => {
+            this.commenti = utente.commento; // oltre a riempire i campi l'utente è messo come attributo
         });
     }
 
-    async modImgProfilo() {}
+    ionViewWillEnterComm() {
+        this.listcommenti();
+    }
+
+
+    changeImage() {
+        const options: CameraOptions = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+        };
+
+        this.camera.getPicture(options).then((imageData) => {
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            const foto =  imageData;
+            const fotoobj = new Immagine();
+            fotoobj.data = foto;
+            fotoobj.type = 'image/jpeg';
+            fotoobj.idesterno = this.utente.id;
+            this.utenteService.updateFoto(fotoobj).subscribe( (nuovoUtente) => {
+                this.utente = nuovoUtente;
+            });
+
+        }, (err) => {
+            // Handle error
+
+        });
+
+    }
+
+    async rimuoviComm(idcommento) {
+        const alert = await this.alertController.create({
+            header: this.title,
+            message: this.subtitle,
+            buttons: [this.no, {
+                text: this.si,
+                handler: () => {
+                    this.utenteService.rimuoviCommento(idcommento);
+                    this.listcommenti();
+                }
+            }]
+        });
+
+        await alert.present();
+    }
+
+    private initTranslate() {
+        this.translateService.get('COM_CANC_SUBTITLE').subscribe((data) => {
+            this.subtitle = data;
+        });
+        this.translateService.get('COM_CANC_TITLE').subscribe((data) => {
+            this.title = data;
+        });
+        this.translateService.get('SI').subscribe((data) => {
+            this.si = data;
+        });
+        this.translateService.get('NO').subscribe((data) => {
+            this.no = data;
+        });
+    }
+
 }

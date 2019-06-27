@@ -1,13 +1,11 @@
-// Service
 import { Injectable } from '@angular/core';
-import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
-/** A router wrapper, adding extra functions. */
 @Injectable()
-export class RouterExtService {
+export class PreviousRouteService {
 
-    private previousUrl: string = undefined;
-    private currentUrl: string = undefined;
+    private previousUrl: string;
+    private currentUrl: string;
 
     constructor(private router: Router) {
         this.currentUrl = this.router.url;
@@ -15,7 +13,7 @@ export class RouterExtService {
             if (event instanceof NavigationEnd) {
                 this.previousUrl = this.currentUrl;
                 this.currentUrl = event.url;
-            }
+            };
         });
     }
 

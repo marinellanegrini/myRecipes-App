@@ -36,9 +36,10 @@
   "COMMENTI": "Your comments",
   "INVIA": "Send",
   "CANCELLA": "Cancell",
+
   "SAVE_BUTTON": "Save",
   "CANCEL_BUTTON": "Cancel",
-  "NOCOMMENTI": "There aren't comments for this recipes",
+  "NOCOMMENTI": "There aren't comments for this recipe",
   "NOCOMMENTIUT": "You haven't written any comments yet",
 
   "NOMEINVALID": "Enter a valid name",
@@ -62,5 +63,9 @@
   "REG_ERROR_TITLE": "Registration error",
   "REG_ERROR_SUB_TITLE": "Something went wrong with registration",
   "COM_ERROR_TITLE": "Comment error",
-  "COM_ERROR_SUB_TITLE": "Something went wrong with the comment"
+  "COM_ERROR_SUB_TITLE": "Something went wrong with the comment",
+  "COM_CANC_TITLE": "Are you sure?",
+  "COM_CANC_SUBTITLE": "This action is irreversible.",
+  "NO": "NO",
+  "SI": "YES"
 }

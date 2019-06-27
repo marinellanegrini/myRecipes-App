@@ -1,5 +1,5 @@
 
-<ion-content padding>
+<ion-content padding-vertical>
 <div *ngIf="utente">
   <div align="center">
     <ion-avatar class="imgprofilo">
@@ -28,7 +28,7 @@
   </div>
 
   <div align="center">
-    <ion-button (click)="getImage()" size="small" shape="round" color="tertiary" tappable>
+    <ion-button (click)="changeImage()" size="small" shape="round" color="tertiary" tappable>
       {{ 'MODIMMAGINE-BUTTON' | translate }}
     </ion-button>
   </div>
@@ -56,47 +56,33 @@
         <ion-text color="medium">{{'NOCOMMENTIUT' | translate}}</ion-text>
       </p>
     </div>
-
-
-    <ion-item *ngFor="let commento of utente.commento" >
-      <ion-grid>
+    <ion-item *ngFor="let commento of utente.commento">
+      <ion-grid no-padding>
         <ion-row>
-          <ion-col [routerLink]="['/ricette', commento.idricetta]" size="10">
-            <ion-row no-padding>
+          <ion-col  [routerLink]="['/ricette', commento.idricetta]" size="11" >
+            <ion-row>
 
-              <ion-col>
-                <ion-avatar >
+              <ion-col  align-self-center size="2">
+                <ion-avatar class="imgcommento">
                   <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
                 </ion-avatar>
               </ion-col>
-
-              <ion-col>
-                <ion-label text-wrap>
-                  <p>
+              <ion-col size="9">
+                <ion-label >
+                  <p text-wrap>
                     {{commento.testo}}
                   </p>
                 </ion-label>
               </ion-col>
-
-              <ion-col>
-                <div margin-top="30px">
-                  <ion-text slot="end" color="dark">
-                    <p text-end="true" class="datacommento">{{commento.data}} <br> {{commento.ora}}</p>
-                  </ion-text>
-                </div>
-              </ion-col>
-
             </ion-row>
           </ion-col>
+            <ion-col align-self-center>
+                <ion-icon size="medium" name="trash" (click)="rimuoviComm(commento.id)" ></ion-icon>
+            </ion-col>
         </ion-row>
       </ion-grid>
-
-
-
     </ion-item>
   </ion-list>
-
-
 </div>
 
 </ion-content>
