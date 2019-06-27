@@ -48,20 +48,43 @@
         <ion-text color="medium">{{'NOCOMMENTIUT' | translate}}</ion-text>
       </p>
     </div>
-    <ion-item *ngFor="let commento of utente.commento" [routerLink]="['/ricette', commento.idricetta]">
-      <ion-avatar slot="start">
-        <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
-      </ion-avatar>
-      <ion-label text-wrap>
-        <p>
-          {{commento.testo}}
-        </p>
-      </ion-label>
-      <div margin-top="30px">
-        <ion-text slot="end" color="dark">
-          <p text-end="true" class="datacommento">{{commento.data}} <br> {{commento.ora}}</p>
-        </ion-text>
-      </div>
+
+
+    <ion-item *ngFor="let commento of utente.commento" >
+      <ion-grid>
+        <ion-row>
+          <ion-col [routerLink]="['/ricette', commento.idricetta]" size="10">
+            <ion-row no-padding>
+
+              <ion-col>
+                <ion-avatar >
+                  <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col>
+                <ion-label text-wrap>
+                  <p>
+                    {{commento.testo}}
+                  </p>
+                </ion-label>
+              </ion-col>
+
+              <ion-col>
+                <div margin-top="30px">
+                  <ion-text slot="end" color="dark">
+                    <p text-end="true" class="datacommento">{{commento.data}} <br> {{commento.ora}}</p>
+                  </ion-text>
+                </div>
+              </ion-col>
+
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
     </ion-item>
   </ion-list>
 
