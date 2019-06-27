@@ -6,7 +6,8 @@ import {ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 import {BehaviorSubject} from 'rxjs';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import {Immagine} from "../../model/immagine.model";
 
 
 @Component({
@@ -16,22 +17,23 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 })
 export class ProfiloPage implements OnInit {
     private utente: Utente;
+    private foto: string;
 
     constructor(private modController: ModalController,
                 private navController: NavController,
                 private utenteService: UtenteService,
-                private imagePicker: ImagePicker) { }
+                private camera: Camera) { }
 
     imageResponse: any;
     options: any;
 
   ngOnInit() {
-        this.utenteService.getUtente().subscribe((utente: Utente) => {
-      this.utente = utente;
-  });
   }
 
    ionViewWillEnter() {
+       this.utenteService.getUtente().subscribe((utente: Utente) => {
+           this.utente = utente;
+       });
     }
 
   Logout() {
@@ -58,36 +60,30 @@ export class ProfiloPage implements OnInit {
   }
 
 
-    getImage() {
-        this.options = {
-            // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
-            // selection of a single image, the plugin will return it.
-            //maximumImagesCount: 3,
+    changeImage() {
+        const options: CameraOptions = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+        }
 
-            // max width and height to allow the images to be.  Will keep aspect
-            // ratio no matter what.  So if both are 800, the returned image
-            // will be at most 800 pixels wide and 800 pixels tall.  If the width is
-            // 800 and height 0 the image will be 800 pixels wide if the source
-            // is at least that wide.
-            width: 200,
-            //height: 200,
+        this.camera.getPicture(options).then((imageData) => {
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            let foto =  imageData;
+            let fotoobj = new Immagine();
+            fotoobj.data = foto;
+            fotoobj.type = 'image/jpeg';
+            fotoobj.idesterno = this.utente.id;
+            this.utenteService.updateFoto(fotoobj).subscribe( (nuovoUtente) => {
+                this.utente = nuovoUtente;
+            });
 
-            // quality of resized image, defaults to 100
-            quality: 25,
-
-            // output type, defaults to FILE_URIs.
-            // available options are
-            // window.imagePicker.OutputType.FILE_URI (0) or
-            // window.imagePicker.OutputType.BASE64_STRING (1)
-            outputType: 1
-        };
-        this.imageResponse = [];
-        this.imagePicker.getPictures(this.options).then((results) => {
-                this.imageResponse.push('data:image/jpeg;base64,' + results);
         }, (err) => {
-            alert(err);
+            // Handle error
         });
+
     }
 
-    async modImgProfilo() {}
 }

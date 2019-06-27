@@ -28,7 +28,7 @@
   </div>
 
   <div align="center">
-    <ion-button (click)="getImage()" size="small" shape="round" color="tertiary" tappable>
+    <ion-button (click)="changeImage()" size="small" shape="round" color="tertiary" tappable>
       {{ 'MODIMMAGINE-BUTTON' | translate }}
     </ion-button>
   </div>
@@ -72,6 +72,8 @@
       </div>
     </ion-item>
   </ion-list>
+  
+  <img src="{{foto}}">
 
 
 </div>

@@ -5,8 +5,8 @@ import {Account, UtenteService} from "../../services/utente.service";
 import {Utente} from "../../model/utente.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
-import {ActivatedRoute} from "@angular/router";
-import {RouterExtService} from "../../utility/prevroute";
+import { Router, RoutesRecognized } from '@angular/router';
+import {PreviousRouteService} from '../../utility/prevroute';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ import {RouterExtService} from "../../utility/prevroute";
 })
 export class LoginPage implements OnInit {
   private formLogin: FormGroup;
-
+  private previousPath;
   private loginTitle: string;
   private loginSubTitle: string;
 
@@ -24,9 +24,11 @@ export class LoginPage implements OnInit {
               private translateService: TranslateService,
               private navController: NavController,
               private utenteService: UtenteService,
-              private routerService: RouterExtService) { }
+              public router: Router,
+              private previousRouteService: PreviousRouteService) { }
 
   ngOnInit() {
+    this.previousPath = this.previousRouteService.getPreviousUrl();
     this.formLogin = this.fb.group({
       username: ['', Validators.compose([
         Validators.required
@@ -42,8 +44,7 @@ export class LoginPage implements OnInit {
     const account: Account = this.formLogin.value;
     this.utenteService.login(account).subscribe((utente: Utente) => { // this.utenteService.login(account) torna un Observable<Utente>
           this.formLogin.reset();
-          const referrer = this.routerService.getPreviousUrl();
-          if (referrer === 'registrazione') {
+          if (this.previousPath === '/registrazione') {
             this.navController.navigateRoot('tabs/home');
           } else {
             this.navController.back();
