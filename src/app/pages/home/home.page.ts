@@ -6,6 +6,7 @@ import {RicettaService} from '../../services/ricetta.service';
 import {UtenteService} from "../../services/utente.service";
 import {Data} from "../../utility/Data";
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -15,16 +16,21 @@ import {Router} from "@angular/router";
 export class HomePage implements OnInit {
   private ricettelista$: Observable<Ricetta[]>;
   private ricetteslide$: Observable<Ricetta[]>;
+  private nomeForm: FormGroup;
 
   constructor(private navController: NavController,
               private ricettaService: RicettaService,
               private utenteService: UtenteService,
               private data: Data,
-              private router: Router) { }
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.ricettelista$ = this.ricettaService.list(9);
     this.ricetteslide$ = this.ricettaService.list(3);
+    this.nomeForm = this.fb.group({
+      nome: ['']
+    });
   }
   ricerca() {
     this.navController.navigateForward('ricerca');
@@ -34,7 +40,7 @@ export class HomePage implements OnInit {
     if (data.value !== '') {
       this.ricettaService.ricercaPerNome(data.value).subscribe((Ricette) => {
         this.data.storage = Ricette;
-        data.value = '';
+        this.nomeForm.reset();
         this.router.navigate(['/risultatiricerca']);
       });
     }

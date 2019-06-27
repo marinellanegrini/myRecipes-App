@@ -2,7 +2,10 @@
 <ion-content>
 
   <ion-toolbar>
-    <ion-searchbar (search)="onSubmitNome($event.target)"></ion-searchbar>
+    <form [formGroup]="nomeForm">
+      <ion-searchbar formControlName="nome" (search)="onSubmitNome($event.target)"></ion-searchbar>
+    </form>
+
   </ion-toolbar>
 
   <div *ngIf="(ricetteslide$ | async)">
