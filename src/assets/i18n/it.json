@@ -36,6 +36,8 @@
   "CANCELLA": "Cancella",
   "SAVE_BUTTON": "Salva",
   "CANCEL_BUTTON": "Annulla",
+  "NOCOMMENTI": "Non ci sono commenti per questa ricetta",
+  "NOCOMMENTIUT": "Non hai ancora scritto commenti",
 
   "NOMEINVALID": "Il nome inserito non è valido",
   "MAILINVALID": "La mail inserita non è valida",

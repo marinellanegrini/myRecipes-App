@@ -83,8 +83,17 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
+<<<<<<< HEAD
       "cordova-plugin-telerik-imagepicker": {},
       "cordova-plugin-image-picker": {}
+=======
+      "cordova-plugin-telerik-imagepicker": {
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": " "
+      },
+      "cordova-plugin-image-picker": {
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": " "
+      }
+>>>>>>> a7085a36962d09eca94d37e5c8a2701c5df1c527
     },
     "platforms": [
       "ios"

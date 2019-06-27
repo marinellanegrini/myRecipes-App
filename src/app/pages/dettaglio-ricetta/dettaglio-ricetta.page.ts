@@ -8,7 +8,7 @@ import {UtenteService} from '../../services/utente.service';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 
 import {AlertController, ModalController, NavController} from '@ionic/angular';
-import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
+import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {CommentoPage} from '../commento/commento.page';
 
 import {Commento} from '../../model/commento.model';
