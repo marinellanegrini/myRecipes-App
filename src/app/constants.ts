@@ -13,6 +13,9 @@ export const URL = {
     LOGIN: URL_BASE + '/Utente/login',
     LOGOUT: URL_BASE + '/logout',
     UPDATE_PROFILO: URL_BASE + '/utente/updateprofilo',
+
+    UPDATE_IMGPROFILO: URL_BASE + '/utente/updateimg',
+
     VERUSERNAME: URL_BASE + '/Utente/username',
     REGISTRAZIONE: URL_BASE + '/Utente/registrazione',
     RICETTE: URL_BASE + '/Ricette/Ricetta',

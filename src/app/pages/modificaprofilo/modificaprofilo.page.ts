@@ -19,9 +19,13 @@ export class ModificaprofiloPage implements OnInit {
 
   private utente: Utente;
   private modForm: FormGroup;
+<<<<<<< HEAD
+
+=======
   private esisteUsername: boolean;
   imageResponse: any;
   options: any;
+>>>>>>> e48fe573b1770e3af6f868af68ea71bb46ef2a53
 
   ngOnInit() {
     this.utente = this.navParams.data.appParam;
@@ -53,6 +57,8 @@ export class ModificaprofiloPage implements OnInit {
     }
     await this.modalController.dismiss(this.utente);
   }
+<<<<<<< HEAD
+=======
 
   usernameChanged(data): void {
     if (data.value !== '') {
@@ -104,4 +110,5 @@ export class ModificaprofiloPage implements OnInit {
   }*/
 
 
+>>>>>>> e48fe573b1770e3af6f868af68ea71bb46ef2a53
 }
