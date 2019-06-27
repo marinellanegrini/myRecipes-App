@@ -14,10 +14,9 @@ export const URL = {
     LOGOUT: URL_BASE + '/logout',
     UPDATE_PROFILO: URL_BASE + '/utente/updateprofilo',
 
-    UPDATE_IMGPROFILO: URL_BASE + '/utente/updateimg',
+    UPDATE_IMGPROFILO: URL_BASE + '/utente/updateimmagine',
 
     VERUSERNAME: URL_BASE + '/Utente/username',
-    REGISTRAZIONE: URL_BASE + '/Utente/registrazione',
     RICETTE: URL_BASE + '/Ricette/Ricetta',
     CIBI: URL_BASE + '/Ricette/Cibi',
     PREFERITI: URL_BASE + '/Ricette/Preferiti',
@@ -32,7 +31,8 @@ export const URL = {
     COMMENTO: URL_BASE + '/Ricette/Commento',
     UTENTE: URL_BASE + '/Utente/Utente',
     RICNOME: URL_BASE + '/Ricette/Nome',
-    RIMUOVICOMMENTO: URL_BASE + '/Utente/RimuoviCommento'
+    RIMUOVICOMMENTO: URL_BASE + '/Utente/RimuoviCommento',
+    PROFILO: URL_BASE + '/Utente/Profilo'
 };
 
 export const X_AUTH = 'X-Auth';

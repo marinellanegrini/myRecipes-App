@@ -3,14 +3,14 @@
 
   <ion-toolbar>
     <form [formGroup]="nomeForm">
-      <ion-searchbar formControlName="nome" (search)="onSubmitNome($event.target)"></ion-searchbar>
+      <ion-searchbar  formControlName="nome" (search)="onSubmitNome($event.target)"></ion-searchbar>
     </form>
 
   </ion-toolbar>
 
   <div *ngIf="(ricetteslide$ | async)">
     <ion-slides pager="true">
-      <ion-slide *ngFor="let slide of ricetteslide$ | async " [routerLink]="['/ricette', slide.id]" routerDirection="forward" >
+      <ion-slide  *ngFor="let slide of ricetteslide$ | async " [routerLink]="['/ricette', slide.id]" routerDirection="forward" >
         <img src="data:{{slide.immagine.type}};base64,{{slide.immagine.data}}"/>
         <ion-label class="img-description">{{slide.nome}}</ion-label>
       </ion-slide>
@@ -28,8 +28,8 @@
       </ion-label>
       <span>
         <ion-label>
-          <p>
-            {{recipe.tprep}}<ion-icon name="time"></ion-icon>
+          <p >
+            {{recipe.tprep}} <ion-icon name="time"></ion-icon>
           </p>
         </ion-label>
         <ion-label>

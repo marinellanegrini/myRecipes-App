@@ -9,6 +9,8 @@ import {BehaviorSubject} from 'rxjs';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import {Ricetta} from '../../model/ricetta.model';
 import {TranslateService} from '@ngx-translate/core';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import {Immagine} from '../../model/immagine.model';
 
 
 @Component({
@@ -23,12 +25,14 @@ export class ProfiloPage implements OnInit {
     private subtitle: string;
     private si: string;
     private no: string;
+    private foto: string;
 
     constructor(private modController: ModalController,
                 private navController: NavController,
                 private utenteService: UtenteService,
                 private alertController: AlertController,
-                private translateService: TranslateService) { }
+                private translateService: TranslateService,
+                private camera: Camera) { }
 
 
   ngOnInit() {
@@ -39,6 +43,9 @@ export class ProfiloPage implements OnInit {
   }
 
    ionViewWillEnter() {
+       this.utenteService.getUtente().subscribe((utente: Utente) => {
+           this.utente = utente;
+       });
     }
 
   Logout() {
@@ -71,11 +78,38 @@ export class ProfiloPage implements OnInit {
             this.commenti = utente.commento; // oltre a riempire i campi l'utente è messo come attributo
         });
     }
+
     ionViewWillEnterComm() {
         this.listcommenti();
     }
 
 
+    changeImage() {
+        const options: CameraOptions = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+        };
+
+        this.camera.getPicture(options).then((imageData) => {
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            const foto =  imageData;
+            const fotoobj = new Immagine();
+            fotoobj.data = foto;
+            fotoobj.type = 'image/jpeg';
+            fotoobj.idesterno = this.utente.id;
+            this.utenteService.updateFoto(fotoobj).subscribe( (nuovoUtente) => {
+                this.utente = nuovoUtente;
+            });
+
+        }, (err) => {
+            // Handle error
+
+        });
+
+    }
 
     async rimuoviComm(idcommento) {
         const alert = await this.alertController.create({
@@ -107,4 +141,5 @@ export class ProfiloPage implements OnInit {
             this.no = data;
         });
     }
+
 }

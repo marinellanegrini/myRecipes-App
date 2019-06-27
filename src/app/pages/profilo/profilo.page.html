@@ -28,7 +28,7 @@
   </div>
 
   <div align="center">
-    <ion-button (click)="getImage()" size="small" shape="round" color="tertiary" tappable>
+    <ion-button (click)="changeImage()" size="small" shape="round" color="tertiary" tappable>
       {{ 'MODIMMAGINE-BUTTON' | translate }}
     </ion-button>
   </div>
@@ -67,7 +67,6 @@
                   <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
                 </ion-avatar>
               </ion-col>
-
               <ion-col size="9">
                 <ion-label >
                   <p text-wrap>
@@ -77,15 +76,13 @@
               </ion-col>
             </ion-row>
           </ion-col>
-          <ion-col align-self-center>
-            <ion-icon size="medium" name="trash" (click)="rimuoviComm(commento.id)" ></ion-icon>
-          </ion-col>
+            <ion-col align-self-center>
+                <ion-icon size="medium" name="trash" (click)="rimuoviComm(commento.id)" ></ion-icon>
+            </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
   </ion-list>
-
-
 </div>
 
 </ion-content>
