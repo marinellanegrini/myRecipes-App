@@ -1,5 +1,5 @@
 
-<ion-content padding>
+<ion-content padding-vertical>
 <div *ngIf="utente">
   <div align="center">
     <ion-avatar class="imgprofilo">
@@ -56,20 +56,32 @@
         <ion-text color="medium">{{'NOCOMMENTIUT' | translate}}</ion-text>
       </p>
     </div>
-    <ion-item *ngFor="let commento of utente.commento" [routerLink]="['/ricette', commento.idricetta]">
-      <ion-avatar slot="start">
-        <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
-      </ion-avatar>
-      <ion-label text-wrap>
-        <p>
-          {{commento.testo}}
-        </p>
-      </ion-label>
-      <div margin-top="30px">
-        <ion-text slot="end" color="dark">
-          <p text-end="true" class="datacommento">{{commento.data}} <br> {{commento.ora}}</p>
-        </ion-text>
-      </div>
+    <ion-item *ngFor="let commento of utente.commento">
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col  [routerLink]="['/ricette', commento.idricetta]" size="11" >
+            <ion-row>
+
+              <ion-col  align-self-center size="2">
+                <ion-avatar class="imgcommento">
+                  <img src="data:{{utente.immagine.type}};base64,{{utente.immagine.data}}">
+                </ion-avatar>
+              </ion-col>
+
+              <ion-col size="9">
+                <ion-label >
+                  <p text-wrap>
+                    {{commento.testo}}
+                  </p>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col align-self-center>
+            <ion-icon size="medium" name="trash" (click)="rimuoviComm(commento.id)" ></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 

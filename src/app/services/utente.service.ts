@@ -129,4 +129,13 @@ export class UtenteService {
         return this.http.get<Utente>(apiURL);
     }
 
+
+    rimuoviCommento(commentoId: number): void {
+        const apiURL = `${URL.RIMUOVICOMMENTO}/${commentoId}`;
+        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
+            this.storage.set(UTENTE_STORAGE, nuovoUtente);
+            this.utente$.next(nuovoUtente);
+        });
+    }
+
 }
