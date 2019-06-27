@@ -13,6 +13,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import {Data} from './utility/Data';
 import {httpInterceptorProviders} from './interceptor';
 
@@ -38,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     StatusBar,
     SplashScreen,
+    ImagePicker,
       Data,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     httpInterceptorProviders
