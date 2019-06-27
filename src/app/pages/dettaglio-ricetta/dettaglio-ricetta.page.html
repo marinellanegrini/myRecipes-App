@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar color="primary" text-center>
+  <ion-toolbar color="primary" mode="ios">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ricetta.nome}}</ion-title>
+    <ion-title >{{ricetta.nome}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -42,7 +42,7 @@
     <div>
       <p>
         {{ 'TPREP' | translate }}
-        <ion-icon size="medium" name="time"></ion-icon>
+        <ion-icon class="icona" size="medium" name="time"></ion-icon>
         {{ricetta.tprep}}
       </p>
       <p>
@@ -57,9 +57,9 @@
         <ion-icon [hidden]="(ricetta.difficolta<4)" name="star"></ion-icon>
         <ion-icon [hidden]="(ricetta.difficolta<5)" name="star"></ion-icon>
       </p>
-      <p>
+      <p >
         {{ 'NDOSI' | translate }}
-        <ion-icon name="restaurant"></ion-icon>
+        <ion-icon class="icona" name="restaurant"></ion-icon>
         {{ricetta.ndosi}}
       </p>
 
@@ -133,7 +133,7 @@
 
         <span>
           <ion-text slot="end" color="dark">
-              <p class="datacommento" text-end="true">{{commento.data}} <br> {{commento.ora}}</p>
+              <p class="datacommento" text-end="true">{{commento.data}}<br> {{commento.ora}}</p>
           </ion-text>
         </span>
       </ion-item>
