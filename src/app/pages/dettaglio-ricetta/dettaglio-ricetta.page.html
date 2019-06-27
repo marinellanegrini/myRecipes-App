@@ -3,16 +3,21 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="(ricetta$ | async) as ricetta">{{ricetta.nome}}</ion-title>
+    <ion-title>{{ricetta.nome}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <div *ngIf="(ricetta$ | async) as ricetta">
+<ion-content padding-horizontal="5px">
+  <div>
     <span>
-      <ion-text>
-        <h1><b>{{ricetta.nome}}</b></h1>
-      </ion-text>
+      <ion-row>
+        <ion-col size = "10">
+          <ion-text >
+            <h1><b>{{ricetta.nome}}</b></h1>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
       <ion-icon *ngIf="preferita" size="large" name="heart" class="heart" color="tertiary" (click)="rimuoviPref()"></ion-icon>
       <ion-icon *ngIf="!preferita" size="large" name="heart-empty" class="heart" color="tertiary" (click)="aggiungiPref()"></ion-icon>
     </span>
@@ -99,16 +104,21 @@
       </h6>
     </div>
 
+    <ion-list>
+      <div class="ion-text-center">
+        <p *ngIf="ricetta.commenti.length == 0">
+          <ion-text color="medium">{{'NOCOMMENTI' | translate}}</ion-text>
+        </p>
+      </div>
 
-    <ion-list *ngIf="(ricetta$ | async)">
-      <ion-item *ngFor="let commento of ricetta.commenti; let i = index">
+      <ion-item *ngFor="let commento of ricetta.commenti">
         <ion-avatar slot="start">
-          <img src="data:{{utentiCommenti[i].immagine.type}};base64,{{utentiCommenti[i].immagine.data}}">
+          <img src="data:{{commento.immagineutente.type}};base64,{{commento.immagineutente.data}}">
         </ion-avatar>
         <ion-label text-wrap>
           <p>
             <b>
-              {{utentiCommenti[i].username}}
+              {{commento.username}}
             </b>
           </p>
           <p>

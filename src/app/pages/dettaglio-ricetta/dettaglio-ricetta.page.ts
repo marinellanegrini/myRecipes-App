@@ -8,7 +8,7 @@ import {UtenteService} from '../../services/utente.service';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 
 import {AlertController, ModalController, NavController} from '@ionic/angular';
-import {ModificaprofiloPage} from "../modificaprofilo/modificaprofilo.page";
+import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {CommentoPage} from '../commento/commento.page';
 
 import {Commento} from '../../model/commento.model';
@@ -22,7 +22,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./dettaglio-ricetta.page.scss'],
 })
 export class DettaglioRicettaPage implements OnInit {
-  private ricetta$: Observable<Ricetta>;
+  private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
   private utentiCommenti: Utente[] = [];
@@ -43,8 +43,41 @@ export class DettaglioRicettaPage implements OnInit {
   ionViewWillEnter() {
       this.route.paramMap.subscribe((params: ParamMap) => {
           // chiamata REST che recupera dal server la ricetta di cui ho l'id
-          this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
-          this.ricetta$.subscribe( (ricetta) => {
+         // this.ricetta$ = this.ricService.findById(parseInt(params.get('id'), 0));
+          this.ricService.findById(parseInt(params.get('id'), 0)).subscribe( (ricetta) => {
+              this.ricetta = ricetta;
+              for (const comm of ricetta.commenti) {
+                  this.utenteService.findById(comm.idutente).subscribe((utente) => {
+                      comm.username = utente.username;
+                      comm.immagineutente = utente.immagine;
+                  });
+              }
+              this.utenteService.getUtente().subscribe((utente) => {
+                          if (utente !== undefined && utente !== null) {
+                              this.utente = utente;
+                              this.utenteService.isLogged().subscribe( (logged: boolean) => {
+                                  if (logged) {
+                                      const pref: Ricetta[] = this.utente.preferito;
+                                      const i: number[] = [];
+                                      for (const ric of pref) {
+                                          i.push(ric.id);
+                                      }
+                                      if (i.includes(ricetta.id)) {
+                                          this.preferita = true;
+                                      } else {
+                                          this.preferita = false;
+                                      }
+                                  } else {
+                                      this.preferita = false;
+                                  }
+                              });
+                          } else {
+                              this.preferita = false;
+                          }
+                      }
+                  );
+          });
+         /* this.ricetta$.subscribe( (ricetta) => {
               this.utenteService.getUtente().subscribe((utente) => {
                       if (utente !== undefined && utente !== null) {
                           this.utente = utente;
@@ -69,11 +102,17 @@ export class DettaglioRicettaPage implements OnInit {
                       }
                   }
               );
-          });
+              for (const comm of ricetta.commenti) {
+                  this.utenteService.findById(comm.idutente).subscribe( (utente) => {
+                      comm.username = utente.username;
+                      console.log(comm);
+                  });
+              }
+          });*/
 
       });
       // per ogni idutente di ogni commento recupero dal server l'utente e lo metto nell'array utenteCommenti
-      this.ricetta$.subscribe( (ricetta) => {
+     /* this.ricetta$.subscribe( (ricetta) => {
           const i: number[] = [];
           for (const comm of ricetta.commenti) {
               i.push(comm.idutente);
@@ -83,7 +122,7 @@ export class DettaglioRicettaPage implements OnInit {
                   this.utentiCommenti.push(utente);
               });
           }
-      });
+      });*/
       /*this.utenteService.getUtente().subscribe((utente) => {
           this.utente = utente;
       });*/
@@ -95,15 +134,26 @@ export class DettaglioRicettaPage implements OnInit {
   }
 
  rimuoviPref() {
-   this.ricetta$.subscribe( (ricetta) => {
+     this.utenteService.rimuoviDaPreferiti(this.ricetta.id);
+     this.preferita = false;
+  /* this.ricetta$.subscribe( (ricetta) => {
      // chiamata al server per aggiornare l'utente
      this.utenteService.rimuoviDaPreferiti(ricetta.id);
      this.preferita = false;
-   });
+   });*/
  }
 
   aggiungiPref() {
-      this.ricetta$.subscribe((ricetta) => {
+      this.utenteService.isLogged().subscribe( (logged) => {
+          if (logged) {
+              // chiamata al server per aggiornare l'utente
+              this.utenteService.aggiungiAPreferiti(this.ricetta.id);
+              this.preferita = true;
+          } else {
+              this.navController.navigateRoot('login');
+          }
+      });
+      /*this.ricetta$.subscribe((ricetta) => {
           this.utenteService.isLogged().subscribe( (logged) => {
               if (logged) {
                   // chiamata al server per aggiornare l'utente
@@ -113,7 +163,7 @@ export class DettaglioRicettaPage implements OnInit {
                   this.navController.navigateRoot('login');
               }
           });
-      });
+      });*/
   }
 
 
@@ -129,15 +179,45 @@ export class DettaglioRicettaPage implements OnInit {
               modal.onDidDismiss().then((detail: OverlayEventDetail) => {
                   if (detail !== null && detail.data !== undefined) {
                       const commento: Commento = detail.data;
-                      this.ricetta$.subscribe((ricetta) => {
-                          commento.idricetta = ricetta.id;
-                          this.utenteService.commenta(commento).subscribe(() => {
-                              this.ricetta$ = this.ricService.findById(ricetta.id);
-                          }, (err: HttpErrorResponse) => {
-                              if (err.status === 500) {
-                                  this.showComError();
-                              }
+                      commento.idricetta = this.ricetta.id;
+                      this.utenteService.commenta(commento).subscribe(() => {
+                           this.ricService.findById(this.ricetta.id).subscribe( (ricetta) => {
+                              this.ricetta = ricetta;
+                              for (const comm of ricetta.commenti) {
+                                   this.utenteService.findById(comm.idutente).subscribe((utente) => {
+                                       comm.username = utente.username;
+                                       comm.immagineutente = utente.immagine;
+                                   });
+                               }
+                              this.utenteService.getUtente().subscribe((utente) => {
+                                       if (utente !== undefined && utente !== null) {
+                                           this.utente = utente;
+                                           this.utenteService.isLogged().subscribe( (logged: boolean) => {
+                                               if (logged) {
+                                                   const pref: Ricetta[] = this.utente.preferito;
+                                                   const i: number[] = [];
+                                                   for (const ric of pref) {
+                                                       i.push(ric.id);
+                                                   }
+                                                   if (i.includes(ricetta.id)) {
+                                                       this.preferita = true;
+                                                   } else {
+                                                       this.preferita = false;
+                                                   }
+                                               } else {
+                                                   this.preferita = false;
+                                               }
+                                           });
+                                       } else {
+                                           this.preferita = false;
+                                       }
+                                   }
+                               );
                           });
+                      }, (err: HttpErrorResponse) => {
+                          if (err.status === 500) {
+                              this.showComError();
+                          }
                       });
                   }
               });

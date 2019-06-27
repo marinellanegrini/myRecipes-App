@@ -48,5 +48,37 @@ export class RicettaService {
     }
 
 
+    ricercaIngredienti(ingredienti): Observable<Ricetta[]> {
+        // chiamata al server per la ricerca
+
+        return this.http.post<Ricetta[]>(URL.RICINGREDIENTI, ingredienti, {observe: 'response'}).pipe(
+            map((resp: HttpResponse<Ricetta[]>) => {
+                return resp.body;
+            }));
+
+    }
+
+    ricercaPerNome(nome): Observable<Ricetta[]> {
+        // chiamata al server per la ricerca
+        const apiURL = `${URL.RICNOME}/${nome}`;
+        return this.http.get<Ricetta[]>(apiURL);
+    }
+
+
+    aggiungiAPreferiti(ricettaId: number): void {
+        const apiURL = `${URL.AGGIUNGIPREFERITI}/${ricettaId}`;
+        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
+            this.storage.set(UTENTE_STORAGE, nuovoUtente);
+        });
+    }
+    rimuoviDaPreferiti(ricettaId: number): void {
+        const apiURL = `${URL.RIMUOVIPREFERITI}/${ricettaId}`;
+        this.http.get<Utente>(apiURL).subscribe( (nuovoUtente) => {
+            this.storage.set(UTENTE_STORAGE, nuovoUtente);
+        });
+    }
+
+
+
 
 }

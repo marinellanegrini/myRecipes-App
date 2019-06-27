@@ -42,9 +42,9 @@ export class RicercaPage implements OnInit {
     this.tprep = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60+'];
 
     this.filtriForm = this.fb.group({
-      diff: [''],
-      tprep: [''],
-      cat: ['']
+      diff: [null],
+      tprep: [null],
+      cat: [null]
     });
 
     this.cibi$ = this.ciboService.list();
@@ -65,12 +65,13 @@ export class RicercaPage implements OnInit {
   }
   createItem(cibo): FormGroup {
     return this.fb.group({
-      nome: `${cibo.nome}`,
-      id: cibo.id
+      id: [cibo.id],
+      val: [false]
+
     });
   }
 
-  /*getItems(ev: any) {
+/*  getItems(ev: any) {
 
     // set val to the value of the searchbar
     const val = ev.target.value;
@@ -95,9 +96,16 @@ export class RicercaPage implements OnInit {
 
   onSubmitIngr(): void {
     // devo recuperare tutti i dati dalla form
-    let v = this.ingrForm.value.ingrediente;
-    this.router.navigate(['/risultatiricerca'], {
-      queryParams: v,
+    const v = this.ingrForm.value.ingredienti;
+    const ids: number[] = [];
+    for (const item of v) {
+      if (item.val) {
+        ids.push(item.id);
+      }
+    }
+    this.ricService.ricercaIngredienti(ids).subscribe((Ricette) => {
+      this.data.storage = Ricette;
+      this.router.navigate(['/risultatiricerca']);
     });
   }
   segmentChanged(ev: any) {

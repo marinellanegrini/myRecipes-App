@@ -1,3 +1,5 @@
+import {Immagine} from "./immagine.model";
+
 export class Commento {
 
     id: number;
@@ -5,6 +7,8 @@ export class Commento {
     data: string;
     ora: string;
     bannato: boolean;
+    username: string;
+    immagineutente: Immagine;
     idutente: number;
     idricetta: number;
 }

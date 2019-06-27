@@ -19,17 +19,19 @@ export const URL = {
     VERUSERNAME: URL_BASE + '/Utente/username',
     REGISTRAZIONE: URL_BASE + '/Utente/registrazione',
     RICETTE: URL_BASE + '/Ricette/Ricetta',
-    CIBI: URL_BASE + '/Ricette/RicercaPerIngredienti',
+    CIBI: URL_BASE + '/Ricette/Cibi',
     PREFERITI: URL_BASE + '/Ricette/Preferiti',
     AGGIUNGIPREFERITI: URL_BASE + '/Ricette/AggiungiaiPreferiti',
     RIMUOVIPREFERITI: URL_BASE + '/Ricette/RimuoviDaPreferiti',
     CATEGORIE: URL_BASE + '/Ricette/Categorie',
     RICAVANZATA: URL_BASE + '/Ricette/Avanzata',
+    RICINGREDIENTI: URL_BASE + '/Ricette/PerIngredienti',
     INSEGNAMENTI: URL_BASE + '/insegnamenti',
     APPELLI: URL_BASE + '/appelli',
     HOMEPAGE: URL_BASE + '/Ricette/Homepage',
     COMMENTO: URL_BASE + '/Ricette/Commento',
-    UTENTE: URL_BASE + '/Utente/Utente'
+    UTENTE: URL_BASE + '/Utente/Utente',
+    RICNOME: URL_BASE + '/Ricette/Nome'
 };
 
 export const X_AUTH = 'X-Auth';

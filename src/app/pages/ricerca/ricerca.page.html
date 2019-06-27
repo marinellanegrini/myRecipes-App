@@ -26,21 +26,21 @@
           <ion-label position="floating">{{ 'DIFFICOLTA' | translate }}</ion-label>
           <ion-select formControlName="diff" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option *ngFor="let diff of difficolta">{{diff}}</ion-select-option>
-            <ion-select-option [value]="">Qualsiasi</ion-select-option>
+            <ion-select-option [value]="null">Qualsiasi</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item class="animated fadeInUp">
           <ion-label position="floating">{{ 'TPREP' | translate }}</ion-label>
           <ion-select formControlName="tprep" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option *ngFor="let t of tprep">{{t}}</ion-select-option>
-            <ion-select-option [value]="">Qualsiasi</ion-select-option>
+            <ion-select-option [value]="null">Qualsiasi</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item class="animated fadeInUp">
           <ion-label position="floating">{{ 'CATEGORIA' | translate }}</ion-label>
           <ion-select formControlName="cat" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option [value]="c.id" *ngFor="let c of categorie$ | async">{{c.nome}}</ion-select-option>
-            <ion-select-option [value]="">Qualsiasi</ion-select-option>
+            <ion-select-option [value]="null">Qualsiasi</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -56,14 +56,29 @@
     <form [formGroup]="ingrForm" *ngSwitchCase="'ingredienti'">
       <ion-searchbar animated="true"></ion-searchbar>
       <ion-list>
-        <ion-item [formArrayName]="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
-            <ion-thumbnail item-left>
+        <ion-item formArrayName="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
+
+            <ion-grid [formGroupName]="i" align="center">
+        <ion-row justify-content-start>
+
+          <ion-col align-self-center size="100%">
+             <ion-thumbnail item-left>
               <img src="data:{{ingr.immagine.type}};base64,{{ingr.immagine.data}}" />
             </ion-thumbnail>
-            <ion-label padding>
+          </ion-col>
+
+          <ion-col size="8">
+            <ion-label text-wrap text-left padding>
               <h2>{{ingr.nome}}</h2>
             </ion-label>
-            <ion-checkbox [formControl]="ingredienti[i]" slot="end" checked="false" [value]="ingr.id"></ion-checkbox>
+          </ion-col>
+
+          <ion-col align-self-center>
+            <ion-checkbox formControlName="val" checked="false"></ion-checkbox>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
 
         </ion-item>
       </ion-list>

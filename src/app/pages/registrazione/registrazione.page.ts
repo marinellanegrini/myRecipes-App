@@ -6,6 +6,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {AlertController, NavController} from "@ionic/angular";
 import {TranslateService} from "@ngx-translate/core";
 import {Utente} from "../../model/utente.model";
+import {RouterExtService} from "../../utility/prevroute";
 
 @Component({
   selector: 'app-registrazione',
@@ -24,7 +25,8 @@ export class RegistrazionePage implements OnInit {
               private utenteService: UtenteService,
               private translateService: TranslateService,
               private alertController: AlertController,
-              private navController: NavController) { }
+              private navController: NavController,
+              private routeService: RouterExtService) { }
 
   ngOnInit() {
     this.regForm = this.fb.group({

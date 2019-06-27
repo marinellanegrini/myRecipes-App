@@ -16,6 +16,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import {Data} from './utility/Data';
 import {httpInterceptorProviders} from './interceptor';
+import {RouterExtService} from "./utility/prevroute";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -41,6 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     ImagePicker,
       Data,
+    RouterExtService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     httpInterceptorProviders
   ],

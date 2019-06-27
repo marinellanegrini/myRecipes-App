@@ -25,7 +25,7 @@ export class CommentoPage implements OnInit {
   ngOnInit() {
 
     this.comForm = this.fb.group({
-      testo: [Validators.required]
+      testo: ['', Validators.required]
     });
   }
 
