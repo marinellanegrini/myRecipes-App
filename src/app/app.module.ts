@@ -16,7 +16,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {Data} from './utility/Data';
 import {httpInterceptorProviders} from './interceptor';
-import {PreviousRouteService} from "./utility/prevroute";
+import {PreviousRouteService} from './utility/prevroute';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
