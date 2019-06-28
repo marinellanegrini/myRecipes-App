@@ -3,7 +3,7 @@
 
   <ion-toolbar>
     <form [formGroup]="nomeForm">
-      <ion-searchbar  formControlName="nome" (search)="onSubmitNome($event.target)"></ion-searchbar>
+      <ion-searchbar  formControlName="nome" placeholder="{{ 'CERCA' | translate}}" (search)="onSubmitNome($event.target)"></ion-searchbar>
     </form>
 
   </ion-toolbar>
