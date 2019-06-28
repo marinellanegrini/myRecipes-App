@@ -39,15 +39,11 @@ export class UtenteService {
     }
 
     registrazione(utente: Utente): Observable<Utente> {
-        return this.http.post<Utente>(URL.PROFILO, utente, {observe: 'response'}).pipe(
+        return this.http.post<Utente>(URL.REGISTRAZIONE, utente, {observe: 'response'}).pipe(
             map((resp: HttpResponse<Utente>) => {
                 return resp.body;
             }));
     }
-/*cancellazione(utente: Utente): void {
-        this.http.delete(URL.PROFILO, utente)
-    }*/
-
     verifyUsername(username: string): Observable<boolean> {
         const apiURL = `${URL.VERUSERNAME}/${username}`;
         return this.http.get<boolean>(apiURL);

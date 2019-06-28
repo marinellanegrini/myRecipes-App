@@ -54,9 +54,9 @@
     </form>
 
     <form [formGroup]="ingrForm" *ngSwitchCase="'ingredienti'">
-      <ion-searchbar [animated]="true"></ion-searchbar>
+      <ion-searchbar (ionInput)="getItems($event)" [animated]="true"></ion-searchbar>
       <ion-list>
-        <ion-item formArrayName="ingredienti" *ngFor="let ingr of cibi$ | async; let i = index;">
+        <ion-item formArrayName="ingredienti" *ngFor="let ingr of cibiVisualizzati; let i = index;">
 
             <ion-grid [formGroupName]="i" align="center">
         <ion-row justify-content-start>

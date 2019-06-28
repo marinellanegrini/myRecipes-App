@@ -36,9 +36,6 @@ export class ProfiloPage implements OnInit {
 
 
   ngOnInit() {
-        this.utenteService.getUtente().subscribe((utente: Utente) => {
-      this.utente = utente;
-  });
         this.initTranslate();
   }
 
@@ -73,9 +70,9 @@ export class ProfiloPage implements OnInit {
 
 
     listcommenti() {
-        // recupero i preferiti dall'utente tramite il service che recupera l'utente dallo storage
+        // recupero i commenti dall'utente tramite il service che recupera l'utente dallo storage
         this.utenteService.getUtente().subscribe((utente) => {
-            this.commenti = utente.commento; // oltre a riempire i campi l'utente è messo come attributo
+            this.commenti = utente.commento;
         });
     }
 

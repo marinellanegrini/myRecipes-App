@@ -7,6 +7,7 @@ import {UtenteService} from "../../services/utente.service";
 import {Data} from "../../utility/Data";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -44,6 +45,13 @@ export class HomePage implements OnInit {
         this.router.navigate(['/risultatiricerca']);
       });
     }
+  }
+
+  doRefresh(event) {
+    this.ricetteslide$ = this.ricettaService.list(3)
+        .pipe(tap(() => {
+          event.target.complete();
+        }));
   }
 
 
