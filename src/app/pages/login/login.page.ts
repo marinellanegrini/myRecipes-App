@@ -66,7 +66,6 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
-
   private initTranslate() {
     this.translateService.get('LOGIN_ERROR_SUB_TITLE').subscribe((data) => {
       this.loginSubTitle = data;

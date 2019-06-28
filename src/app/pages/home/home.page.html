@@ -1,12 +1,22 @@
 
 <ion-content>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="lines">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-toolbar>
     <form [formGroup]="nomeForm">
-      <ion-searchbar  formControlName="nome" (search)="onSubmitNome($event.target)"></ion-searchbar>
+      <ion-searchbar  formControlName="nome" placeholder="{{ 'CERCA' | translate}}" (search)="onSubmitNome($event.target)"></ion-searchbar>
     </form>
-
   </ion-toolbar>
+
+  <div class="spin" *ngIf="!(ricetteslide$ | async) || !(ricettelista$ | async)">
+    <ion-spinner color="tertiary" name="lines"></ion-spinner>
+  </div>
 
   <div *ngIf="(ricetteslide$ | async)">
     <ion-slides pager="true">

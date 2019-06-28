@@ -28,6 +28,8 @@ export class RicercaPage implements OnInit {
   private ingrForm: FormGroup;
   private ingredienti: FormArray;
   private cibi$: Observable<Cibo[]>;
+  private cibiFiltri: Cibo[];
+  private cibiVisualizzati: Cibo[];
 
   constructor(private fb: FormBuilder,
               private catService: CategoriaService,
@@ -48,11 +50,17 @@ export class RicercaPage implements OnInit {
     });
 
     this.cibi$ = this.ciboService.list();
+    this.cibi$.subscribe( (cibi) => {
+      this.cibiVisualizzati = cibi;
+      this.cibiFiltri = cibi;
+    });
     this.ingrForm = this.fb.group({
       ingredienti: this.fb.array([])
     });
     this.populate();
+    console.log(this.ingredienti);
   }
+
 
   populate(): void {
     this.ingredienti = this.ingrForm.get('ingredienti') as FormArray;
@@ -71,18 +79,33 @@ export class RicercaPage implements OnInit {
     });
   }
 
-/*  getItems(ev: any) {
+  getItems(ev: any) {
 
     // set val to the value of the searchbar
     const val = ev.target.value;
-
     // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
-      this.cibi$ = this.cibi$.pipe(filter((item) => {
-        return (item.map((e) => { e.nome; }).indexOf(val));
-      }));
+      this.cibiVisualizzati = this.cibiFiltri.filter((item) => {
+        return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+      // this.ingredienti = this.ingrForm.get('ingredienti') as FormArray; POTREBBE SERVIRE
+      /*while (this.ingredienti.length) {
+        this.ingredienti.removeAt(0);
+      }
+      console.log(this.cibiVisualizzati);
+      for (let cibo of this.cibiVisualizzati) {
+        this.ingredienti.push(this.createItem(cibo));
+      }
+      console.log(this.ingredienti);*/
+    } else {
+      this.cibiVisualizzati = this.cibiFiltri;
+     /* this.ingredienti = this.ingrForm.get('ingredienti') as FormArray;
+      for (let i = 0; i < this.ingredienti.length; i++) {
+        this.ingredienti.removeAt(i);
+      }*/
+      // this.populate();
     }
-  }*/
+  }
 
 
   onSubmitAv(): void {
@@ -97,6 +120,7 @@ export class RicercaPage implements OnInit {
   onSubmitIngr(): void {
     // devo recuperare tutti i dati dalla form
     const v = this.ingrForm.value.ingredienti;
+    console.log(v);
     const ids: number[] = [];
     for (const item of v) {
       if (item.val) {
