@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Observable} from "rxjs";
-import {filter} from 'rxjs/operators'
-import {Categoria} from "../../model/categoria.model";
-import {CategoriaService} from "../../services/categoria.service";
-import {NavigationExtras, Router} from "@angular/router";
-import {Data} from '../../utility/Data'
-import {Cibo} from "../../model/cibo.model";
-import {CiboService} from "../../services/cibo.service";
-import {RicettaService} from "../../services/ricetta.service";
-import {Ricetta} from "../../model/ricetta.model";
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {filter} from 'rxjs/operators';
+import {Categoria} from '../../model/categoria.model';
+import {CategoriaService} from '../../services/categoria.service';
+import {NavigationExtras, Router} from '@angular/router';
+import {Data} from '../../utility/Data';
+import {Cibo} from '../../model/cibo.model';
+import {CiboService} from '../../services/cibo.service';
+import {RicettaService} from '../../services/ricetta.service';
+import {Ricetta} from '../../model/ricetta.model';
 
 @Component({
   selector: 'app-ricerca',
@@ -50,9 +50,9 @@ export class RicercaPage implements OnInit {
 
     this.cibi$ = this.ciboService.list();
     this.cibi$.subscribe( (cibi) => {
-      var i = 0;
-      for (let cibo of cibi) {
-        let obj = {
+      let i = 0;
+      for (const cibo of cibi) {
+        const obj = {
           c: cibo,
           index: i
         };
@@ -72,7 +72,7 @@ export class RicercaPage implements OnInit {
     this.ingredienti = this.ingrForm.get('ingredienti') as FormArray;
     this.cibi$.subscribe((cibi) => {
       const c: Cibo[] = cibi;
-      for (let cibo of c) {
+      for (const cibo of c) {
         this.ingredienti.push(this.createItem(cibo));
       }
     });
@@ -107,6 +107,7 @@ export class RicercaPage implements OnInit {
       this.data.storage = Ricette;
       this.router.navigate(['/risultatiricerca']);
     });
+    console.log('Hellooooooooo');
   }
 
   onSubmitIngr(): void {

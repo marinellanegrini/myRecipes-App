@@ -89,6 +89,8 @@ export class ProfiloPage implements OnInit {
             correctOrientation: true
         };
         this.camera.getPicture(options).then((imageData) => {
+            console.log('mari');
+            console.log('arianna' + imageData);
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
             const foto = imageData;
