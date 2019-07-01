@@ -39,6 +39,7 @@ export class DettaglioRicettaPage implements OnInit {
 
   ngOnInit() {
   }
+
   ionViewWillEnter() {
       this.route.paramMap.subscribe((params: ParamMap) => {
           // chiamata REST che recupera dal server la ricetta di cui ho l'id
@@ -76,58 +77,7 @@ export class DettaglioRicettaPage implements OnInit {
                       }
                   );
           });
-         /* this.ricetta$.subscribe( (ricetta) => {
-              this.utenteService.getUtente().subscribe((utente) => {
-                      if (utente !== undefined && utente !== null) {
-                          this.utente = utente;
-                          this.utenteService.isLogged().subscribe( (logged: boolean) => {
-                              if (logged) {
-                                  const pref: Ricetta[] = this.utente.preferito;
-                                  const i: number[] = [];
-                                  for (const ric of pref) {
-                                      i.push(ric.id);
-                                  }
-                                  if (i.includes(ricetta.id)) {
-                                      this.preferita = true;
-                                  } else {
-                                      this.preferita = false;
-                                  }
-                              } else {
-                                  this.preferita = false;
-                              }
-                          });
-                      } else {
-                          this.preferita = false;
-                      }
-                  }
-              );
-              for (const comm of ricetta.commenti) {
-                  this.utenteService.findById(comm.idutente).subscribe( (utente) => {
-                      comm.username = utente.username;
-                      console.log(comm);
-                  });
-              }
-          });*/
-
       });
-      // per ogni idutente di ogni commento recupero dal server l'utente e lo metto nell'array utenteCommenti
-     /* this.ricetta$.subscribe( (ricetta) => {
-          const i: number[] = [];
-          for (const comm of ricetta.commenti) {
-              i.push(comm.idutente);
-          }
-          for (const id of i) {
-              this.utenteService.findById(id).subscribe( (utente) => {
-                  this.utentiCommenti.push(utente);
-              });
-          }
-      });*/
-      /*this.utenteService.getUtente().subscribe((utente) => {
-          this.utente = utente;
-      });*/
-      // NB usare il service qui per recuperare gli utenti relativi ai commenti della ricetta
-
-
       this.initTranslate();
 
 
@@ -153,17 +103,6 @@ export class DettaglioRicettaPage implements OnInit {
               this.navController.navigateRoot('login');
           }
       });
-      /*this.ricetta$.subscribe((ricetta) => {
-          this.utenteService.isLogged().subscribe( (logged) => {
-              if (logged) {
-                  // chiamata al server per aggiornare l'utente
-                  this.utenteService.aggiungiAPreferiti(ricetta.id);
-                  this.preferita = true;
-              } else {
-                  this.navController.navigateRoot('login');
-              }
-          });
-      });*/
   }
 
 
