@@ -82,6 +82,7 @@ export class ProfiloPage implements OnInit {
 
 
     changeImage() {
+        console.log('hellooo');
         const options: CameraOptions = {
             quality: 100,
             destinationType: this.camera.DestinationType.DATA_URL,
@@ -90,9 +91,12 @@ export class ProfiloPage implements OnInit {
         };
 
         this.camera.getPicture(options).then((imageData) => {
+            console.log('mari');
+            console.log('arianna' + imageData);
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
             const foto =  imageData;
+            console.log(foto);
             const fotoobj = new Immagine();
             fotoobj.data = foto;
             fotoobj.type = 'image/jpeg';
