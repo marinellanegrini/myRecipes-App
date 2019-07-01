@@ -25,7 +25,6 @@ export class ProfiloPage implements OnInit {
     private subtitle: string;
     private si: string;
     private no: string;
-    private foto: string;
 
     constructor(private modController: ModalController,
                 private navController: NavController,
@@ -83,16 +82,16 @@ export class ProfiloPage implements OnInit {
 
     changeImage() {
         const options: CameraOptions = {
-            quality: 100,
+            quality: 50,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE
+            mediaType: this.camera.MediaType.PICTURE,
+            correctOrientation: true
         };
-
         this.camera.getPicture(options).then((imageData) => {
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
-            const foto =  imageData;
+            const foto = imageData;
             const fotoobj = new Immagine();
             fotoobj.data = foto;
             fotoobj.type = 'image/jpeg';

@@ -17,7 +17,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {Data} from './utility/Data';
 import {httpInterceptorProviders} from './interceptor';
 import {PreviousRouteService} from './utility/prevroute';
-import { AppVersion } from '@ionic-native/app-version/ngx';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,7 +41,6 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule],
   providers: [
     StatusBar,
-    AppVersion,
     SplashScreen,
     Camera,
       Data,

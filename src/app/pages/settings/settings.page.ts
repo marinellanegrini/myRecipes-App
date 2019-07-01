@@ -7,7 +7,6 @@ import {ConfirmPasswordValidator} from "../../utility/confirm-password.validator
 import {Utente} from "../../model/utente.model";
 import {Commento} from "../../model/commento.model";
 import { DatePipe } from '@angular/common';
-import {AppVersion} from '@ionic-native/app-version/ngx';
 
 @Component({
   selector: 'app-settings',
@@ -19,7 +18,6 @@ export class SettingsPage implements OnInit {
   private utente: Utente;
   private lingue: Lingua[];
   private settingForm: FormGroup;
-  private appVer: string;
 
   private errorTitle: string;
   private errorSubTitle: string;
@@ -30,7 +28,6 @@ export class SettingsPage implements OnInit {
               private translateService: TranslateService,
               private linguaService: LinguaService,
               private navController: NavController,
-              private appVersion: AppVersion
               ) { }
 
   ngOnInit() {
@@ -44,10 +41,6 @@ export class SettingsPage implements OnInit {
 
     this.linguaService.getLinguaAttuale().subscribe((lingua) => {
       this.settingForm.patchValue({linguaPreferita: lingua}); // con patchValue posso impostare un singolo campo della from
-    });
-
-    this.appVersion.getVersionNumber().then( (vnumber) => {
-      this.appVer = vnumber;
     });
 
     this.initTranslate();
