@@ -25,7 +25,6 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
-  private utentiCommenti: Utente[] = [];
 
     private comTitle: string;
     private comSubTitle: string;
@@ -55,8 +54,8 @@ export class DettaglioRicettaPage implements OnInit {
               this.utenteService.getUtente().subscribe((utente) => {
                           if (utente !== undefined && utente !== null) {
                               this.utente = utente;
-                              this.utenteService.isLogged().subscribe( (logged: boolean) => {
-                                  if (logged) {
+                              this.utenteService.isLogged().subscribe((logged: boolean) => {
+                                  if (logged && this.utente.preferito !== null) {
                                       const pref: Ricetta[] = this.utente.preferito;
                                       const i: number[] = [];
                                       for (const ric of pref) {
@@ -130,6 +129,7 @@ export class DettaglioRicettaPage implements OnInit {
 
 
       this.initTranslate();
+
 
   }
 

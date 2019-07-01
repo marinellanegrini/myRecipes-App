@@ -41,7 +41,6 @@
   </div>
 
 
-
   <ion-list>
     <ion-header padding-horizontal>
       <p>
@@ -49,13 +48,12 @@
       </p>
     </ion-header>
 
-
-
     <div class="ion-text-center">
       <p *ngIf="utente.commento.length == 0">
         <ion-text color="medium">{{'NOCOMMENTIUT' | translate}}</ion-text>
       </p>
     </div>
+
     <ion-item *ngFor="let commento of utente.commento">
       <ion-grid no-padding>
         <ion-row>

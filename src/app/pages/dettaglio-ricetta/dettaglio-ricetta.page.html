@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title >{{ricetta.nome}}</ion-title>
+    <ion-title *ngIf="ricetta">{{ricetta.nome}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding-horizontal="5px">
-  <div>
+  <div *ngIf="ricetta">
     <span>
       <ion-row>
 
@@ -109,39 +109,40 @@
       </h6>
     </div>
 
-    <ion-list>
-      <div class="ion-text-center">
+    <div>
+      <div *ngIf="ricetta" class="ion-text-center">
         <p *ngIf="ricetta.commenti.length == 0">
           <ion-text color="medium">{{'NOCOMMENTI' | translate}}</ion-text>
         </p>
       </div>
+      <ion-list>
 
-      <ion-item *ngFor="let commento of ricetta.commenti">
-        <ion-avatar slot="start">
-          <img src="data:{{commento.immagineutente.type}};base64,{{commento.immagineutente.data}}">
-        </ion-avatar>
-        <ion-label text-wrap>
-          <p>
-            <b>
-              {{commento.username}}
-            </b>
-          </p>
-          <p>
-            {{commento.testo}}
-          </p>
-        </ion-label>
+        <div *ngFor="let commento of ricetta.commenti">
+          <ion-item *ngIf="commento.immagineutente && commento.username">
+            <ion-avatar slot="start">
+              <img src="data:{{commento.immagineutente.type}};base64,{{commento.immagineutente.data}}">
+            </ion-avatar>
+            <ion-label text-wrap>
+              <p>
+                <b>
+                  {{commento.username}}
+                </b>
+              </p>
+              <p>
+                {{commento.testo}}
+              </p>
+            </ion-label>
 
-        <span>
+            <span>
           <ion-text slot="end" color="dark">
               <p class="datacommento" text-end="true">{{commento.data}}<br> {{commento.ora}}</p>
           </ion-text>
         </span>
-      </ion-item>
-    </ion-list>
+          </ion-item>
+        </div>
 
-
-
-
+      </ion-list>
+    </div>
 
 
 

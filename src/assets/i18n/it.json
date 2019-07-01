@@ -39,6 +39,7 @@
   "CANCEL_BUTTON": "Annulla",
   "NOCOMMENTI": "Non ci sono commenti per questa ricetta",
   "NOCOMMENTIUT": "Non hai ancora scritto commenti",
+  "NOPREFERITI": "Non hai aggiunto ricette nei preferiti",
 
   "NOMEINVALID": "Il nome inserito non è valido",
   "MAILINVALID": "La mail inserita non è valida",
@@ -64,5 +65,6 @@
   "COM_CANC_SUBTITLE": "Questa azione è irreversibile",
   "NO": "NO",
   "SI": "SI",
-  "CERCA": "Cerca"
+  "CERCA": "Cerca",
+  "VERSIONE": "Versione dell'app"
 }

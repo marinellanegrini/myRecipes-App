@@ -40,7 +40,8 @@
   "SAVE_BUTTON": "Save",
   "CANCEL_BUTTON": "Cancel",
   "NOCOMMENTI": "There aren't comments for this recipe",
-  "NOCOMMENTIUT": "You haven't written any comments yet",
+  "NOCOMMENTIUT": "You haven't written any comment yet",
+  "NOPREFERITI": "You haven't saved any recipe yet",
 
   "NOMEINVALID": "Enter a valid name",
   "MAILINVALID": "Enter a valid e-mail",
@@ -68,5 +69,6 @@
   "COM_CANC_SUBTITLE": "This action is irreversible.",
   "NO": "NO",
   "SI": "YES",
-  "CERCa": "Search"
+  "CERCA": "Search",
+  "VERSIONE": "App Version"
 }

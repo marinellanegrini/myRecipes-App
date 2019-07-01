@@ -9,6 +9,11 @@
         </h1>
       </ion-label>
     </ion-list-header>
+    <div *ngIf="preferiti==null" class="ion-text-center">
+      <p>
+        <ion-text color="medium">{{'NOPREFERITI' | translate}}</ion-text>
+      </p>
+    </div>
     <ion-item  *ngFor =" let preferito of preferiti" >
       <ion-grid>
       <ion-row>

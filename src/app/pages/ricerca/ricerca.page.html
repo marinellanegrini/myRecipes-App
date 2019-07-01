@@ -57,40 +57,48 @@
 
       <ion-searchbar placeholder="{{'CERCA' | translate}}" (ionInput)="getItems($event)" [animated]="true"></ion-searchbar>
 
-      <ion-list>
-        <ion-item formArrayName="ingredienti" *ngFor="let ingr of cibiVisualizzati; let i = index;">
-
-            <ion-grid [formGroupName]="i" align="center">
-        <ion-row justify-content-start>
-
-          <ion-col align-self-center size="100%">
-             <ion-thumbnail item-left>
-              <img src="data:{{ingr.immagine.type}};base64,{{ingr.immagine.data}}" />
-            </ion-thumbnail>
-          </ion-col>
-
-          <ion-col size="8">
-            <ion-label text-wrap text-left padding>
-              <h2>{{ingr.nome}}</h2>
-            </ion-label>
-          </ion-col>
-
-          <ion-col align-self-center>
-            <ion-checkbox formControlName="val" checked="false"></ion-checkbox>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-
-        </ion-item>
-      </ion-list>
-
-
-      <div margin-top="30px" align="center">
-        <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmitIngr()" tappable>
-          {{ 'APPLICA_BUTTON' | translate }}
-        </ion-button>
+      <div class="spin" *ngIf="!(cibi$ | async)">
+        <ion-spinner color="tertiary" name="lines"></ion-spinner>
       </div>
+
+      <div *ngIf="(cibi$ | async)">
+
+        <ion-list  formArrayName="ingredienti">
+          <ion-item  *ngFor="let ingr of cibiVisualizzati;">
+
+            <ion-grid [formGroupName]="ingr.index" align="center">
+              <ion-row justify-content-start>
+
+                <ion-col align-self-center size="100%">
+                  <ion-thumbnail item-left>
+                    <img src="data:{{ingr.c.immagine.type}};base64,{{ingr.c.immagine.data}}" />
+                  </ion-thumbnail>
+                </ion-col>
+
+                <ion-col size="8">
+                  <ion-label text-wrap text-left padding>
+                    <h2>{{ingr.c.nome}}</h2>
+                  </ion-label>
+                </ion-col>
+
+                <ion-col align-self-center>
+                  <ion-checkbox formControlName="val" [checked]="(ingrForm.get('ingredienti').value[ingr.index].val)"></ion-checkbox>
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+
+          </ion-item>
+        </ion-list>
+
+
+        <div margin-top="30px" align="center">
+          <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmitIngr()" tappable>
+            {{ 'APPLICA_BUTTON' | translate }}
+          </ion-button>
+        </div>
+      </div>
+
     </form>
 
   </div>

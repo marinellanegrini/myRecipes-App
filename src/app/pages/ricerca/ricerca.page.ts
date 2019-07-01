@@ -23,13 +23,12 @@ export class RicercaPage implements OnInit {
   private categorie$: Observable<Categoria[]>;
   private difficolta: number[];
   private tprep: string[];
-  private filtri;
 
   private ingrForm: FormGroup;
   private ingredienti: FormArray;
   private cibi$: Observable<Cibo[]>;
-  private cibiFiltri: Cibo[];
-  private cibiVisualizzati: Cibo[];
+  private cibiFiltri: any[] = [];
+  private cibiVisualizzati: any[] = [];
 
   constructor(private fb: FormBuilder,
               private catService: CategoriaService,
@@ -51,14 +50,22 @@ export class RicercaPage implements OnInit {
 
     this.cibi$ = this.ciboService.list();
     this.cibi$.subscribe( (cibi) => {
-      this.cibiVisualizzati = cibi;
-      this.cibiFiltri = cibi;
+      var i = 0;
+      for (let cibo of cibi) {
+        let obj = {
+          c: cibo,
+          index: i
+        };
+        this.cibiVisualizzati.push(obj);
+        i++;
+      }
+      this.cibiFiltri = this.cibiVisualizzati;
     });
     this.ingrForm = this.fb.group({
       ingredienti: this.fb.array([])
     });
     this.populate();
-    console.log(this.ingredienti);
+    console.log(this.ingrForm);
   }
 
 
@@ -86,24 +93,10 @@ export class RicercaPage implements OnInit {
     // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
       this.cibiVisualizzati = this.cibiFiltri.filter((item) => {
-        return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.c.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
-      // this.ingredienti = this.ingrForm.get('ingredienti') as FormArray; POTREBBE SERVIRE
-      /*while (this.ingredienti.length) {
-        this.ingredienti.removeAt(0);
-      }
-      console.log(this.cibiVisualizzati);
-      for (let cibo of this.cibiVisualizzati) {
-        this.ingredienti.push(this.createItem(cibo));
-      }
-      console.log(this.ingredienti);*/
     } else {
       this.cibiVisualizzati = this.cibiFiltri;
-     /* this.ingredienti = this.ingrForm.get('ingredienti') as FormArray;
-      for (let i = 0; i < this.ingredienti.length; i++) {
-        this.ingredienti.removeAt(i);
-      }*/
-      // this.populate();
     }
   }
 
