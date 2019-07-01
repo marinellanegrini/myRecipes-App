@@ -193,7 +193,7 @@ export class DettaglioRicettaPage implements OnInit {
                                        if (utente !== undefined && utente !== null) {
                                            this.utente = utente;
                                            this.utenteService.isLogged().subscribe( (logged: boolean) => {
-                                               if (logged) {
+                                               if (logged && this.utente.preferito !== null) {
                                                    const pref: Ricetta[] = this.utente.preferito;
                                                    const i: number[] = [];
                                                    for (const ric of pref) {

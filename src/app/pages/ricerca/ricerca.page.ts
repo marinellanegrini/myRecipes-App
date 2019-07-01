@@ -65,7 +65,6 @@ export class RicercaPage implements OnInit {
       ingredienti: this.fb.array([])
     });
     this.populate();
-    console.log(this.ingrForm);
   }
 
 
@@ -114,7 +113,6 @@ export class RicercaPage implements OnInit {
   onSubmitIngr(): void {
     // devo recuperare tutti i dati dalla form
     const v = this.ingrForm.value.ingredienti;
-    console.log(v);
     const ids: number[] = [];
     for (const item of v) {
       if (item.val) {

@@ -11,7 +11,7 @@ import {RicettaService} from '../../services/ricetta.service';
   styleUrls: ['./risultatiricerca.page.scss'],
 })
 export class RisultatiricercaPage implements OnInit {
-  private risultati: Ricetta[]
+  private risultati: Ricetta[];
 
 
   constructor(private route: ActivatedRoute,
