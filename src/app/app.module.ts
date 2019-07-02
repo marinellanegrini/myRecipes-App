@@ -18,6 +18,10 @@ import {Data} from './utility/Data';
 import {httpInterceptorProviders} from './interceptor';
 import {PreviousRouteService} from './utility/prevroute';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 // @ts-ignore
 // @ts-ignore
 @NgModule({
@@ -51,6 +55,3 @@ import {PreviousRouteService} from './utility/prevroute';
 
 export class AppModule {}
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
-}
