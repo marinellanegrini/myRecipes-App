@@ -1,17 +1,18 @@
 <ion-header>
+  <form [formGroup]="modForm">
   <ion-toolbar color="primary" text-center>
     <ion-buttons (click)="Cancel()" slot="start">
       <ion-icon size="large" name="close"></ion-icon>
     </ion-buttons>
-    <ion-buttons (click)="Submit()" slot="end">
+    <ion-buttons (click)="Submit()" slot="end"><!--[disabled]="!modForm.valid || (esisteUsername && (modForm.get('username').value !== utente.username))" -->
       <ion-icon size="large" name="checkmark"></ion-icon>
     </ion-buttons>
     <ion-title>{{'MODPROF-TITOLO' | translate}}</ion-title>
   </ion-toolbar>
+  </form>
 </ion-header>
 
 <ion-content>
-
   <form [formGroup]="modForm">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
@@ -23,7 +24,7 @@
               <ion-label position="floating">{{ 'USERNAME' | translate }}</ion-label>
               <ion-input type="text" formControlName="username" (ionChange)="usernameChanged($event.target)"></ion-input>
             </ion-item>
-            <p ion-text class="datacommento" *ngIf="esisteUsername == true">
+            <p ion-text class="datacommento" *ngIf="esisteUsername && (modForm.get('username').value !== utente.username)">
               <ion-text color="danger">{{ 'ESISTEUSERNAME' | translate }}</ion-text>
             </p>
             <ion-item no-padding class="animated fadeInUp">

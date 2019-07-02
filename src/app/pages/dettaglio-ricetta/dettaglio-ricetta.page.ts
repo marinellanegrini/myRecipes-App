@@ -25,6 +25,7 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
+  dataFromModel;
 
     private comTitle: string;
     private comSubTitle: string;
@@ -100,14 +101,14 @@ export class DettaglioRicettaPage implements OnInit {
               this.utenteService.aggiungiAPreferiti(this.ricetta.id);
               this.preferita = true;
           } else {
-              this.navController.navigateRoot('login');
+              this.navController.navigateForward('login');
           }
       });
   }
 
 
 
-    async commenta() {
+   /* async commenta() {
       this.utenteService.isLogged().subscribe( async (logged) => {
           if (logged) {
               const modal = await this.modController.create({
@@ -164,9 +165,13 @@ export class DettaglioRicettaPage implements OnInit {
 
           } else {
               this.navController.navigateRoot('login');
+          } else {
+              this.commenta();
+
           }
       });
-    }
+
+    }*/
 
     async showComError() {
         const alert = await this.alertController.create({

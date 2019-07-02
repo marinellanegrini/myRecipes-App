@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary" text-center>
+  <ion-toolbar color="primary" mode="ios">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -17,7 +17,7 @@
               <ion-label position="floating">{{ 'USERNAME' | translate }}</ion-label>
               <ion-input type="text" (ionChange)="usernameChanged($event.target)" formControlName="username"></ion-input>
             </ion-item>
-            <p ion-text class="datacommento" *ngIf="regForm.get('nome').touched && regForm.get('nome').invalid">
+            <p ion-text class="datacommento" *ngIf="regForm.get('nome').touched && regForm.get('nome').errors?.required">
               <ion-text color="danger">{{ 'USERNAMEREQUIRED' | translate }}</ion-text>
             </p>
             <p ion-text class="datacommento" *ngIf="esisteUsername == true">

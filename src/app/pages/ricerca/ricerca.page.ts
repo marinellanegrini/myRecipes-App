@@ -40,7 +40,7 @@ export class RicercaPage implements OnInit {
   ngOnInit() {
     this.categorie$ = this.catService.list();
     this.difficolta = [1, 2, 3, 4, 5];
-    this.tprep = ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60+'];
+    this.tprep = ['0-10', '0-20', '0-30', '0-40', '0-50', '0-60', '60+'];
 
     this.filtriForm = this.fb.group({
       diff: [null],
@@ -107,7 +107,6 @@ export class RicercaPage implements OnInit {
       this.data.storage = Ricette;
       this.router.navigate(['/risultatiricerca']);
     });
-    console.log('Hellooooooooo');
   }
 
   onSubmitIngr(): void {
