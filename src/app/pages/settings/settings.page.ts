@@ -19,9 +19,6 @@ export class SettingsPage implements OnInit {
   private lingue: Lingua[];
   private settingForm: FormGroup;
 
-  private errorTitle: string;
-  private errorSubTitle: string;
-
 
   constructor(private fb: FormBuilder,
               private alertController: AlertController,
@@ -42,9 +39,6 @@ export class SettingsPage implements OnInit {
     this.linguaService.getLinguaAttuale().subscribe((lingua) => {
       this.settingForm.patchValue({linguaPreferita: lingua}); // con patchValue posso impostare un singolo campo della from
     });
-
-    this.initTranslate();
-
   }
 
   Submit(): void {
@@ -58,25 +52,4 @@ export class SettingsPage implements OnInit {
   Cancel() {
     this.navController.back();
   }
-
-  async showLoginError() {
-    const alert = await this.alertController.create({
-      header: this.errorTitle,
-      message: this.errorSubTitle,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
-  private initTranslate() {
-    this.translateService.get('PASS-ERR-SUBTITLE').subscribe((data) => {
-      this.errorSubTitle = data;
-    });
-    this.translateService.get('PASS-ERR-TITLE').subscribe((data) => {
-      this.errorTitle = data;
-    });
-  }
-
-
 }
