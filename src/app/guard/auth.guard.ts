@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
                 take(1),
                 map((isLoggedIn: boolean) => {
                     if (!isLoggedIn) {
-                        this.navController.navigateRoot('login');
+                        this.navController.navigateForward('login');
                         return false;
                     }
                     return true;

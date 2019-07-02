@@ -9,6 +9,9 @@
   "CERCAFILTRI": "Advanced",
   "CERCAINGREDIENTI": "By ingredients",
   "REGISTRAZIONE-TITOLO": "Register",
+  "COMMENTA-TITOLO": "Comment",
+  "NUOVOCOMMENTO": "New comment",
+  "SCRIVICOMMENTO": "Write your comment here...",
   "MODPROF-TITOLO": "Modify your account",
   "DIFFICOLTA": "Difficulty",
   "TPREP": "Prepatation time",
@@ -35,7 +38,7 @@
   "REGISTRATI": "Register",
   "COMMENTI": "Your comments",
   "INVIA": "Send",
-  "CANCELLA": "Cancell",
+  "CANCELLA": "Cancel",
 
   "SAVE_BUTTON": "Save",
   "CANCEL_BUTTON": "Cancel",
@@ -71,5 +74,5 @@
   "NO": "NO",
   "SI": "YES",
   "CERCA": "Search",
-  "VERSIONE": "App Version"
+  "QUALSIASI": "Any"
 }

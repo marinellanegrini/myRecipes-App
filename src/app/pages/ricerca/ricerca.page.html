@@ -7,16 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
-  <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button checked value="avanzata">
-      <ion-label>{{"CERCAFILTRI" | translate }}</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="ingredienti">
-      <ion-label>{{"CERCAINGREDIENTI" | translate }}</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+<ion-segment (ionChange)="segmentChanged($event)">
+  <ion-segment-button checked value="avanzata">
+    <ion-label>{{"CERCAFILTRI" | translate }}</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="ingredienti">
+    <ion-label>{{"CERCAINGREDIENTI" | translate }}</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<div [ngSwitch]="modalita">
+  <ion-searchbar *ngSwitchCase="'ingredienti'" placeholder="{{'CERCA' | translate}}" (ionInput)="getItems($event)" [animated]="true"></ion-searchbar>
+</div>
+
+<ion-content>
 
   <div padding [ngSwitch]="modalita">
 
@@ -33,29 +37,23 @@
           <ion-label position="floating">{{ 'TPREP' | translate }}</ion-label>
           <ion-select formControlName="tprep" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option *ngFor="let t of tprep">{{t}}</ion-select-option>
-            <ion-select-option [value]="null">Qualsiasi</ion-select-option>
+            <ion-select-option [value]="null">{{'QUALSIASI' | translate}}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item class="animated fadeInUp">
           <ion-label position="floating">{{ 'CATEGORIA' | translate }}</ion-label>
           <ion-select formControlName="cat" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
             <ion-select-option [value]="c.id" *ngFor="let c of categorie$ | async">{{c.nome}}</ion-select-option>
-            <ion-select-option [value]="null">Qualsiasi</ion-select-option>
+            <ion-select-option [value]="null">{{'QUALSIASI' | translate}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
 
-      <div margin-top="30px" align="center">
-        <ion-button icon-left size="medium" shape="round" color="tertiary" (click)="onSubmitAv()" tappable>
-          {{ 'APPLICA_BUTTON' | translate }}
-        </ion-button>
-      </div>
-
     </form>
+
 
     <form [formGroup]="ingrForm" *ngSwitchCase="'ingredienti'">
 
-      <ion-searchbar placeholder="{{'CERCA' | translate}}" (ionInput)="getItems($event)" [animated]="true"></ion-searchbar>
 
       <div class="spin" *ngIf="!(cibi$ | async)">
         <ion-spinner color="tertiary" name="lines"></ion-spinner>
@@ -90,13 +88,6 @@
 
           </ion-item>
         </ion-list>
-
-
-        <div margin-top="30px" align="center">
-          <ion-button icon-left size="medium" shape="round" color="tertiary" (click)="onSubmitIngr()" tappable>
-            {{ 'APPLICA_BUTTON' | translate }}
-          </ion-button>
-        </div>
       </div>
 
     </form>
@@ -104,3 +95,16 @@
   </div>
 
 </ion-content>
+
+<div [ngSwitch]="modalita">
+  <ion-toolbar>
+    <ion-button expand="block" *ngSwitchCase="'avanzata'" color="tertiary" (click)="onSubmitAv()" tappable>
+      {{ 'APPLICA_BUTTON' | translate }}
+    </ion-button>
+    <ion-button expand="block" *ngSwitchCase="'ingredienti'" color="tertiary" (click)="onSubmitIngr()" tappable>
+      {{ 'APPLICA_BUTTON' | translate }}
+    </ion-button>
+  </ion-toolbar>
+</div>
+
+

@@ -7,6 +7,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import {PreviousRouteService} from '../../utility/prevroute';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginPage implements OnInit {
               private navController: NavController,
               private utenteService: UtenteService,
               public router: Router,
-              private previousRouteService: PreviousRouteService) { }
+              private previousRouteService: PreviousRouteService,
+              private location: Location) { }
 
   ngOnInit() {
     this.previousPath = this.previousRouteService.getPreviousUrl();
@@ -47,7 +49,7 @@ export class LoginPage implements OnInit {
           if (this.previousPath === '/registrazione') {
             this.navController.navigateRoot('tabs/home');
           } else {
-            this.navController.back();
+             this.navController.back();
           }
         },
         (err: HttpErrorResponse) => {
@@ -75,7 +77,7 @@ export class LoginPage implements OnInit {
     });
   }
   register() {
-    this.navController.navigateRoot('registrazione');
+    this.navController.navigateForward('registrazione');
   }
 
 }
