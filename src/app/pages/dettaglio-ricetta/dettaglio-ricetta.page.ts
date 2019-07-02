@@ -100,14 +100,14 @@ export class DettaglioRicettaPage implements OnInit {
               this.utenteService.aggiungiAPreferiti(this.ricetta.id);
               this.preferita = true;
           } else {
-              this.navController.navigateRoot('login');
+              this.navController.navigateForward('login');
           }
       });
   }
 
 
 
-    async commenta() {
+   /* async commenta() {
       this.utenteService.isLogged().subscribe( async (logged) => {
           if (logged) {
               const modal = await this.modController.create({
@@ -166,7 +166,7 @@ export class DettaglioRicettaPage implements OnInit {
               this.navController.navigateRoot('login');
           }
       });
-    }
+    }*/
 
     async showComError() {
         const alert = await this.alertController.create({

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'COMMENTA-TITOLO' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="comForm">
+    <div padding margin-top="40px">
+
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">{{ 'NUOVOCOMMENTO' | translate }}</ion-label>
+        <ion-textarea placeholder="{{'SCRIVICOMMENTO' | translate}}" formControlName="testo"></ion-textarea>
+      </ion-item>
+
+
+      <ion-grid margin-top="40px" align="center">
+        <ion-row>
+
+          <ion-col>
+            <ion-button size="medium" shape="round" color="tertiary" (click)="Cancel()" tappable>
+              {{ 'CANCELLA' | translate }}
+            </ion-button>
+          </ion-col>
+
+          <ion-col>
+            <ion-button size="medium" shape="round" color="tertiary"  (click)="Submit()" tappable [disabled]="!comForm.valid">
+              {{ 'INVIA' | translate }}
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+    </div>
+  </form>
+
+
+</ion-content>

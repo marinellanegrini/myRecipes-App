@@ -8,6 +8,9 @@
   "CERCAFILTRI": "Filtri",
   "CERCAINGREDIENTI": "Per ingredienti",
   "REGISTRAZIONE-TITOLO": "Registrazione",
+  "COMMENTA-TITOLO": "Commenta",
+  "NUOVOCOMMENTO": "Nuovo commento",
+  "SCRIVICOMMENTO": "Scrivi qui il tuo commento...",
   "MODPROF-TITOLO": "Modifica il tuo profilo",
   "DIFFICOLTA": "Difficoltà",
   "TPREP": "Tempo di preparazione",
@@ -67,5 +70,5 @@
   "NO": "NO",
   "SI": "SI",
   "CERCA": "Cerca",
-  "VERSIONE": "Versione dell'app"
+  "QUALSIASI": "Qualsiasi"
 }

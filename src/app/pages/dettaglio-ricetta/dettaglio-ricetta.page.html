@@ -40,25 +40,26 @@
     </div>
 
     <div>
-      <p>
-        {{ 'TPREP' | translate }}
-        <ion-icon class="icona" size="medium" name="time"></ion-icon>
-        {{ricetta.tprep}}
+      <p color="tertiary">
+        <b> {{ 'TPREP' | translate }} </b> :
+          <ion-icon class="icona" size="medium" name="time"></ion-icon>
+          {{ricetta.tprep}}
       </p>
       <p>
-        {{ 'CATEGORIA' | translate }}:
-        {{ricetta.categoria.nome}}
+        <b> {{ 'CATEGORIA' | translate }} </b> :
+          {{ricetta.categoria.nome}}
       </p>
       <p>
-        {{ 'DIFFICOLTA' | translate }}
-        <ion-icon name="star"></ion-icon>
-        <ion-icon [hidden]="(ricetta.difficolta<2)" name="star"></ion-icon>
-        <ion-icon [hidden]="(ricetta.difficolta<3)" name="star"></ion-icon>
-        <ion-icon [hidden]="(ricetta.difficolta<4)" name="star"></ion-icon>
-        <ion-icon [hidden]="(ricetta.difficolta<5)" name="star"></ion-icon>
+        <b>{{ 'DIFFICOLTA' | translate }} </b> :
+
+        <ion-icon color="secondary" name="star"></ion-icon>
+        <ion-icon color="secondary" [hidden]="(ricetta.difficolta<2)" name="star"></ion-icon>
+        <ion-icon color="secondary" [hidden]="(ricetta.difficolta<3)" name="star"></ion-icon>
+        <ion-icon color="secondary" [hidden]="(ricetta.difficolta<4)" name="star"></ion-icon>
+        <ion-icon color="secondary" [hidden]="(ricetta.difficolta<5)" name="star"></ion-icon>
       </p>
       <p >
-        {{ 'NDOSI' | translate }}
+       <b> {{ 'NDOSI' | translate }} </b> :
         <ion-icon class="icona" name="restaurant"></ion-icon>
         {{ricetta.ndosi}}
       </p>
@@ -96,7 +97,7 @@
     </div>
 
     <div margin-top="30px" align="center">
-      <ion-button size="medium" shape="round" color="tertiary" (click)="commenta()" tappable>
+      <ion-button size="medium" shape="round" color="tertiary" [routerLink]="['/commenta', ricetta.id]" tappable>
         {{ 'COMMENTA-BUTTON' | translate }}
       </ion-button>
     </div>
