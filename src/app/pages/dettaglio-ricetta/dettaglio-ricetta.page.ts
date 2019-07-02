@@ -25,6 +25,7 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
+  dataFromModel;
 
     private comTitle: string;
     private comSubTitle: string;
@@ -105,68 +106,73 @@ export class DettaglioRicettaPage implements OnInit {
       });
   }
 
-
-
-    async commenta() {
-      this.utenteService.isLogged().subscribe( async (logged) => {
-          if (logged) {
-              const modal = await this.modController.create({
-
-                  component: CommentoPage
-              });
-
-              modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-                  if (detail !== null && detail.data !== undefined) {
-                      const commento: Commento = detail.data;
-                      commento.idricetta = this.ricetta.id;
-                      this.utenteService.commenta(commento).subscribe(() => {
-                           this.ricService.findById(this.ricetta.id).subscribe( (ricetta) => {
-                              this.ricetta = ricetta;
-                              for (const comm of ricetta.commenti) {
-                                   this.utenteService.findById(comm.idutente).subscribe((utente) => {
-                                       comm.username = utente.username;
-                                       comm.immagineutente = utente.immagine;
-                                   });
-                               }
-                              this.utenteService.getUtente().subscribe((utente) => {
-                                       if (utente !== undefined && utente !== null) {
-                                           this.utente = utente;
-                                           this.utenteService.isLogged().subscribe( (logged: boolean) => {
-                                               if (logged && this.utente.preferito !== null) {
-                                                   const pref: Ricetta[] = this.utente.preferito;
-                                                   const i: number[] = [];
-                                                   for (const ric of pref) {
-                                                       i.push(ric.id);
-                                                   }
-                                                   if (i.includes(ricetta.id)) {
-                                                       this.preferita = true;
-                                                   } else {
-                                                       this.preferita = false;
-                                                   }
-                                               } else {
-                                                   this.preferita = false;
-                                               }
-                                           });
-                                       } else {
-                                           this.preferita = false;
-                                       }
-                                   }
-                               );
-                          });
-                      }, (err: HttpErrorResponse) => {
-                          if (err.status === 500) {
-                              this.showComError();
-                          }
-                      });
-                  }
-              });
-              await modal.present();
-
-          } else {
+VerComm() {
+      this.utenteService.isLogged().subscribe((logged) => {
+          if ( !logged ) {
               this.navController.navigateRoot('login');
+          } else {
+              this.commenta();
+
           }
       });
-    }
+}
+
+ async commenta() {
+     const modal = await this.modController.create({
+         component: CommentoPage
+     });
+
+     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+         if (detail !== null && detail.data !== undefined) {
+             const commento: Commento = detail.data;
+             commento.idricetta = this.ricetta.id;
+             this.utenteService.commenta(commento).subscribe(() => {
+                 this.ricService.findById(this.ricetta.id).subscribe((ricetta) => {
+                     this.ricetta = ricetta;
+                     for (const comm of ricetta.commenti) {
+                         this.utenteService.findById(comm.idutente).subscribe((utente) => {
+                             comm.username = utente.username;
+                             comm.immagineutente = utente.immagine;
+                         });
+                     }
+                     this.utenteService.getUtente().subscribe((utente) => {
+                             if (utente !== undefined && utente !== null) {
+                                 this.utente = utente;
+                                 this.utenteService.isLogged().subscribe((logged: boolean) => {
+                                     if (logged && this.utente.preferito !== null) {
+                                         const pref: Ricetta[] = this.utente.preferito;
+                                         const i: number[] = [];
+                                         for (const ric of pref) {
+                                             i.push(ric.id);
+                                         }
+                                         if (i.includes(ricetta.id)) {
+                                             this.preferita = true;
+                                         } else {
+                                             this.preferita = false;
+                                         }
+                                     } else {
+                                         this.preferita = false;
+                                     }
+                                 });
+                             } else {
+                                 this.preferita = false;
+                             }
+                         }
+                     );
+                 });
+             }, (err: HttpErrorResponse) => {
+                 if (err.status === 500) {
+                     this.showComError();
+                 }
+             });
+         }
+     });
+     await modal.present();
+
+
+
+
+ }
 
     async showComError() {
         const alert = await this.alertController.create({
