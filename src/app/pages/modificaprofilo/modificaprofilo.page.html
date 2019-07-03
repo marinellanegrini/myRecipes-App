@@ -6,7 +6,7 @@
         <ion-icon size="large" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end"><!--[disabled]="!modForm.valid || (esisteUsername && (modForm.get('username').value !== utente.username))" -->
+    <ion-buttons slot="end">
       <ion-button tappable fill="clear" (click)="Submit()" [disabled]="!modForm.valid || (esisteUsername && (modForm.get('username').value !== utente.username)) || (modForm.get('confpassword').errors && modForm.get('confpassword').errors.ConfirmPassword)">
         <ion-icon size="large" name="checkmark"></ion-icon>
       </ion-button>
