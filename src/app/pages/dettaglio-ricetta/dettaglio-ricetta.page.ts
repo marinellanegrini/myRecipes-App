@@ -19,12 +19,6 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
-<<<<<<< HEAD
-
-    private comTitle: string;
-    private comSubTitle: string;
-=======
->>>>>>> 7840399a47eb0183208187de27175af4146e8124
 
   constructor(private route: ActivatedRoute,
               private modController: ModalController,
