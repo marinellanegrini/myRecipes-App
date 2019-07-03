@@ -73,6 +73,11 @@
   "COM_CANC_SUBTITLE": "This action is irreversible.",
   "NO": "NO",
   "SI": "YES",
+  "HEADER-ACTION": "Change image",
+  "CAMERA": "Camera",
+  "GALLERY": "Gallery",
+  "ANNULLA": "Cancel",
+
   "CERCA": "Search",
   "QUALSIASI": "Any"
 }
