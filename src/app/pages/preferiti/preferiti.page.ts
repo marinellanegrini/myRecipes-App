@@ -1,7 +1,4 @@
-import {AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
-
-import {Observable} from "rxjs";
-import {Cibo} from "../../model/cibo.model";
+import {Component, OnInit} from '@angular/core';
 import {Ricetta} from "../../model/ricetta.model";
 import {RicettaService} from "../../services/ricetta.service";
 import {UtenteService} from "../../services/utente.service";

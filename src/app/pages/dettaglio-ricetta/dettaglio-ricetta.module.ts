@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { DettaglioRicettaPage } from './dettaglio-ricetta.page';
 import {TranslateModule} from '@ngx-translate/core';
-import {CommentoPageModule} from '../commento/commento.module';
+
 
 const routes: Routes = [
   {
@@ -22,7 +22,6 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
       TranslateModule.forChild(),
-    CommentoPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [DettaglioRicettaPage]

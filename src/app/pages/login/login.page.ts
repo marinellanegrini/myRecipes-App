@@ -28,7 +28,6 @@ export class LoginPage implements OnInit {
               private previousRouteService: PreviousRouteService) { }
 
   ngOnInit() {
-   // this.previousPath = this.previousRouteService.getPreviousUrl();
     this.formLogin = this.fb.group({
       username: ['', Validators.compose([
         Validators.required
@@ -39,6 +38,7 @@ export class LoginPage implements OnInit {
     });
     this.initTranslate();
   }
+
   ionViewWillEnter() {
     this.previousPath = this.previousRouteService.getPreviousUrl();
   }
@@ -69,6 +69,7 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
+
   private initTranslate() {
     this.translateService.get('LOGIN_ERROR_SUB_TITLE').subscribe((data) => {
       this.loginSubTitle = data;
