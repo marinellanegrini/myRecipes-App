@@ -25,7 +25,6 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
-  dataFromModel;
 
     private comTitle: string;
     private comSubTitle: string;
