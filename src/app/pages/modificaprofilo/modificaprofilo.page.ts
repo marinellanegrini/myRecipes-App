@@ -30,8 +30,8 @@ export class ModificaprofiloPage implements OnInit {
       nome: [this.utente.nome, Validators.pattern('[A-Za-z]+')],
       cognome: [this.utente.cognome, Validators.pattern('[A-Za-z]+')],
       email: [this.utente.email, Validators.email],
-      password: [''],
-      confpassword: ['']
+      password: [this.utente.password],
+      confpassword: [this.utente.password]
     }, {
       validator: ConfirmPasswordValidator.MatchPassword
     });

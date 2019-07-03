@@ -1,11 +1,15 @@
 <ion-header>
   <form [formGroup]="modForm">
   <ion-toolbar color="primary" text-center>
-    <ion-buttons (click)="Cancel()" slot="start">
-      <ion-icon size="large" name="close"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button tappable fill="clear" (click)="Cancel()">
+        <ion-icon size="large" name="close"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-buttons (click)="Submit()" slot="end"><!--[disabled]="!modForm.valid || (esisteUsername && (modForm.get('username').value !== utente.username))" -->
-      <ion-icon size="large" name="checkmark"></ion-icon>
+    <ion-buttons slot="end"><!--[disabled]="!modForm.valid || (esisteUsername && (modForm.get('username').value !== utente.username))" -->
+      <ion-button tappable fill="clear" (click)="Submit()" [disabled]="!modForm.valid || (esisteUsername && (modForm.get('username').value !== utente.username)) || (modForm.get('confpassword').errors && modForm.get('confpassword').errors.ConfirmPassword)">
+        <ion-icon size="large" name="checkmark"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>{{'MODPROF-TITOLO' | translate}}</ion-title>
   </ion-toolbar>

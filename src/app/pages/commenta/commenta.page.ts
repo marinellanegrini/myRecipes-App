@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
-import {NavController} from '@ionic/angular';
+import { NavController} from '@ionic/angular';
 import {Commento} from '../../model/commento.model';
 import {UtenteService} from '../../services/utente.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Ricetta} from '../../model/ricetta.model';
+
 
 @Component({
   selector: 'app-commenta',
@@ -25,10 +25,10 @@ export class CommentaPage implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.route.paramMap.subscribe((params: ParamMap) => {
       this.idricetta = parseInt(params.get('id'), 0);
     });
-    this.comForm = this.fb.group({
+      this.comForm = this.fb.group({
       testo: ['', Validators.required]
     });
   }

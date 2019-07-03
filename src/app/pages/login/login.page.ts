@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
-    this.previousPath = this.previousRouteService.getPreviousUrl();
+   // this.previousPath = this.previousRouteService.getPreviousUrl();
     this.formLogin = this.fb.group({
       username: ['', Validators.compose([
         Validators.required
@@ -40,6 +40,9 @@ export class LoginPage implements OnInit {
       ])]
     });
     this.initTranslate();
+  }
+  ionViewWillEnter() {
+    this.previousPath = this.previousRouteService.getPreviousUrl();
   }
 
   onLogin() {

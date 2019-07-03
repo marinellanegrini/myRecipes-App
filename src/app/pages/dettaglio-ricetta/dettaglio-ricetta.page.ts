@@ -5,15 +5,9 @@ import {Ricetta} from '../../model/ricetta.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
-import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 
 import {AlertController, ModalController, NavController} from '@ionic/angular';
-import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
-import {CommentoPage} from '../commento/commento.page';
 
-import {Commento} from '../../model/commento.model';
-import {HttpErrorResponse} from '@angular/common/http';
-import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -25,17 +19,11 @@ export class DettaglioRicettaPage implements OnInit {
   private ricetta: Ricetta;
   private utente: Utente;
   private preferita: boolean;
-  dataFromModel;
-
-    private comTitle: string;
-    private comSubTitle: string;
 
   constructor(private route: ActivatedRoute,
               private modController: ModalController,
               private ricService: RicettaService,
               private utenteService: UtenteService,
-              private translateService: TranslateService,
-              private alertController: AlertController,
               private navController: NavController) { }
 
   ngOnInit() {
@@ -79,8 +67,6 @@ export class DettaglioRicettaPage implements OnInit {
                   );
           });
       });
-      this.initTranslate();
-
 
   }
 
@@ -172,22 +158,4 @@ export class DettaglioRicettaPage implements OnInit {
       });
 
     }*/
-
-    async showComError() {
-        const alert = await this.alertController.create({
-            header: this.comTitle,
-            message: this.comSubTitle,
-            buttons: ['OK']
-        });
-        await alert.present();
-    }
-
-    private initTranslate() {
-        this.translateService.get('COM_ERROR_SUB_TITLE').subscribe((data) => {
-            this.comSubTitle = data;
-        });
-        this.translateService.get('COM_ERROR_TITLE').subscribe((data) => {
-            this.comTitle = data;
-        });
-    }
 }

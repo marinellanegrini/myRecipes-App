@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Utente} from '../../model/utente.model';
 import {UtenteService} from '../../services/utente.service';
 import {Commento} from '../../model/commento.model';
-import {AlertController, ModalController, NavController} from '@ionic/angular';
+import {ActionSheetController, AlertController, ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
 import {BehaviorSubject} from 'rxjs';
@@ -21,17 +21,22 @@ import {Immagine} from '../../model/immagine.model';
 export class ProfiloPage implements OnInit {
     private utente: Utente;
     private commenti: Commento[];
-    private title: string;
-    private subtitle: string;
+    private titlecom: string;
+    private subtitlecom: string;
     private si: string;
     private no: string;
+    private headerAction: string;
+    private Camera: string;
+    private Gallery: string;
+    private annulla: string;
 
     constructor(private modController: ModalController,
                 private navController: NavController,
                 private utenteService: UtenteService,
                 private alertController: AlertController,
                 private translateService: TranslateService,
-                private camera: Camera) { }
+                private camera: Camera,
+                public actionSheetController: ActionSheetController) { }
 
 
   ngOnInit() {
@@ -79,18 +84,16 @@ export class ProfiloPage implements OnInit {
         this.listcommenti();
     }
 
-
-    changeImage() {
+    changeImageCamera() {
         const options: CameraOptions = {
             quality: 50,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE,
+            sourceType: this.camera.PictureSourceType.CAMERA,
             correctOrientation: true
         };
         this.camera.getPicture(options).then((imageData) => {
-            console.log('mari');
-            console.log('arianna' + imageData);
             // imageData is either a base64 encoded string or a file URI
             // If it's base64 (DATA_URL):
             const foto = imageData;
@@ -106,13 +109,38 @@ export class ProfiloPage implements OnInit {
             // Handle error
 
         });
+    }
+    changeImageGallery() {
+        const options: CameraOptions = {
+            quality: 50,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+            correctOrientation: true
+        };
+        this.camera.getPicture(options).then((imageData) => {
+            // imageData is either a base64 encoded string or a file URI
+            // If it's base64 (DATA_URL):
+            const foto = imageData;
+            const fotoobj = new Immagine();
+            fotoobj.data = foto;
+            fotoobj.type = 'image/jpeg';
+            fotoobj.idesterno = this.utente.id;
+            this.utenteService.updateFoto(fotoobj).subscribe((nuovoUtente) => {
+                this.utente = nuovoUtente;
+            });
 
+        }, (err) => {
+            // Handle error
+
+        });
     }
 
     async rimuoviComm(idcommento) {
         const alert = await this.alertController.create({
-            header: this.title,
-            message: this.subtitle,
+            header: this.titlecom,
+            message: this.subtitlecom,
             buttons: [this.no, {
                 text: this.si,
                 handler: () => {
@@ -125,18 +153,48 @@ export class ProfiloPage implements OnInit {
         await alert.present();
     }
 
+    async openActionSheet() {
+        const actionSheet = await this.actionSheetController.create({
+            header: this.headerAction,
+            buttons: [{
+                text: this.Gallery,
+                handler: () => {this.changeImageGallery(); }
+            }, {
+                text: this.Camera,
+                handler: () => {this.changeImageCamera(); }
+            }, {
+                text: this.annulla,
+                role: 'cancel',
+                handler: () => {
+                }
+            }]
+        });
+        await actionSheet.present();
+    }
     private initTranslate() {
         this.translateService.get('COM_CANC_SUBTITLE').subscribe((data) => {
-            this.subtitle = data;
+            this.subtitlecom = data;
         });
         this.translateService.get('COM_CANC_TITLE').subscribe((data) => {
-            this.title = data;
+            this.titlecom = data;
         });
         this.translateService.get('SI').subscribe((data) => {
             this.si = data;
         });
         this.translateService.get('NO').subscribe((data) => {
             this.no = data;
+        });
+        this.translateService.get('HEADER-ACTION').subscribe((data) => {
+            this.headerAction = data;
+        });
+        this.translateService.get('CAMERA').subscribe((data) => {
+            this.Camera = data;
+        });
+        this.translateService.get('GALLERY').subscribe((data) => {
+            this.Gallery = data;
+        });
+        this.translateService.get('ANNULLA').subscribe((data) => {
+            this.annulla = data;
         });
     }
 
