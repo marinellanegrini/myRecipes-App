@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {Ricetta} from '../../model/ricetta.model';
 import {Data} from '../../utility/Data';
-import {Observable} from 'rxjs';
 import {RicettaService} from '../../services/ricetta.service';
 
 @Component({

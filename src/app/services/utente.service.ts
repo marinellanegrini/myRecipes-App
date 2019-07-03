@@ -7,13 +7,11 @@ import {Utente} from '../model/utente.model';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Commento} from '../model/commento.model';
 import {URL} from '../constants';
-import {Ricetta} from "../model/ricetta.model";
-import {Immagine} from "../model/immagine.model";
+import {Immagine} from '../model/immagine.model';
 
 export interface Account {
     username: string;
     password: string;
-
 }
 
 @Injectable({
@@ -70,9 +68,6 @@ export class UtenteService {
         this.loggedIn$.next(false);
         this.storage.remove(AUTH_TOKEN);
         this.storage.remove(UTENTE_STORAGE);
-
-        // Nessuna chiamata al server perche' JWT e' stateless quindi non prevede alcun logout.
-        // Per gestirlo si dovrebbe fare lato server una blacklist.
     }
 
     getUtente(): BehaviorSubject<Utente> {

@@ -7,7 +7,6 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import {PreviousRouteService} from '../../utility/prevroute';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -26,8 +25,7 @@ export class LoginPage implements OnInit {
               private navController: NavController,
               private utenteService: UtenteService,
               public router: Router,
-              private previousRouteService: PreviousRouteService,
-              private location: Location) { }
+              private previousRouteService: PreviousRouteService) { }
 
   ngOnInit() {
    // this.previousPath = this.previousRouteService.getPreviousUrl();

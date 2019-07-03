@@ -33,12 +33,13 @@
     "@ionic/storage": "^2.2.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
-    "cordova-android": "^8.0.0",
+    "cordova-android": "8.0.0",
     "cordova-browser": "6.0.0",
     "cordova-ios": "5.0.1",
     "cordova-plugin-app-version": "0.1.9",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-image-picker": "^1.1.3",
+    "cordova-plugin-ionic-webview": "1.2.1",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-telerik-imagepicker": "2.3.2",
     "core-js": "^2.5.4",
@@ -63,7 +64,6 @@
     "codelyzer": "~4.5.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "jasmine-core": "~2.99.1",
@@ -85,20 +85,17 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": " "
       },
       "cordova-plugin-image-picker": {},
-      "cordova-plugin-app-version": {}
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
       "browser",
-      "android",
       "ios"
     ]
   }

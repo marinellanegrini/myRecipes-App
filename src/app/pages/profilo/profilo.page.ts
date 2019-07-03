@@ -5,9 +5,6 @@ import {Commento} from '../../model/commento.model';
 import {ActionSheetController, AlertController, ModalController, NavController} from '@ionic/angular';
 import {ModificaprofiloPage} from '../modificaprofilo/modificaprofilo.page';
 import {OverlayEventDetail} from '@ionic/core/dist/types/utils/overlays-interface';
-import {BehaviorSubject} from 'rxjs';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import {Ricetta} from '../../model/ricetta.model';
 import {TranslateService} from '@ngx-translate/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {Immagine} from '../../model/immagine.model';
@@ -71,8 +68,6 @@ export class ProfiloPage implements OnInit {
       });
         await modal.present();
   }
-
-
     listcommenti() {
         // recupero i commenti dall'utente tramite il service che recupera l'utente dallo storage
         this.utenteService.getUtente().subscribe((utente) => {
