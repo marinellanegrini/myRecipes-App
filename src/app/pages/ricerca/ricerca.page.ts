@@ -61,6 +61,7 @@ export class RicercaPage implements OnInit {
       }
       this.cibiFiltri = this.cibiVisualizzati;
     });
+
     this.ingrForm = this.fb.group({
       ingredienti: this.fb.array([])
     });
@@ -90,6 +91,7 @@ export class RicercaPage implements OnInit {
     // set val to the value of the searchbar
     const val = ev.target.value;
     // if the value is an empty string don't filter the items
+    // trim rimuove gli spazi bianca nella barra di ricerca
     if (val && val.trim() !== '') {
       this.cibiVisualizzati = this.cibiFiltri.filter((item) => {
         return (item.c.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
